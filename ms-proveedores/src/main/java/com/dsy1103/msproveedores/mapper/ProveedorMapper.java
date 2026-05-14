@@ -29,18 +29,13 @@ public class ProveedorMapper {
                 .calificacion(pModel.getCalificacion())
                 .activo(pModel.getActivo())
                 .fechaRegistro(pModel.getFechaRegistro())
-                .listaContrato(pModel.getListaContrato() != null ?
-                        pModel.getListaContrato().stream()
-                                .map(contratoMapper::toDTO)
-                                .collect(Collectors.toList())
-                : new ArrayList<>())
                 .build();
     }
 
     public ProveedorModel toEntity(ProveedorDTO pDTO) {
         if (pDTO == null) return null;
 
-        ProveedorModel pModel = ProveedorModel.builder()
+        return ProveedorModel.builder()
                 .nombre(pDTO.getNombre())
                 .razonSocial(pDTO.getRazonSocial())
                 .documentoFiscal(pDTO.getDocumentoFiscal())
@@ -50,18 +45,5 @@ public class ProveedorMapper {
                 .activo(pDTO.getActivo())
                 .fechaRegistro(pDTO.getFechaRegistro())
                 .build();
-
-        if (pDTO.getListaContrato() != null) {
-            List<ContratoModel> contratos = pDTO.getListaContrato().stream()
-                    .map(contratoDTO -> {
-                        ContratoModel c = contratoMapper.toEntity(contratoDTO);
-                        c.setProveedor(pModel);
-                        return c;
-                    })
-                    .collect(Collectors.toList());
-            pModel.setListaContrato(contratos);
-        }
-
-        return pModel;
     }
 }

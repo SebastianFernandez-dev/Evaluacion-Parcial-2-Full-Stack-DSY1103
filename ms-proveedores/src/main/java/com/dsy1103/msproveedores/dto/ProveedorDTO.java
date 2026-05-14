@@ -43,7 +43,7 @@ public class ProveedorDTO {
     @Max(5)
     private Integer calificacion;
 
-    @NotNull(message="El campo ACCTIVO es obligatorio")
+    @NotNull(message="El campo ACTIVO es obligatorio")
     private Boolean activo;
 
     @NotNull(message="El campo FECHA REGISTRO es obligatorio")

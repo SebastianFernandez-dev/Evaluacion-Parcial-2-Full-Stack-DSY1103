@@ -45,5 +45,7 @@ public class ContratoDTO {
     @Size(min=5, max=200)
     private String observaciones;
 
+    @NotNull(message="El campo PROVEEDOR ID es obligatorio")
+    @Positive
     private Long proveedorId;
 }

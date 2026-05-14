@@ -27,7 +27,8 @@ public class ContratoService {
 
 
     public List<ContratoDTO> listarContratos() {
-        log.info("Listando todos los contratos");
+        log.info("Listando todos los CONTRATOS");
+
         return contratoRepository.findAll()
                 .stream()
                 .map(contratoMapper::toDTO)
@@ -35,31 +36,43 @@ public class ContratoService {
     }
 
     public ContratoDTO obtenerContratoPorId(Long id) {
-        log.info("Obteniendo contrato por id {}", id);
+        log.info("Obteniendo CONTRATO por ID {}", id);
+
         return contratoRepository.findById(id)
                 .map(contratoMapper::toDTO)
-                .orElseThrow(() -> new EntityNotFoundException("Error: El contrato con ID "
-                + id + " no existe. No se pudo realizar la busqueda."));
+                .orElseThrow(() -> new EntityNotFoundException("Error: El CONTRATO con ID "
+                        + id + " no existe. No se pudo realizar la busqueda."));
+    }
+
+    public List<ContratoDTO> listarContratosPorProveedor(Long pId) {
+        log.info("Listando contratos por ID del PROVEEDOR {}", pId);
+
+        return contratoRepository.findByProveedorId(pId)
+                .stream()
+                .map(contratoMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
     public ContratoDTO guardarContrato(ContratoDTO dto) {
-        log.info("Intentando registrar contrato código: {}", dto.getNumero());
+        log.info("Intentando registrar CONTRATO CÓDIGO: {}", dto.getNumero());
         ContratoModel contrato = contratoMapper.toEntity(dto);
 
-        ProveedorModel proveedor = proveedorRepository.findById(dto.getProveedorId()).orElseThrow(() -> new EntityNotFoundException("Error: El proveedor con id "
-        + dto.getProveedorId() + " no existe. No se puede crear el contrato."));
+        ProveedorModel proveedor = proveedorRepository.findById(dto.getProveedorId())
+                .orElseThrow(() -> new EntityNotFoundException("Error: El proveedor con id "
+        + dto.getProveedorId() + " no existe. No se puede registrar el CONTRATO."));
 
         contrato.setProveedor(proveedor);
         ContratoModel guardado = contratoRepository.save(contrato);
-        log.info("Contrato guardado exitosamente con id: {}", guardado.getId());
+        log.info("CONTRATO guardado exitosamente con ID: {}", guardado.getId());
+
         return contratoMapper.toDTO(guardado);
     }
 
     public ContratoDTO actualizarContrato(ContratoDTO dto) {
-        log.info("Actualizando contrato con id: {}", dto.getId());
+        log.info("Actualizando CONTRATO con ID: {}", dto.getId());
 
         ContratoModel cExistente = contratoRepository.findById(dto.getId())
-                .orElseThrow(() -> new EntityNotFoundException("Error: Contrato no encontrado."));
+                .orElseThrow(() -> new EntityNotFoundException("Error: CONTRATO no encontrado."));
 
         cExistente.setNumero(dto.getNumero());
         cExistente.setTipo(dto.getTipo());
@@ -71,7 +84,7 @@ public class ContratoService {
 
         if (dto.getProveedorId() != null) {
             ProveedorModel p = proveedorRepository.findById(dto.getProveedorId())
-                    .orElseThrow(() -> new EntityNotFoundException("Error: Proveedor no encontrado."));
+                    .orElseThrow(() -> new EntityNotFoundException("Error: PROVEEDOR no encontrado."));
             cExistente.setProveedor(p);
         }
 
@@ -81,13 +94,13 @@ public class ContratoService {
     }
 
     public void eliminarContrato(Long id) {
-        log.warn("Eliminando contrato con id: {}", id);
+        log.warn("Eliminando CONTRATO con ID: {}", id);
 
         if (!contratoRepository.existsById(id)) {
-            throw new EntityNotFoundException("Error: Contrato no encontrado.");
+            throw new EntityNotFoundException("Error: CONTRATO no encontrado.");
         }
 
         contratoRepository.deleteById(id);
-        log.info("Contrato eliminado exitosamente con id: {}", id);
+        log.info("CONTRATO eliminado exitosamente con ID: {}", id);
     }
 }
