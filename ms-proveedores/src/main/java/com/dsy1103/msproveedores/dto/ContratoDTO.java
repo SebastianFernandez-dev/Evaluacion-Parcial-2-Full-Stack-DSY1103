@@ -3,12 +3,14 @@ package com.dsy1103.msproveedores.dto;
 
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class ContratoDTO {
@@ -43,5 +45,7 @@ public class ContratoDTO {
     @Size(min=5, max=200)
     private String observaciones;
 
+    @NotNull(message="El campo PROVEEDOR ID es obligatorio")
+    @Positive
     private Long proveedorId;
 }

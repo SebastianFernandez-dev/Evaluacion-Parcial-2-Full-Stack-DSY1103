@@ -2,6 +2,7 @@ package com.dsy1103.msproveedores.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name="contrato")
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class ContratoModel {

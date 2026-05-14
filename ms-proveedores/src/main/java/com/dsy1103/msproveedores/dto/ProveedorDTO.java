@@ -2,6 +2,7 @@ package com.dsy1103.msproveedores.dto;
 
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,11 +10,16 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProveedorDTO {
 
     private Long id;
+
+    @NotBlank(message="El campo NOMBRE es obligatorio")
+    @Size(max=80)
+    private String nombre;
 
     @NotBlank(message="El campo RAZON SOCIAL es obligatorio")
     @Size(min=5, max=120)
@@ -37,7 +43,7 @@ public class ProveedorDTO {
     @Max(5)
     private Integer calificacion;
 
-    @NotNull(message="El campo ACCTIVO es obligatorio")
+    @NotNull(message="El campo ACTIVO es obligatorio")
     private Boolean activo;
 
     @NotNull(message="El campo FECHA REGISTRO es obligatorio")
