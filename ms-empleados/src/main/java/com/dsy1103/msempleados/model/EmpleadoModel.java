@@ -2,12 +2,14 @@ package com.dsy1103.msempleados.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -48,7 +50,7 @@ public class EmpleadoModel {
     private LocalDate fechaIngreso;
 
     @Column(name = "activo_empleado", nullable = false)
-    private boolean activoEmpleado=true;
+    private Boolean activoEmpleado;
 
     // fk sucursal, la cual es de otra base de datos
     @Column(name = "sucursal_id", nullable = false)
