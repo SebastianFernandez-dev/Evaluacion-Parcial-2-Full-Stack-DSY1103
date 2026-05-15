@@ -2,10 +2,12 @@ package com.dsy1103.msusuarios.mapper;
 
 import com.dsy1103.msusuarios.dto.UsuarioDTO;
 import com.dsy1103.msusuarios.modelo.UsuarioModelo;
+import org.springframework.stereotype.Component;
 
+@Component // Esto hace que Spring lo reconozca
 public class UsuarioMapper {
 
-    public static UsuarioDTO toDTO(UsuarioModelo usuario){
+    public UsuarioDTO toDTO(UsuarioModelo usuario){
         if (usuario == null) return null;
         UsuarioDTO dto = new UsuarioDTO();
         dto.setId(usuario.getId());
@@ -21,10 +23,9 @@ public class UsuarioMapper {
         return dto;
     }
 
-    public static UsuarioModelo toEntity(UsuarioDTO dto) {
+    public UsuarioModelo toEntity(UsuarioDTO dto) {
         if (dto == null) return null;
         UsuarioModelo modelo = new UsuarioModelo();
-
         modelo.setPrimerNombre(dto.getPrimerNombre());
         modelo.setSegundoNombre(dto.getSegundoNombre());
         modelo.setPrimerApellido(dto.getPrimerApellido());
@@ -36,6 +37,4 @@ public class UsuarioMapper {
         modelo.setFechaRegistro(dto.getFechaRegistro());
         return modelo;
     }
-
-
 }

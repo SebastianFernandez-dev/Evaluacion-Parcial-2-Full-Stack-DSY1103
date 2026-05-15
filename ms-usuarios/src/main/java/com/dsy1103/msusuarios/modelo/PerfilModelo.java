@@ -36,7 +36,7 @@ public class PerfilModelo {
     private LocalDate fechaCreacionPerfil;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id", nullable = false) // FK declarada explícitamente
+    @JoinColumn(name = "usuario_id", nullable = false) // FK declarado
     private UsuarioModelo usuario;
 
 }

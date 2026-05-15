@@ -41,8 +41,8 @@ public class UsuarioDTO {
     private Integer rut;
 
     @NotNull(message = "El DV es obligatorio")
-    @Positive(message = "El DV debe ser valido")
-    @Size(min=0, max=1)
+    @Min(value = 0, message = "El DV no puede ser menor a 0")
+    @Max(value = 9, message = "El DV no puede ser mayor a 9")
     private Integer dvRut;
 
     @NotNull(message="El campo ACTIVO es obligatorio")

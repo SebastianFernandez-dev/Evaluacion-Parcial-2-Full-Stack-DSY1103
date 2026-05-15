@@ -1,12 +1,12 @@
 package com.dsy1103.msusuarios.service;
 
-
 import com.dsy1103.msusuarios.dto.PerfilDTO;
 import com.dsy1103.msusuarios.mapper.PerfilMapper;
 import com.dsy1103.msusuarios.modelo.PerfilModelo;
 import com.dsy1103.msusuarios.modelo.UsuarioModelo;
 import com.dsy1103.msusuarios.repository.PerfilRepository;
 import com.dsy1103.msusuarios.repository.UsuarioRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,51 +23,86 @@ public class PerfilService {
     private PerfilRepository perfilRepo;
 
     @Autowired
-    private UsuarioRepository usuarioRepo; // Necesario para la relación
+    private UsuarioRepository usuarioRepo;
 
-    // 1. Listar todos los perfiles
+    @Autowired
+    private PerfilMapper perfilMapper; // Inyección del mapper como componente
+
+    @Transactional(readOnly = true)
     public List<PerfilDTO> listarTodo() {
         log.info("Consultando lista completa de perfiles");
         return perfilRepo.findAll().stream()
-                .map(PerfilMapper::toDTO)
+                .map(perfil -> perfilMapper.toDTO(perfil))
                 .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public PerfilDTO buscarPorId(Long id) {
+        log.info("Buscando perfil con ID: {}", id);
+        PerfilModelo perfil = perfilRepo.findById(id)
+                .orElseThrow(() -> {
+                    log.error("Perfil ID {} no encontrado", id);
+                    return new EntityNotFoundException("Perfil no encontrado");
+                });
+        return perfilMapper.toDTO(perfil);
     }
 
     @Transactional
     public PerfilDTO crear(PerfilDTO dto) {
         try {
-            log.info("Creando perfil '{}' para el usuario ID: {}", dto.getNombrePerfil(), dto.getUsuarioId());
+            log.info("Creando perfil '{}' para usuario ID: {}", dto.getNombrePerfil(), dto.getUsuarioId());
 
+            // validamos que el usuario perfil existe
             UsuarioModelo usuario = usuarioRepo.findById(dto.getUsuarioId())
-                    .orElseThrow(() -> new RuntimeException("Error: El usuario no existe"));
+                    .orElseThrow(() -> new EntityNotFoundException("No se puede crear perfil: Usuario no existe"));
 
-            // Convertimos DTO a Modelo y le asignamos el usuario encontrado
-            PerfilModelo perfil = PerfilMapper.toEntity(dto);
+            PerfilModelo perfil = perfilMapper.toEntity(dto);
             perfil.setUsuario(usuario);
 
             PerfilModelo guardado = perfilRepo.save(perfil);
-            return PerfilMapper.toDTO(guardado);
+            log.info("Perfil creado con éxito. ID: {}", guardado.getId());
+
+            return perfilMapper.toDTO(guardado);
 
         } catch (Exception e) {
-            log.error("Error al crear el perfil: {}", e.getMessage());
+            log.error("Error al crear perfil: {}", e.getMessage());
             throw e;
         }
     }
 
     @Transactional
     public PerfilDTO actualizar(Long id, PerfilDTO dto) {
-        log.info("Actualizando perfil ID: {}", id);
+        try {
+            log.info("Iniciando actualización de perfil ID: {}", id);
 
-        PerfilModelo perfilExistente = perfilRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Perfil no encontrado"));
+            PerfilModelo perfilExistente = perfilRepo.findById(id)
+                    .orElseThrow(() -> new EntityNotFoundException("Perfil no encontrado para actualizar"));
 
-        // Actualización campo por campo manual
-        perfilExistente.setNombrePerfil(dto.getNombrePerfil());
-        perfilExistente.setDescripcion(dto.getDescripcion());
-        perfilExistente.setNivelAcessoPerfil(dto.getNivelAcessoPerfil());
-        perfilExistente.setActivo(dto.getActivo());
-        perfilExistente.setFechaCreacionPerfil(dto.getFechaCreacionPerfil());
+            perfilExistente.setNombrePerfil(dto.getNombrePerfil());
+            perfilExistente.setDescripcion(dto.getDescripcion());
+            perfilExistente.setNivelAcessoPerfil(dto.getNivelAcessoPerfil());
+            perfilExistente.setActivo(dto.getActivo());
+            perfilExistente.setFechaCreacionPerfil(dto.getFechaCreacionPerfil());
 
-        return PerfilMapper.toDTO(perfilRepo.save(perfilExistente));
+            PerfilModelo actualizado = perfilRepo.save(perfilExistente);
+            log.info("Perfil ID {} actualizado correctamente", id);
+
+            return perfilMapper.toDTO(actualizado);
+
+        } catch (Exception e) {
+            log.error("Error en actualización de perfil: {}", e.getMessage());
+            throw e;
+        }
+    }
+
+    @Transactional
+    public void eliminar(Long id) {
+        log.info("Solicitud para eliminar perfil ID: {}", id);
+        if (!perfilRepo.existsById(id)) {
+            log.error("No se pudo eliminar, el perfil ID {} no existe", id);
+            throw new EntityNotFoundException("El perfil no existe");
+        }
+        perfilRepo.deleteById(id);
+        log.info("Perfil ID {} eliminado con éxito", id);
     }
 }
