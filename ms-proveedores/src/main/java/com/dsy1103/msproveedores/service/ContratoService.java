@@ -22,8 +22,6 @@ public class ContratoService {
     private ContratoRepository contratoRepository;
     @Autowired
     private ProveedorRepository proveedorRepository;
-    @Autowired
-    private ContratoMapper contratoMapper;
 
 
     public List<ContratoDTO> listarContratos() {
@@ -31,7 +29,7 @@ public class ContratoService {
 
         return contratoRepository.findAll()
                 .stream()
-                .map(contratoMapper::toDTO)
+                .map(ContratoMapper::toDTO)
                 .collect(Collectors.toList());
     }
 
@@ -39,7 +37,7 @@ public class ContratoService {
         log.info("Obteniendo CONTRATO por ID {}", id);
 
         return contratoRepository.findById(id)
-                .map(contratoMapper::toDTO)
+                .map(ContratoMapper::toDTO)
                 .orElseThrow(() -> new EntityNotFoundException("Error: El CONTRATO con ID "
                         + id + " no existe. No se pudo realizar la busqueda."));
     }
@@ -49,13 +47,13 @@ public class ContratoService {
 
         return contratoRepository.findByProveedorId(pId)
                 .stream()
-                .map(contratoMapper::toDTO)
+                .map(ContratoMapper::toDTO)
                 .collect(Collectors.toList());
     }
 
     public ContratoDTO guardarContrato(ContratoDTO dto) {
         log.info("Intentando registrar CONTRATO CÓDIGO: {}", dto.getNumero());
-        ContratoModel contrato = contratoMapper.toEntity(dto);
+        ContratoModel contrato = ContratoMapper.toEntity(dto);
 
         ProveedorModel proveedor = proveedorRepository.findById(dto.getProveedorId())
                 .orElseThrow(() -> new EntityNotFoundException("Error: El proveedor con id "
@@ -65,7 +63,7 @@ public class ContratoService {
         ContratoModel guardado = contratoRepository.save(contrato);
         log.info("CONTRATO guardado exitosamente con ID: {}", guardado.getId());
 
-        return contratoMapper.toDTO(guardado);
+        return ContratoMapper.toDTO(guardado);
     }
 
     public ContratoDTO actualizarContrato(ContratoDTO dto) {
@@ -90,7 +88,7 @@ public class ContratoService {
 
         ContratoModel actualizado = contratoRepository.save(cExistente);
 
-        return contratoMapper.toDTO(actualizado);
+        return ContratoMapper.toDTO(actualizado);
     }
 
     public void eliminarContrato(Long id) {
