@@ -13,5 +13,5 @@ public interface SucursalRepository extends JpaRepository<SucursalModel, Long> {
 
     @Query(value = "SELECT s.* FROM sucursal s JOIN region r " +
             "ON (r.id = s.fk_region_id) WHERE r.nombre = :nombre", nativeQuery=true)
-    List<SucursalModel> findAllByRegionNombre(@Param("nombre")String nombre);
+    List<SucursalModel> findAllByRegionNombre(@Param("nombre") String nombre);
 }

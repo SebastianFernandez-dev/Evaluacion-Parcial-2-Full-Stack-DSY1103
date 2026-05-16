@@ -16,7 +16,7 @@ public class SucursalMapper {
                 .capacidadAtencion(sModel.getCapacidadAtencion())
                 .activo(sModel.getActivo())
                 .fechaApertura(sModel.getFechaApertura())
-                .regionId(sModel.getId())
+                .regionId(sModel.getRegion().getId())
                 .build();
     }
 

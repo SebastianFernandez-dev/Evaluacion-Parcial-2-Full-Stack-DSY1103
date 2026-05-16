@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Table(name="sucursal")
@@ -22,16 +21,22 @@ public class SucursalModel {
     @Column(name="id")
     private Long id;
 
+    @Column(name="nombre", nullable=false, length=80, unique=true)
     private String nombre;
 
+    @Column(name="codigo", nullable=false, length=20, unique=true)
     private String codigo;
 
+    @Column(name="direccion", nullable=false, length=200)
     private String direccion;
 
+    @Column(name="capacidad_atencion", nullable=false)
     private Integer capacidadAtencion;
 
+    @Column(name="activo", nullable=false)
     private Boolean activo;
 
+    @Column(name="fecha_apertura", nullable=false)
     private LocalDate fechaApertura;
 
     @ManyToOne(fetch=FetchType.LAZY)

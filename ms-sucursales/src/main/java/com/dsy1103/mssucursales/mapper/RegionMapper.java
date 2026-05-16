@@ -13,6 +13,7 @@ public class RegionMapper {
                 .nombre(rModel.getNombre())
                 .codigo(rModel.getCodigo())
                 .descripcion(rModel.getDescripcion())
+                .pais(rModel.getPais())
                 .fechaCreacion(rModel.getFechaCreacion())
                 .build();
     }
@@ -25,6 +26,7 @@ public class RegionMapper {
                 .nombre(rDTO.getNombre())
                 .codigo(rDTO.getCodigo())
                 .descripcion(rDTO.getDescripcion())
+                .pais(rDTO.getPais())
                 .fechaCreacion(rDTO.getFechaCreacion())
                 .build();
     }
