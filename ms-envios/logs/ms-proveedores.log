@@ -1380,3 +1380,185 @@ Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'envio_id' 
 2026-05-16T16:23:34.452-04:00  INFO 23776 --- [ms-envios] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-05-16T16:23:34.454-04:00  INFO 23776 --- [ms-envios] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2026-05-16T16:23:34.460-04:00  INFO 23776 --- [ms-envios] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-05-16T18:23:16.941-04:00  INFO 1528 --- [ms-envios] [main] c.dsy1103.msenvios.MsEnviosApplication   : Starting MsEnviosApplication using Java 24.0.2 with PID 1528 (C:\Users\zerze\OneDrive\Desktop\ev2\Evaluacion-Parcial-2-Full-Stack-DSY1103\ms-envios\target\classes started by zerze in C:\Users\zerze\OneDrive\Desktop\ev2\Evaluacion-Parcial-2-Full-Stack-DSY1103\ms-envios)
+2026-05-16T18:23:16.945-04:00 DEBUG 1528 --- [ms-envios] [main] c.dsy1103.msenvios.MsEnviosApplication   : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-16T18:23:16.945-04:00  INFO 1528 --- [ms-envios] [main] c.dsy1103.msenvios.MsEnviosApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-05-16T18:23:18.234-04:00  INFO 1528 --- [ms-envios] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-16T18:23:18.332-04:00  INFO 1528 --- [ms-envios] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 79 ms. Found 2 JPA repository interfaces.
+2026-05-16T18:23:18.573-04:00  INFO 1528 --- [ms-envios] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=8e1f703a-9f68-3b6a-af85-0b8a8e07f422
+2026-05-16T18:23:19.236-04:00  INFO 1528 --- [ms-envios] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8086 (http)
+2026-05-16T18:23:19.255-04:00  INFO 1528 --- [ms-envios] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-16T18:23:19.256-04:00  INFO 1528 --- [ms-envios] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-16T18:23:19.320-04:00  INFO 1528 --- [ms-envios] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2304 ms
+2026-05-16T18:23:19.574-04:00  INFO 1528 --- [ms-envios] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-16T18:23:19.888-04:00  INFO 1528 --- [ms-envios] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6c2a95d5
+2026-05-16T18:23:19.890-04:00  INFO 1528 --- [ms-envios] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-16T18:23:22.105-04:00  INFO 1528 --- [ms-envios] [main] liquibase.changelog                      : Reading from prueba5.databasechangelog
+2026-05-16T18:23:22.164-04:00  INFO 1528 --- [ms-envios] [main] liquibase.ui                             : Database is up to date, no changesets to execute
+2026-05-16T18:23:22.168-04:00  INFO 1528 --- [ms-envios] [main] liquibase.changelog                      : Reading from prueba5.databasechangelog
+2026-05-16T18:23:22.184-04:00  INFO 1528 --- [ms-envios] [main] liquibase.util                           : UPDATE SUMMARY
+2026-05-16T18:23:22.185-04:00  INFO 1528 --- [ms-envios] [main] liquibase.util                           : Run:                          0
+2026-05-16T18:23:22.185-04:00  INFO 1528 --- [ms-envios] [main] liquibase.util                           : Previously run:               2
+2026-05-16T18:23:22.185-04:00  INFO 1528 --- [ms-envios] [main] liquibase.util                           : Filtered out:                 0
+2026-05-16T18:23:22.185-04:00  INFO 1528 --- [ms-envios] [main] liquibase.util                           : -------------------------------
+2026-05-16T18:23:22.186-04:00  INFO 1528 --- [ms-envios] [main] liquibase.util                           : Total change sets:            2
+2026-05-16T18:23:22.187-04:00  INFO 1528 --- [ms-envios] [main] liquibase.util                           : Update summary generated
+2026-05-16T18:23:22.189-04:00  INFO 1528 --- [ms-envios] [main] liquibase.command                        : Command execution complete
+2026-05-16T18:23:22.331-04:00  INFO 1528 --- [ms-envios] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-16T18:23:22.420-04:00  INFO 1528 --- [ms-envios] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-16T18:23:22.958-04:00  INFO 1528 --- [ms-envios] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-16T18:23:23.022-04:00  WARN 1528 --- [ms-envios] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-16T18:23:23.036-04:00  INFO 1528 --- [ms-envios] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/prueba5?useSSL=false&serverTimezone=America/Santiago&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.4.3
+	Default catalog/schema: prueba5/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-16T18:23:24.232-04:00  INFO 1528 --- [ms-envios] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-16T18:23:24.283-04:00  INFO 1528 --- [ms-envios] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-16T18:23:24.395-04:00  INFO 1528 --- [ms-envios] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-16T18:23:24.833-04:00  WARN 1528 --- [ms-envios] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-16T18:23:25.718-04:00  INFO 1528 --- [ms-envios] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8086 (http) with context path '/'
+2026-05-16T18:23:25.732-04:00  INFO 1528 --- [ms-envios] [main] c.dsy1103.msenvios.MsEnviosApplication   : Started MsEnviosApplication in 9.512 seconds (process running for 11.215)
+2026-05-16T18:32:02.062-04:00  INFO 1528 --- [ms-envios] [http-nio-8086-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-16T18:32:02.062-04:00  INFO 1528 --- [ms-envios] [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-16T18:32:02.065-04:00  INFO 1528 --- [ms-envios] [http-nio-8086-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-05-16T18:32:02.322-04:00 ERROR 1528 --- [ms-envios] [http-nio-8086-exec-1] c.d.m.exception.GlobalExceptionHandler   : Error de validación: {fechaEntregado=La fecha de entrega no puede ser futura}
+2026-05-16T18:32:13.794-04:00  INFO 1528 --- [ms-envios] [http-nio-8086-exec-4] c.d.msenvios.controller.EnvioController  : Recibida solicitud para crear un nuevo Envio
+2026-05-16T18:32:13.801-04:00  INFO 1528 --- [ms-envios] [http-nio-8086-exec-4] c.dsy1103.msenvios.service.EnvioService  : Servicio: Intentando crear un nuevo envío para el pedido ID: 1
+2026-05-16T18:34:53.937-04:00  INFO 1528 --- [ms-envios] [http-nio-8086-exec-7] c.d.msenvios.controller.EnvioController  : Recibida solicitud para crear un nuevo Envio
+2026-05-16T18:34:53.938-04:00  INFO 1528 --- [ms-envios] [http-nio-8086-exec-7] c.dsy1103.msenvios.service.EnvioService  : Servicio: Intentando crear un nuevo envío para el pedido ID: 999
+2026-05-16T18:34:53.962-04:00 ERROR 1528 --- [ms-envios] [http-nio-8086-exec-7] c.dsy1103.msenvios.service.EnvioService  : Error al crear Envio: [404] during [GET] to [http://localhost:8084/api/v1/pedidos/999] [PedidoClient#obtenerPedidoPorId(Long)]: [{"error":"Recurso no encontrado","message":"Usuario no encontrado con ID: 999","path":"/api/v1/pedidos/999","status":404,"timestamp":"2026-05-16T18:34:53.9564519"}]
+2026-05-16T18:34:53.968-04:00 ERROR 1528 --- [ms-envios] [http-nio-8086-exec-7] c.d.m.exception.GlobalExceptionHandler   : ERROR CRÍTICO en /api/envios: 
+
+feign.FeignException$NotFound: [404] during [GET] to [http://localhost:8084/api/v1/pedidos/999] [PedidoClient#obtenerPedidoPorId(Long)]: [{"error":"Recurso no encontrado","message":"Usuario no encontrado con ID: 999","path":"/api/v1/pedidos/999","status":404,"timestamp":"2026-05-16T18:34:53.9564519"}]
+	at feign.FeignException.clientErrorStatus(FeignException.java:249) ~[feign-core-13.6.jar:na]
+	at feign.FeignException.errorStatus(FeignException.java:223) ~[feign-core-13.6.jar:na]
+	at feign.FeignException.errorStatus(FeignException.java:213) ~[feign-core-13.6.jar:na]
+	at feign.codec.ErrorDecoder$Default.decode(ErrorDecoder.java:103) ~[feign-core-13.6.jar:na]
+	at feign.InvocationContext.decodeError(InvocationContext.java:133) ~[feign-core-13.6.jar:na]
+	at feign.InvocationContext.proceed(InvocationContext.java:80) ~[feign-core-13.6.jar:na]
+	at feign.ResponseHandler.handleResponse(ResponseHandler.java:69) ~[feign-core-13.6.jar:na]
+	at feign.SynchronousMethodHandler.executeAndDecode(SynchronousMethodHandler.java:109) ~[feign-core-13.6.jar:na]
+	at feign.SynchronousMethodHandler.invoke(SynchronousMethodHandler.java:53) ~[feign-core-13.6.jar:na]
+	at feign.ReflectiveFeign$FeignInvocationHandler.invoke(ReflectiveFeign.java:104) ~[feign-core-13.6.jar:na]
+	at jdk.proxy2/jdk.proxy2.$Proxy148.obtenerPedidoPorId(Unknown Source) ~[na:na]
+	at com.dsy1103.msenvios.service.EnvioService.crear(EnvioService.java:44) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:359) ~[spring-aop-7.0.7.jar:7.0.7]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190) ~[spring-aop-7.0.7.jar:7.0.7]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:158) ~[spring-aop-7.0.7.jar:7.0.7]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:133) ~[spring-tx-7.0.7.jar:7.0.7]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:371) ~[spring-tx-7.0.7.jar:7.0.7]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:130) ~[spring-tx-7.0.7.jar:7.0.7]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-7.0.7.jar:7.0.7]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:719) ~[spring-aop-7.0.7.jar:7.0.7]
+	at com.dsy1103.msenvios.service.EnvioService$$SpringCGLIB$$0.crear(<generated>) ~[classes/:na]
+	at com.dsy1103.msenvios.controller.EnvioController.crear(EnvioController.java:39) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117) ~[spring-webmvc-7.0.7.jar:7.0.7]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934) ~[spring-webmvc-7.0.7.jar:7.0.7]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853) ~[spring-webmvc-7.0.7.jar:7.0.7]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86) ~[spring-webmvc-7.0.7.jar:7.0.7]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963) ~[spring-webmvc-7.0.7.jar:7.0.7]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866) ~[spring-webmvc-7.0.7.jar:7.0.7]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000) ~[spring-webmvc-7.0.7.jar:7.0.7]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:903) ~[spring-webmvc-7.0.7.jar:7.0.7]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:649) ~[tomcat-embed-core-11.0.21.jar:6.1]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874) ~[spring-webmvc-7.0.7.jar:7.0.7]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710) ~[tomcat-embed-core-11.0.21.jar:6.1]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-7.0.7.jar:7.0.7]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57) ~[tomcat-embed-core-11.0.21.jar:11.0.21]
+	at java.base/java.lang.Thread.run(Thread.java:1447) ~[na:na]
+
+2026-05-16T18:55:30.087-04:00  INFO 1528 --- [ms-envios] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-16T18:55:30.094-04:00  INFO 1528 --- [ms-envios] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-05-16T18:55:30.101-04:00  INFO 1528 --- [ms-envios] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-16T18:55:30.107-04:00  INFO 1528 --- [ms-envios] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-16T18:55:30.111-04:00  INFO 1528 --- [ms-envios] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-05-16T18:55:37.207-04:00  INFO 24828 --- [ms-envios] [main] c.dsy1103.msenvios.MsEnviosApplication   : Starting MsEnviosApplication using Java 24.0.2 with PID 24828 (C:\Users\zerze\OneDrive\Desktop\ev2\Evaluacion-Parcial-2-Full-Stack-DSY1103\ms-envios\target\classes started by zerze in C:\Users\zerze\OneDrive\Desktop\ev2\Evaluacion-Parcial-2-Full-Stack-DSY1103\ms-envios)
+2026-05-16T18:55:37.211-04:00 DEBUG 24828 --- [ms-envios] [main] c.dsy1103.msenvios.MsEnviosApplication   : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-16T18:55:37.213-04:00  INFO 24828 --- [ms-envios] [main] c.dsy1103.msenvios.MsEnviosApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-05-16T18:55:38.780-04:00  INFO 24828 --- [ms-envios] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-16T18:55:38.872-04:00  INFO 24828 --- [ms-envios] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 74 ms. Found 2 JPA repository interfaces.
+2026-05-16T18:55:39.124-04:00  INFO 24828 --- [ms-envios] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=70c89f48-f23d-3461-8175-d8330af911c3
+2026-05-16T18:55:39.853-04:00  INFO 24828 --- [ms-envios] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8086 (http)
+2026-05-16T18:55:39.883-04:00  INFO 24828 --- [ms-envios] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-16T18:55:39.884-04:00  INFO 24828 --- [ms-envios] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-16T18:55:39.972-04:00  INFO 24828 --- [ms-envios] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2675 ms
+2026-05-16T18:55:40.250-04:00  INFO 24828 --- [ms-envios] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-16T18:55:40.494-04:00  INFO 24828 --- [ms-envios] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@527937d0
+2026-05-16T18:55:40.497-04:00  INFO 24828 --- [ms-envios] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-16T18:55:42.661-04:00  INFO 24828 --- [ms-envios] [main] liquibase.changelog                      : Reading from prueba5.databasechangelog
+2026-05-16T18:55:42.728-04:00  INFO 24828 --- [ms-envios] [main] liquibase.ui                             : Database is up to date, no changesets to execute
+2026-05-16T18:55:42.733-04:00  INFO 24828 --- [ms-envios] [main] liquibase.changelog                      : Reading from prueba5.databasechangelog
+2026-05-16T18:55:42.750-04:00  INFO 24828 --- [ms-envios] [main] liquibase.util                           : UPDATE SUMMARY
+2026-05-16T18:55:42.751-04:00  INFO 24828 --- [ms-envios] [main] liquibase.util                           : Run:                          0
+2026-05-16T18:55:42.751-04:00  INFO 24828 --- [ms-envios] [main] liquibase.util                           : Previously run:               2
+2026-05-16T18:55:42.751-04:00  INFO 24828 --- [ms-envios] [main] liquibase.util                           : Filtered out:                 0
+2026-05-16T18:55:42.752-04:00  INFO 24828 --- [ms-envios] [main] liquibase.util                           : -------------------------------
+2026-05-16T18:55:42.752-04:00  INFO 24828 --- [ms-envios] [main] liquibase.util                           : Total change sets:            2
+2026-05-16T18:55:42.753-04:00  INFO 24828 --- [ms-envios] [main] liquibase.util                           : Update summary generated
+2026-05-16T18:55:42.757-04:00  INFO 24828 --- [ms-envios] [main] liquibase.command                        : Command execution complete
+2026-05-16T18:55:42.982-04:00  INFO 24828 --- [ms-envios] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-16T18:55:43.089-04:00  INFO 24828 --- [ms-envios] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-16T18:55:43.920-04:00  INFO 24828 --- [ms-envios] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-16T18:55:43.973-04:00  WARN 24828 --- [ms-envios] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-16T18:55:43.985-04:00  INFO 24828 --- [ms-envios] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/prueba5?useSSL=false&serverTimezone=America/Santiago&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.4.3
+	Default catalog/schema: prueba5/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-16T18:55:44.893-04:00  INFO 24828 --- [ms-envios] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-16T18:55:44.942-04:00  INFO 24828 --- [ms-envios] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-16T18:55:45.090-04:00  INFO 24828 --- [ms-envios] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-16T18:55:45.666-04:00  WARN 24828 --- [ms-envios] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-16T18:55:47.203-04:00  INFO 24828 --- [ms-envios] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8086 (http) with context path '/'
+2026-05-16T18:55:47.226-04:00  INFO 24828 --- [ms-envios] [main] c.dsy1103.msenvios.MsEnviosApplication   : Started MsEnviosApplication in 10.883 seconds (process running for 12.007)
+2026-05-16T18:56:44.420-04:00  INFO 24828 --- [ms-envios] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-16T18:56:44.425-04:00  INFO 24828 --- [ms-envios] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-05-16T18:56:44.429-04:00  INFO 24828 --- [ms-envios] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-16T18:56:44.431-04:00  INFO 24828 --- [ms-envios] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-16T18:56:44.438-04:00  INFO 24828 --- [ms-envios] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

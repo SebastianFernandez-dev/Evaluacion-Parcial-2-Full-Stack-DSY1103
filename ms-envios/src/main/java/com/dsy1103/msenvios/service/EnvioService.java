@@ -1,6 +1,10 @@
 package com.dsy1103.msenvios.service;
 
 
+import com.dsy1103.msenvios.Client.PedidoClient;
+import com.dsy1103.msenvios.Client.UsuarioClient;
+import com.dsy1103.msenvios.dto.PedidoDTO;
+import com.dsy1103.msenvios.dto.UsuarioDTO;
 import com.dsy1103.msenvios.modelo.EnvioModelo;
 import com.dsy1103.msenvios.dto.EnvioDTO;
 import com.dsy1103.msenvios.mapper.EnvioMapper;
@@ -21,6 +25,10 @@ public class EnvioService {
     private EnvioRepository envioRepository;
     @Autowired
     private EnvioMapper envioMapper;
+    @Autowired
+    private PedidoClient pedidoClient;
+    @Autowired
+    private UsuarioClient usuarioClient;
 
 
     @Transactional(readOnly = true)
@@ -34,6 +42,23 @@ public class EnvioService {
     @Transactional
     public EnvioDTO crear(EnvioDTO dto) {
         try {
+            log.info("Servicio: Intentando crear un nuevo envío para el pedido ID: {}", dto.getPedidoId());
+            // Levantamos el teléfono y llamamos al otro microservicio (al puerto 8084)
+            // Le pasamos el 'pedidoId' que nos mandaron desde Postman
+            PedidoDTO pedidoRemoto = pedidoClient.obtenerPedidoPorId(dto.getPedidoId());
+
+            // Si la otra oficina nos dice que no encuentra nada (null), frenamos el proceso de inmediato
+            if (pedidoRemoto == null) {
+                throw new RuntimeException("Error: El pedido con ID " + dto.getPedidoId() + " no existe en el microservicio de Pedidos.");
+            }
+
+            // Llamada 2: Validar Usuario
+            // Le pasamos el 'usuarioId' que viene en el JSON de Postman
+            UsuarioDTO usuarioRemoto = usuarioClient.obtenerUsuarioPorId(dto.getUsuarioId());
+            if (usuarioRemoto == null) {
+                throw new RuntimeException("El usuario con ID " + dto.getUsuarioId() + " no existe en el sistema.");
+            }
+
             EnvioModelo modelo = envioMapper.toEntity(dto);
             EnvioModelo guardado = envioRepository.save(modelo);
             return envioMapper.toDTO(guardado);

@@ -1,0 +1,57 @@
+2026-05-16T18:56:46.859-04:00  INFO 20296 --- [ms-envios] [main] c.dsy1103.msenvios.MsEnviosApplication   : Starting MsEnviosApplication using Java 24.0.2 with PID 20296 (C:\Users\zerze\OneDrive\Desktop\ev2\Evaluacion-Parcial-2-Full-Stack-DSY1103\ms-envios\target\classes started by zerze in C:\Users\zerze\OneDrive\Desktop\ev2\Evaluacion-Parcial-2-Full-Stack-DSY1103\ms-envios)
+2026-05-16T18:56:46.862-04:00 DEBUG 20296 --- [ms-envios] [main] c.dsy1103.msenvios.MsEnviosApplication   : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-16T18:56:46.863-04:00  INFO 20296 --- [ms-envios] [main] c.dsy1103.msenvios.MsEnviosApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-05-16T18:56:48.029-04:00  INFO 20296 --- [ms-envios] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-16T18:56:48.121-04:00  INFO 20296 --- [ms-envios] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 76 ms. Found 2 JPA repository interfaces.
+2026-05-16T18:56:48.334-04:00  INFO 20296 --- [ms-envios] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=70c89f48-f23d-3461-8175-d8330af911c3
+2026-05-16T18:56:48.903-04:00  INFO 20296 --- [ms-envios] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8086 (http)
+2026-05-16T18:56:48.933-04:00  INFO 20296 --- [ms-envios] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-16T18:56:48.933-04:00  INFO 20296 --- [ms-envios] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-16T18:56:49.060-04:00  INFO 20296 --- [ms-envios] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2120 ms
+2026-05-16T18:56:49.333-04:00  INFO 20296 --- [ms-envios] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-16T18:56:49.726-04:00  INFO 20296 --- [ms-envios] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4fb57fb3
+2026-05-16T18:56:49.729-04:00  INFO 20296 --- [ms-envios] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-16T18:56:51.691-04:00  INFO 20296 --- [ms-envios] [main] liquibase.changelog                      : Reading from prueba5.databasechangelog
+2026-05-16T18:56:51.753-04:00  INFO 20296 --- [ms-envios] [main] liquibase.ui                             : Database is up to date, no changesets to execute
+2026-05-16T18:56:51.758-04:00  INFO 20296 --- [ms-envios] [main] liquibase.changelog                      : Reading from prueba5.databasechangelog
+2026-05-16T18:56:51.776-04:00  INFO 20296 --- [ms-envios] [main] liquibase.util                           : UPDATE SUMMARY
+2026-05-16T18:56:51.777-04:00  INFO 20296 --- [ms-envios] [main] liquibase.util                           : Run:                          0
+2026-05-16T18:56:51.777-04:00  INFO 20296 --- [ms-envios] [main] liquibase.util                           : Previously run:               2
+2026-05-16T18:56:51.778-04:00  INFO 20296 --- [ms-envios] [main] liquibase.util                           : Filtered out:                 0
+2026-05-16T18:56:51.778-04:00  INFO 20296 --- [ms-envios] [main] liquibase.util                           : -------------------------------
+2026-05-16T18:56:51.778-04:00  INFO 20296 --- [ms-envios] [main] liquibase.util                           : Total change sets:            2
+2026-05-16T18:56:51.780-04:00  INFO 20296 --- [ms-envios] [main] liquibase.util                           : Update summary generated
+2026-05-16T18:56:51.783-04:00  INFO 20296 --- [ms-envios] [main] liquibase.command                        : Command execution complete
+2026-05-16T18:56:51.916-04:00  INFO 20296 --- [ms-envios] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-16T18:56:51.959-04:00  INFO 20296 --- [ms-envios] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-16T18:56:52.433-04:00  INFO 20296 --- [ms-envios] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-16T18:56:52.489-04:00  WARN 20296 --- [ms-envios] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-16T18:56:52.503-04:00  INFO 20296 --- [ms-envios] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/prueba5?useSSL=false&serverTimezone=America/Santiago&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.4.3
+	Default catalog/schema: prueba5/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-16T18:56:53.305-04:00  INFO 20296 --- [ms-envios] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-16T18:56:53.342-04:00  INFO 20296 --- [ms-envios] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-16T18:56:53.443-04:00  INFO 20296 --- [ms-envios] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-16T18:56:53.756-04:00  WARN 20296 --- [ms-envios] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-16T18:56:54.661-04:00  INFO 20296 --- [ms-envios] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8086 (http) with context path '/'
+2026-05-16T18:56:54.678-04:00  INFO 20296 --- [ms-envios] [main] c.dsy1103.msenvios.MsEnviosApplication   : Started MsEnviosApplication in 8.586 seconds (process running for 9.474)
+2026-05-16T18:58:58.538-04:00  INFO 20296 --- [ms-envios] [http-nio-8086-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-16T18:58:58.539-04:00  INFO 20296 --- [ms-envios] [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-16T18:58:58.541-04:00  INFO 20296 --- [ms-envios] [http-nio-8086-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-05-16T18:58:58.793-04:00 ERROR 20296 --- [ms-envios] [http-nio-8086-exec-2] c.d.m.exception.GlobalExceptionHandler   : Error de validación: {fechaEntregado=La fecha de entrega no puede ser futura}
+2026-05-16T18:59:09.432-04:00  INFO 20296 --- [ms-envios] [http-nio-8086-exec-4] c.d.msenvios.controller.EnvioController  : Recibida solicitud para crear un nuevo Envio
+2026-05-16T18:59:09.441-04:00  INFO 20296 --- [ms-envios] [http-nio-8086-exec-4] c.dsy1103.msenvios.service.EnvioService  : Servicio: Intentando crear un nuevo envío para el pedido ID: 1
+2026-05-16T19:05:48.166-04:00  INFO 20296 --- [ms-envios] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-16T19:05:48.174-04:00  INFO 20296 --- [ms-envios] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-05-16T19:05:48.180-04:00  INFO 20296 --- [ms-envios] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-16T19:05:48.183-04:00  INFO 20296 --- [ms-envios] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-16T19:05:48.190-04:00  INFO 20296 --- [ms-envios] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
