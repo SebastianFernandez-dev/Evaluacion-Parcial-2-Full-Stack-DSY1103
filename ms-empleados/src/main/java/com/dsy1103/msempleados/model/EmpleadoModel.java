@@ -24,7 +24,7 @@ public class EmpleadoModel {
     @Column(name = "primer_nombre", nullable = false, length = 20)
     private String primerNombre;
 
-    @Column(name = "segundo_nombre", nullable = false, length = 20)
+    @Column(name = "segundo_nombre", length = 20)
     private String segundoNombre;
 
     @Column(name = "primer_apellido", nullable = false, length = 20)
