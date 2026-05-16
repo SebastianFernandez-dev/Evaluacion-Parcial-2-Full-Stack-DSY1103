@@ -2,9 +2,7 @@ package com.dsy1103.msproveedores.mapper;
 
 import com.dsy1103.msproveedores.dto.ProveedorDTO;
 import com.dsy1103.msproveedores.model.ProveedorModel;
-import org.springframework.stereotype.Component;
 
-@Component
 public class ProveedorMapper {
 
     public static ProveedorDTO toDTO(ProveedorModel pModel) {

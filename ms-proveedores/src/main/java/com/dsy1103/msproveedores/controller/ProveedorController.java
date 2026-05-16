@@ -45,14 +45,14 @@ public class ProveedorController {
     }
 
     @PutMapping
-    public ResponseEntity<ProveedorDTO> actualizarProveedor(@Valid @RequestBody ProveedorDTO pDTO) {
-        log.info("REST: Actualizando nuevo PROVEEDOR: {}", pDTO.toString());
+    public ResponseEntity<?> actualizarProveedor(@Valid @RequestBody ProveedorDTO pDTO) {
+        log.info("REST: Actualizando PROVEEDOR: {}", pDTO.toString());
         proveedorService.actualizarProveedor(pDTO);
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminarProveedor(@Valid @PathVariable Long id) {
+    public ResponseEntity<?> eliminarProveedor(@PathVariable Long id) {
         log.warn("REST: Eliminando PROVEEDOR ID: {}", id);
         proveedorService.eliminarProveedor(id);
         return ResponseEntity.noContent().build();
