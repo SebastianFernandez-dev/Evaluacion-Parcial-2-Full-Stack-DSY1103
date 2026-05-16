@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -18,5 +19,14 @@ public class EmpleadoService {
     @Autowired
     private EmpleadoMapper empleadoMapper;
 
+
+    public List<EmpleadoDTO> listarEmpleados() {
+        log.info("Listando todos lo EMPLEADOS");
+
+        return empleadoRepository.findAll()
+                .stream()
+                .map(empleadoMapper::toDTO)
+                .collect(Collectors.toList());
+    }
 
 }
