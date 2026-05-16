@@ -28,6 +28,7 @@ public class ContratoDTO {
     @NotNull(message="El campo VALOR es obligatorio")
     @Positive
     @DecimalMin("0.0")
+    @DecimalMax("99.0")
     private Double valor;
 
     @NotNull(message="El campo FECHA INICIO es obligatorio")

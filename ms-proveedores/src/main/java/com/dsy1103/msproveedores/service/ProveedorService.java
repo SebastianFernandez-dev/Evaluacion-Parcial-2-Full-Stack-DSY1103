@@ -22,43 +22,47 @@ public class ProveedorService {
     private ProveedorRepository proveedorRepository;
     @Autowired
     private ContratoRepository contratoRepository;
-    @Autowired
-    private ProveedorMapper proveedorMapper;
-    @Autowired
-    private ContratoMapper contratoMapper;
 
     public List<ProveedorDTO> listarProveedores() {
         log.info("Listando todos los PROVEEDORES");
 
         return proveedorRepository.findAll()
                 .stream()
-                .map(proveedorMapper::toDTO)
+                .map(ProveedorMapper::toDTO)
                 .collect(Collectors.toList());
     }
 
     public ProveedorDTO obtenerProveedorPorId(Long id) {
         log.info("Obteniendo PROVEEDOR por ID {}", id);
         ProveedorDTO pDTO = proveedorRepository.findById(id)
-                .map(proveedorMapper::toDTO)
+                .map(ProveedorMapper::toDTO)
                 .orElseThrow(() -> new EntityNotFoundException("Error: El PROVEEDOR con ID "
                         + id + " no existe. No se pudo realizar la busqueda."));
 
         pDTO.setListaContrato(contratoRepository.findByProveedorId(id)
                 .stream()
-                .map(contratoMapper::toDTO)
+                .map(ContratoMapper::toDTO)
                 .collect(Collectors.toList()));
 
         return pDTO;
     }
 
+    public List<ProveedorDTO> litarProveedoresActivos() {
+        log.info("Obteniendo PROVEEDORES ACTIVOS");
+        return proveedorRepository.findAllByActivo()
+                .stream()
+                .map(ProveedorMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
     public ProveedorDTO guardarProveedor(ProveedorDTO pDTO) {
         log.info("Intentando registrar PROVEEDOR con ID {}", pDTO.getId());
-        ProveedorModel pModel = proveedorMapper.toEntity(pDTO);
+        ProveedorModel pModel = ProveedorMapper.toEntity(pDTO);
 
         ProveedorModel guardado = proveedorRepository.save(pModel);
         log.info("PROVEEDOR guardado exitosamente con ID: {}", guardado.getId());
 
-        return proveedorMapper.toDTO(guardado);
+        return ProveedorMapper.toDTO(guardado);
     }
 
     public ProveedorDTO actualizarProveedor(ProveedorDTO pDTO) {
@@ -78,7 +82,7 @@ public class ProveedorService {
 
         ProveedorModel actualizado = proveedorRepository.save(pExistente);
 
-        return proveedorMapper.toDTO(actualizado);
+        return ProveedorMapper.toDTO(actualizado);
     }
 
     public void eliminarProveedor(Long id) {
