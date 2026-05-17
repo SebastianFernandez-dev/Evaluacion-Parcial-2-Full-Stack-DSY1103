@@ -15,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class ProveedorDTO {
 
+    @Positive(message="El campo ID no puede ser negativo")
     private Long id;
 
     @NotBlank(message="El campo NOMBRE es obligatorio")
@@ -38,6 +39,7 @@ public class ProveedorDTO {
     @Size(min=5, max=80)
     private String ciudad;
 
+    @NotNull(message="El campo CALIFICACION es obligatorio")
     @Positive(message="El campo CALIFICACION no puede ser negativo")
     @Min(1)
     @Max(5)

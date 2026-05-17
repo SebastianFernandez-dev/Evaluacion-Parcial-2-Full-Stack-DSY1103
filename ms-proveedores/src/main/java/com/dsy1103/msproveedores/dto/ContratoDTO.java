@@ -15,6 +15,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ContratoDTO {
 
+    @Positive(message="El campo ID no puede ser negativo")
     private Long id;
 
     @NotBlank(message="El campo NUMERO es obligatorio")
@@ -26,8 +27,9 @@ public class ContratoDTO {
     private String tipo;
 
     @NotNull(message="El campo VALOR es obligatorio")
-    @Positive
+    @Positive(message="El campo VALOR no puede ser negativo")
     @DecimalMin("0.0")
+    @DecimalMax("99.0")
     private Double valor;
 
     @NotNull(message="El campo FECHA INICIO es obligatorio")
@@ -46,6 +48,6 @@ public class ContratoDTO {
     private String observaciones;
 
     @NotNull(message="El campo PROVEEDOR ID es obligatorio")
-    @Positive
+    @Positive(message="El campo PROVEEDOR ID no puede ser negativo")
     private Long proveedorId;
 }
