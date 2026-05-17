@@ -87,8 +87,6 @@ public class InventarioService {
                 .stockMinimo(iDTO.getStockMinimo())
                 .activo(iDTO.getActivo())
                 .fechaRealizacion(iDTO.getFechaRealizacion())
-                .sucursalId(iDTO.getSucursalId())
-                .proveedorId(iDTO.getProveedorId())
                 .productoId(iDTO.getProductoId())
                 .build());
     }
@@ -116,8 +114,6 @@ public class InventarioService {
                 .activo(iEntrada.getActivo())
                 .fechaRealizacion(iEntrada.getFechaRealizacion())
                 .productoId(iEntrada.getProductoId())
-                .sucursalId(iEntrada.getSucursalId())
-                .proveedorId(iEntrada.getProveedorId())
                 .build();
 
         try{
