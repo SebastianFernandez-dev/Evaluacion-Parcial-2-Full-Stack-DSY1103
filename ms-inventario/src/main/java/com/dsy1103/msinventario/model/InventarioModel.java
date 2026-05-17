@@ -41,6 +41,12 @@ public class InventarioModel {
     @Column(name="fecha_realizacion", nullable=false)
     private LocalDate fechaRealizacion;
 
+    @Column(name="sucursal_id", nullable=false)
+    private Long sucursalId;
+
+    @Column(name="proveedor_id", nullable=false)
+    private Long proveedorId;
+
     @Column(name="producto_id", nullable=false)
     private Long productoId;
 
