@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/productos")
@@ -30,6 +31,14 @@ public class ProductoController {
     public ResponseEntity<ProductoDTO> obtenerPorId(@PathVariable Long id) {
         log.info("REST: Buscando PRODUCTO por ID: {}", id);
         return ResponseEntity.ok(productoService.obtenerProductoPorId(id));
+    }
+
+    @GetMapping("/buscar-avanzado")
+    public ResponseEntity<List<ProductoDTO>> buscarPorNombreYPrecio(
+            @RequestParam String nombre,
+            @RequestParam Double precio) {
+        log.info("REST: Buscando PRODUCTOS por nombre '{}' y precio < {}", nombre, precio);
+        return ResponseEntity.ok(productoService.buscarPorNombreYPrecio(nombre, precio));
     }
 
     @PostMapping
