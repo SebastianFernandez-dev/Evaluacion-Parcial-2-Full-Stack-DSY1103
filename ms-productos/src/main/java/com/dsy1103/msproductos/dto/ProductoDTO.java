@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProveedorDTO {
+public class ProductoDTO {
 
     private Long id;
 
@@ -42,5 +42,4 @@ public class ProveedorDTO {
     @NotNull(message = "El campo CATEGORIA_ID es obligatorio")
     @Positive(message = "El campo CATEGORIA_ID no puede ser negativo")
     private Long categoriaId;
-
 }
