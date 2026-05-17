@@ -21,10 +21,8 @@ public class PerfilService {
 
     @Autowired
     private PerfilRepository perfilRepo;
-
     @Autowired
     private UsuarioRepository usuarioRepo;
-
     @Autowired
     private PerfilMapper perfilMapper; // Inyección del mapper como componente
 
@@ -61,7 +59,6 @@ public class PerfilService {
 
             PerfilModelo guardado = perfilRepo.save(perfil);
             log.info("Perfil creado con éxito. ID: {}", guardado.getId());
-
             return perfilMapper.toDTO(guardado);
 
         } catch (Exception e) {
@@ -71,28 +68,21 @@ public class PerfilService {
     }
 
     @Transactional
-    public PerfilDTO actualizar(Long id, PerfilDTO dto) {
-        try {
-            log.info("Iniciando actualización de perfil ID: {}", id);
+    public void actualizar(PerfilDTO pDTO) {
+        log.info("Actualizando PERFIL con ID: {}", pDTO.getId());
 
-            PerfilModelo perfilExistente = perfilRepo.findById(id)
-                    .orElseThrow(() -> new EntityNotFoundException("Perfil no encontrado para actualizar"));
+        PerfilModelo perfilExistente = perfilRepo.findById(pDTO.getId())
+                .orElseThrow(() -> new EntityNotFoundException("Error: PERFIL no encontrado para actualizar"));
 
-            perfilExistente.setNombrePerfil(dto.getNombrePerfil());
-            perfilExistente.setDescripcion(dto.getDescripcion());
-            perfilExistente.setNivelAcessoPerfil(dto.getNivelAcessoPerfil());
-            perfilExistente.setActivo(dto.getActivo());
-            perfilExistente.setFechaCreacionPerfil(dto.getFechaCreacionPerfil());
-
-            PerfilModelo actualizado = perfilRepo.save(perfilExistente);
-            log.info("Perfil ID {} actualizado correctamente", id);
-
-            return perfilMapper.toDTO(actualizado);
-
-        } catch (Exception e) {
-            log.error("Error en actualización de perfil: {}", e.getMessage());
-            throw e;
-        }
+        perfilRepo.save(PerfilModelo.builder()
+                .id(pDTO.getId()) // Para que Hibernate haga UPDATE y no INSERT!
+                .nombrePerfil(pDTO.getNombrePerfil())
+                .descripcion(pDTO.getDescripcion())
+                .nivelAcessoPerfil(pDTO.getNivelAcessoPerfil())
+                .activo(pDTO.getActivo())
+                .fechaCreacionPerfil(pDTO.getFechaCreacionPerfil())
+                .usuario(perfilExistente.getUsuario())
+                .build());
     }
 
     @Transactional

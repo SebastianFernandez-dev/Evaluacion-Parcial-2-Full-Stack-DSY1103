@@ -1,7 +1,11 @@
 package com.dsy1103.mspedidos.service;
 
+import com.dsy1103.mspedidos.Client.InventarioClient;
+import com.dsy1103.mspedidos.Client.ProductoClient;
 import com.dsy1103.mspedidos.dto.DetallePedidoDTO;
+import com.dsy1103.mspedidos.dto.InventarioDTO;
 import com.dsy1103.mspedidos.dto.PedidoDTO;
+import com.dsy1103.mspedidos.dto.ProductoDTO;
 import com.dsy1103.mspedidos.mapper.DetallePedidoMapper;
 import com.dsy1103.mspedidos.modelo.DetallePedidoModelo;
 import com.dsy1103.mspedidos.modelo.PedidoModelo;
@@ -22,12 +26,14 @@ public class DetallePedidoService {
 
     @Autowired
     private DetallePedidoRepository detallePedidoRepo;
-
     @Autowired
     private PedidoRepository pedidoRepo;
-
     @Autowired
     private DetallePedidoMapper detallePedidoMapper;
+    @Autowired
+    private ProductoClient productoClient;
+    @Autowired
+    private InventarioClient inventarioClient;
 
     @Transactional(readOnly = true)
     public List<DetallePedidoDTO> listarTodos() {
@@ -71,30 +77,47 @@ public class DetallePedidoService {
     }
 
     @Transactional
-    public DetallePedidoDTO actualizar(Long id, DetallePedidoDTO dto) {
+    public void actualizar(DetallePedidoDTO dDTO) {
+        log.info("Actualizando DETALLE PEDIDO con ID: {}", dDTO.getId());
+
+        // 1. Validamos que el detalle exista en nuestra BD local
+        DetallePedidoModelo detalleExistente = detallePedidoRepo.findById(dDTO.getId())
+                .orElseThrow(() -> new EntityNotFoundException("Error: DETALLE PEDIDO no encontrado."));
+
+        // 2. 🛃 ADUANA 1: Llamamos a ms-productos (Puerto 8082 de tu compañero)
         try {
-            log.info("Iniciando actualización de Detalle Pedido con ID: {}", id);
+            ProductoDTO prod = productoClient.obtenerProductoPorId(dDTO.getProductoId());
+            log.info("Producto validado correctamente en ms-productos: {}", prod.getNombreProducto());
+        } catch (Exception e) {
+            throw new EntityNotFoundException("Error: El producto con ID " + dDTO.getProductoId() + " no existe en el catálogo.");
+        }
 
-            DetallePedidoModelo detalleExistente = detallePedidoRepo.findById(id)
-                    .orElseThrow(() -> new EntityNotFoundException("No se puede actualizar: ID " + id + " no encontrado"));
+        // 3. 🛃 ADUANA 2: Validamos el stock en ms-inventario (También en el puerto 8082 o el que use inventario)
+        try {
+            InventarioDTO inventario = inventarioClient.obtenerInventarioPorProductoId(dDTO.getProductoId());
 
-            detalleExistente.setProductoId(dto.getProductoId());
-            detalleExistente.setCantidadPedido(dto.getCantidadPedido());
-            detalleExistente.setPrecioUnitario(dto.getPrecioUnitario());
-            detalleExistente.setSubtotal(dto.getSubtotal());
-            detalleExistente.setObservacion(dto.getObservacion());
-            detalleExistente.setFechaRegistro(dto.getFechaRegistro());
-            detalleExistente.setEstadoDetalle(dto.getEstadoDetalle());
-
-            DetallePedidoModelo actualizado = detallePedidoRepo.save(detalleExistente);
-            log.info("Usuario con ID: {} actualizado exitosamente", id);
-
-            return detallePedidoMapper.toDTO(actualizado);
+            // Regla de negocio: Si el cliente pide más de lo que hay en bodega, rebotamos
+            if (dDTO.getCantidadPedido() > inventario.getCantidadDisponible()) {
+                throw new IllegalArgumentException("No hay suficiente stock disponible. En bodega quedan: " + inventario.getCantidadDisponible());
+            }
+            log.info("Stock verificado con éxito en ms-inventario. Disponible: {}", inventario.getCantidadDisponible());
 
         } catch (Exception e) {
-            log.error("Error al actualizar usuario ID {}: {}", id, e.getMessage());
-            throw e;
+            throw new EntityNotFoundException("Error de Inventario: " + e.getMessage());
         }
+
+        // 4. Si pasó todas las aduanas, guardamos con el Builder tradicional
+        detallePedidoRepo.save(DetallePedidoModelo.builder()
+                .id(dDTO.getId())
+                .productoId(dDTO.getProductoId())
+                .cantidadPedido(dDTO.getCantidadPedido())
+                .precioUnitario(dDTO.getPrecioUnitario())
+                .subtotal(dDTO.getSubtotal())
+                .observacion(dDTO.getObservacion())
+                .fechaRegistro(dDTO.getFechaRegistro())
+                .estadoDetalle(dDTO.getEstadoDetalle())
+                .pedido(detalleExistente.getPedido())
+                .build());
     }
 
     @Transactional

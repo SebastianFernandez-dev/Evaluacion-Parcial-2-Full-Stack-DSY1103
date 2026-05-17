@@ -56,29 +56,23 @@ public class PedidoService {
     }
 
     @Transactional
-    public PedidoDTO actualizar(Long id, PedidoDTO dto) {
-        try {
-            log.info("Iniciando actualización de Pedido con ID: {}", id);
+    public void actualizar(PedidoDTO pDTO) {
+        log.info("Actualizando PEDIDO con ID: {}", pDTO.getId());
 
-            PedidoModelo pedidoExistente = pedidoRepo.findById(id)
-                    .orElseThrow(() -> new EntityNotFoundException("No se puede actualizar: ID " + id + " no encontrado"));
+        PedidoModelo pedidoExistente = pedidoRepo.findById(pDTO.getId())
+                .orElseThrow(() -> new EntityNotFoundException("Error: PEDIDO no encontrado para actualizar."));
 
-            pedidoExistente.setTotalPedido(dto.getTotalPedido());
-            pedidoExistente.setPagadopedido(dto.getPagadopedido());
-            pedidoExistente.setDireccionEntrega(dto.getDireccionEntrega());
-            pedidoExistente.setEstadoPedido(dto.getEstadopedido());
-
-
-
-            PedidoModelo actualizado = pedidoRepo.save(pedidoExistente);
-            log.info("Usuario con ID: {} actualizado exitosamente", id);
-
-            return pedidoMapper.toDTO(actualizado);
-
-        } catch (Exception e) {
-            log.error("Error al actualizar usuario ID {}: {}", id, e.getMessage());
-            throw e;
-        }
+        pedidoRepo.save(PedidoModelo.builder()
+                .id(pDTO.getId()) // 🌟 Clave para hacer el UPDATE
+                .codigoPedido(pedidoExistente.getCodigoPedido())
+                .fechaPedido(pedidoExistente.getFechaPedido())
+                .usuarioId(pedidoExistente.getUsuarioId())
+                .totalPedido(pDTO.getTotalPedido())
+                .pagadopedido(pDTO.getPagadopedido())
+                .direccionEntrega(pDTO.getDireccionEntrega())
+                .estadoPedido(pDTO.getEstadopedido())
+                .detalles(pedidoExistente.getDetalles())
+                .build());
     }
 
     @Transactional

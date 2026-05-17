@@ -4,41 +4,38 @@ import com.dsy1103.msusuarios.dto.PerfilDTO;
 import com.dsy1103.msusuarios.modelo.PerfilModelo;
 import org.springframework.stereotype.Component;
 
+
+
 @Component
 public class PerfilMapper {
 
-    // De Modelo (Base de Datos) a DTO
+    //Convierte de Entidad BD a DTO
     public PerfilDTO toDTO(PerfilModelo modelo) {
         if (modelo == null) return null;
 
-        PerfilDTO dto = new PerfilDTO();
-        dto.setId(modelo.getId());
-        dto.setNombrePerfil(modelo.getNombrePerfil());
-        dto.setDescripcion(modelo.getDescripcion());
-        dto.setNivelAcessoPerfil(modelo.getNivelAcessoPerfil());
-        dto.setActivo(modelo.getActivo());
-        dto.setFechaCreacionPerfil(modelo.getFechaCreacionPerfil());
-
-        // Extraemos el ID del usuario para el DTO
-        if (modelo.getUsuario() != null) {
-            dto.setUsuarioId(modelo.getUsuario().getId());
-        }
-
-        return dto;
+        return PerfilDTO.builder()
+                .id(modelo.getId())
+                .nombrePerfil(modelo.getNombrePerfil())
+                .descripcion(modelo.getDescripcion())
+                .nivelAcessoPerfil(modelo.getNivelAcessoPerfil())
+                .activo(modelo.getActivo())
+                .fechaCreacionPerfil(modelo.getFechaCreacionPerfil())
+                // Extraemos el ID del usuario
+                .usuarioId(modelo.getUsuario() != null ? modelo.getUsuario().getId() : null)
+                .build();
     }
 
-    // De DTO (Petición) a Modelo (Entidad JPA)
+    // Convierte de DTO a Entidad (Para Guardar)
     public PerfilModelo toEntity(PerfilDTO dto) {
         if (dto == null) return null;
 
-        PerfilModelo modelo = new PerfilModelo();
-        // El ID no se setea aqui si es una creacion (es autoincremental)
-        modelo.setNombrePerfil(dto.getNombrePerfil());
-        modelo.setDescripcion(dto.getDescripcion());
-        modelo.setNivelAcessoPerfil(dto.getNivelAcessoPerfil());
-        modelo.setActivo(dto.getActivo());
-        modelo.setFechaCreacionPerfil(dto.getFechaCreacionPerfil());
-
-        return modelo;
+        return PerfilModelo.builder()
+                // El ID es autoincremental, así que no se setea
+                .nombrePerfil(dto.getNombrePerfil())
+                .descripcion(dto.getDescripcion())
+                .nivelAcessoPerfil(dto.getNivelAcessoPerfil())
+                .activo(dto.getActivo())
+                .fechaCreacionPerfil(dto.getFechaCreacionPerfil())
+                .build();
     }
 }

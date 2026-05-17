@@ -43,10 +43,11 @@ public class EnvioController {
     }
 
     // Actualizar: PUT
-    @PutMapping("/{id}")
-    public ResponseEntity<EnvioDTO> actualizar(@PathVariable Long id, @Valid @RequestBody EnvioDTO dto) {
-        log.info("Recibida solicitud para actualizar Envio con ID: {}", id);
-        return ResponseEntity.ok(envioService.actualizar(id, dto));
+    @PutMapping
+    public ResponseEntity<?> actualizar(@Valid @RequestBody EnvioDTO eDTO) {
+        log.info("REST: Actualizando ENVIO: {}", eDTO.toString());
+        envioService.actualizar(eDTO);
+        return ResponseEntity.noContent().build();
     }
 
     // ELIMINAR: DELETE

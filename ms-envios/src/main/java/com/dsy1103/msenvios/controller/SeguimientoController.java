@@ -42,10 +42,11 @@ public class SeguimientoController {
     }
 
     // Actualizar: PUT
-    @PutMapping("/{id}")
-    public ResponseEntity<SeguimientoDTO> actualizar(@PathVariable Long id, @Valid @RequestBody SeguimientoDTO dto) {
-        log.info("Recibida solicitud para actualizar Seguimiento con ID: {}", id);
-        return ResponseEntity.ok(seguimientoService.actualizar(id, dto));
+    @PutMapping
+    public ResponseEntity<?> actualizarSeguimiento(@Valid @RequestBody SeguimientoDTO sDTO) {
+        log.info("Actualizando SEGUIMIENTO: {}", sDTO.toString());
+        seguimientoService.actualizarSeguimiento(sDTO);
+        return ResponseEntity.noContent().build();
     }
 
     // ELIMINAR: DELETE

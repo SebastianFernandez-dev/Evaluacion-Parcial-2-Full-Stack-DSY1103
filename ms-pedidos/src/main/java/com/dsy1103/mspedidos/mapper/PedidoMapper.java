@@ -2,11 +2,13 @@ package com.dsy1103.mspedidos.mapper;
 
 import com.dsy1103.mspedidos.dto.PedidoDTO;
 import com.dsy1103.mspedidos.modelo.PedidoModelo;
+import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 import java.util.ArrayList;
+
 
 @Component
 public class PedidoMapper {
@@ -14,40 +16,40 @@ public class PedidoMapper {
     @Autowired
     private DetallePedidoMapper detalleMapper; // Inyectamos el mapper pequeño
 
+    // Convierte de Entidad (BD) a DTO (Respuesta API)
     public PedidoDTO toDTO(PedidoModelo modelo) {
         if (modelo == null) return null;
 
-        PedidoDTO dto = new PedidoDTO();
-        dto.setCodigoPedido(modelo.getCodigoPedido());
-        dto.setFechaPedido(modelo.getFechaPedido());
-        dto.setTotalPedido(modelo.getTotalPedido());
-        dto.setDireccionEntrega(modelo.getDireccionEntrega());
-        dto.setPagadopedido(modelo.getPagadopedido());
-        dto.setUsuarioId(modelo.getUsuarioId());
+        return PedidoDTO.builder()
+                .codigoPedido(modelo.getCodigoPedido())
+                .fechaPedido(modelo.getFechaPedido())
+                .totalPedido(modelo.getTotalPedido())
+                .direccionEntrega(modelo.getDireccionEntrega())
+                .pagadopedido(modelo.getPagadopedido())
+                .usuarioId(modelo.getUsuarioId())
 
-        // Delegamos la conversión de la lista al detalleMapper
-        if (modelo.getDetalles() != null) {
-            dto.setDetalles(modelo.getDetalles().stream()
-                    .map(detalleMapper::toDTO)
-                    .collect(Collectors.toList()));
-        } else {
-            dto.setDetalles(new ArrayList<>());
-        }
-
-        return dto;
+                .detalles(modelo.getDetalles() != null ?
+                        modelo.getDetalles().stream()
+                                .map(detalleMapper::toDTO)
+                                .collect(Collectors.toList()) : new ArrayList<>())
+                .build();
     }
 
+    // Convierte de DTO a Entidad (Para Guardar)
     public PedidoModelo toEntity(PedidoDTO dto) {
         if (dto == null) return null;
 
-        PedidoModelo pedido = new PedidoModelo();
-        pedido.setCodigoPedido(dto.getCodigoPedido());
-        pedido.setFechaPedido(dto.getFechaPedido());
-        pedido.setTotalPedido(dto.getTotalPedido());
-        pedido.setDireccionEntrega(dto.getDireccionEntrega());
-        pedido.setPagadopedido(dto.getPagadopedido());
-        pedido.setUsuarioId(dto.getUsuarioId());
+        // 1. Primero construimos el objeto pedido
+        PedidoModelo pedido = PedidoModelo.builder()
+                .codigoPedido(dto.getCodigoPedido())
+                .fechaPedido(dto.getFechaPedido())
+                .totalPedido(dto.getTotalPedido())
+                .direccionEntrega(dto.getDireccionEntrega())
+                .pagadopedido(dto.getPagadopedido())
+                .usuarioId(dto.getUsuarioId())
+                .build();
 
+        // 2. Ahora que 'pedido' ya existe, le asignamos de forma segura sus detalles relacionados
         if (dto.getDetalles() != null) {
             pedido.setDetalles(dto.getDetalles().stream()
                     .map(dDto -> detalleMapper.toEntity(dDto, pedido))

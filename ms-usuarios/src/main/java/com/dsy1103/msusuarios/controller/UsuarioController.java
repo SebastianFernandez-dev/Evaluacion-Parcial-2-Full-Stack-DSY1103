@@ -13,7 +13,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping("/api/v1/usuarios")
 public class UsuarioController {
 
     @Autowired
@@ -39,10 +39,11 @@ public class UsuarioController {
     }
 
     // Actualizar: PUT /api/usuarios/{id}
-    @PutMapping("/{id}")
-    public ResponseEntity<UsuarioDTO> actualizar(@PathVariable Long id, @Valid @RequestBody UsuarioDTO dto) {
-        log.info("Recibida solicitud para actualizar Usuario ID: {}", id);
-        return ResponseEntity.ok(usuarioService.actualizar(id, dto));
+    @PutMapping
+    public ResponseEntity<?> actualizar(@Valid @RequestBody UsuarioDTO uDTO) {
+        log.info("REST: Actualizando USUARIO: {}", uDTO.toString());
+        usuarioService.actualizar(uDTO);
+        return ResponseEntity.noContent().build();
     }
 
     // 5. ELIMINAR DELETE

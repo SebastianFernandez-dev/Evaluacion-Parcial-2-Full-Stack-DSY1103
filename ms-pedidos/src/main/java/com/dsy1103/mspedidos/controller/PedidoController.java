@@ -44,10 +44,11 @@ public class PedidoController {
     }
 
     // ACTUALIZAR PUT
-    @PutMapping("/{id}")
-    public ResponseEntity<PedidoDTO> actualizar(@PathVariable Long id, @Valid @RequestBody PedidoDTO dto) {
-        log.info("Solicitud para actualizar pedido ID: {}", id);
-        return ResponseEntity.ok(pedidoService.actualizar(id, dto));
+    @PutMapping
+    public ResponseEntity<?> actualizar(@Valid @RequestBody PedidoDTO pDTO) {
+        log.info("REST: Actualizando PEDIDO: {}", pDTO.toString());
+        pedidoService.actualizar(pDTO);
+        return ResponseEntity.noContent().build();
     }
 
     // ELIMINAR DELETE

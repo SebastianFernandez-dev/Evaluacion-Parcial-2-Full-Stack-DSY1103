@@ -42,10 +42,11 @@ public class DetallePedidoController {
     }
 
     // 4. ACTUALIZAR PUT
-    @PutMapping("/{id}")
-    public ResponseEntity<DetallePedidoDTO> actualizar(@PathVariable Long id, @Valid @RequestBody DetallePedidoDTO dto) {
-        log.info("Recibida solicitud para actualizar detalle ID: {}", id);
-        return ResponseEntity.ok(detalleService.actualizar(id, dto));
+    @PutMapping
+    public ResponseEntity<?> actualizar(@Valid @RequestBody DetallePedidoDTO dDTO) {
+        log.info("Actualizando DETALLE PEDIDO: {}", dDTO.toString());
+        detalleService.actualizar(dDTO);
+        return ResponseEntity.noContent().build();
     }
 
     // 5. ELIMINAR DELETE

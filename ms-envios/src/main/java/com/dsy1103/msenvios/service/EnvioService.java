@@ -81,22 +81,24 @@ public class EnvioService {
     }
 
     @Transactional
-    public EnvioDTO actualizar(Long id, EnvioDTO dto) {
-        EnvioModelo existente = envioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Envio no encontrado con el ID: " + id));
+    public void actualizar(EnvioDTO eDTO) {
+        log.info("Actualizando ENVIO con ID: {}", eDTO.getId());
 
-        existente.setCodigoEnvio(dto.getCodigoEnvio());
-        existente.setPedidoId(dto.getPedidoId());
-        existente.setUsuarioId(dto.getUsuarioId());
-        existente.setDireccionDestino(dto.getDireccionDestino());
-        existente.setEstadoEnvio(dto.getEstadoEnvio());
-        existente.setFechaSalida(dto.getFechaSalida());
-        existente.setFechaEntregaEstimada(dto.getFechaEntregaEstimada());
-        existente.setFechaEntregado(dto.getFechaEntregado());
-        existente.setActivo(dto.getActivo());
+        envioRepository.findById(eDTO.getId())
+                .orElseThrow(() -> new EntityNotFoundException("Error: ENVIO no encontrado para actualizar."));
 
-        EnvioModelo actualizado = envioRepository.save(existente);
-        return envioMapper.toDTO(actualizado);
+        envioRepository.save(EnvioModelo.builder()
+                .id(eDTO.getId()) // Clave para que Hibernate haga un UPDATE
+                .codigoEnvio(eDTO.getCodigoEnvio())
+                .pedidoId(eDTO.getPedidoId())
+                .usuarioId(eDTO.getUsuarioId())
+                .direccionDestino(eDTO.getDireccionDestino())
+                .estadoEnvio(eDTO.getEstadoEnvio())
+                .fechaSalida(eDTO.getFechaSalida())
+                .fechaEntregaEstimada(eDTO.getFechaEntregaEstimada())
+                .fechaEntregado(eDTO.getFechaEntregado())
+                .activo(eDTO.getActivo())
+                .build());
     }
 
     @Transactional

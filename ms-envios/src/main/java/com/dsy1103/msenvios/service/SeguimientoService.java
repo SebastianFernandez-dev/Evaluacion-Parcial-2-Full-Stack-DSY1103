@@ -65,22 +65,24 @@ public class SeguimientoService {
     }
 
     @Transactional
-    public SeguimientoDTO actualizar(Long id, SeguimientoDTO dto) {
-        SeguimientoModelo existente = seguimientoRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Seguimiento no encontrado con el ID: " + id));
-        // Si el JSON viene con un envioId diferente, actualizamos la relación
-        EnvioModelo envio = envioRepository.findById(dto.getEnvioId())
-                .orElseThrow(() -> new EntityNotFoundException("Envio no encontrado con ID: " + dto.getEnvioId()));
+    public void actualizarSeguimiento(SeguimientoDTO sDTO) {
 
-        existente.setEnvio(envio);// Actualiza la relación por si cambió de paquete
-        existente.setEstadoSegui(dto.getEstadoSegui());
-        existente.setUbiAtual(dto.getUbiAtual());
-        existente.setObservacion(dto.getObservacion());
-        existente.setFechaSegui(dto.getFechaSegui());
-        existente.setVisible(dto.getVisible());
+        log.info("Actualizando SEGUIMIENTO con ID: {}", sDTO.getId());
+        seguimientoRepo.findById(sDTO.getId())
+                .orElseThrow(() -> new EntityNotFoundException("Error: SEGUIMIENTO no encontrado para actualizar."));
 
-        SeguimientoModelo actualizado = seguimientoRepo.save(existente);
-        return seguimientoMapper.toDTO(actualizado);
+        EnvioModelo envio = envioRepository.findById(sDTO.getEnvioId())
+                .orElseThrow(() -> new EntityNotFoundException("Error: ENVIO no encontrado con ID: " + sDTO.getEnvioId()));
+
+        seguimientoRepo.save(SeguimientoModelo.builder()
+                .id(sDTO.getId()) // Esencial para que Hibernate actualice el registro existente
+                .envio(envio)    // Pasamos la entidad completa del envío que encontramos recién
+                .estadoSegui(sDTO.getEstadoSegui())
+                .ubiAtual(sDTO.getUbiAtual())
+                .observacion(sDTO.getObservacion())
+                .fechaSegui(sDTO.getFechaSegui())
+                .visible(sDTO.getVisible())
+                .build());
     }
 
     @Transactional

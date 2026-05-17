@@ -3,10 +3,8 @@ package com.dsy1103.msenvios.mapper;
 
 import com.dsy1103.msenvios.dto.SeguimientoDTO;
 import com.dsy1103.msenvios.modelo.SeguimientoModelo;
-import lombok.Builder;
 import org.springframework.stereotype.Component;
 
-@Builder
 @Component
 public class SeguimientoMapper {
 

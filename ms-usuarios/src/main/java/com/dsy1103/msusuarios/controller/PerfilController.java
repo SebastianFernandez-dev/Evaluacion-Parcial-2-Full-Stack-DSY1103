@@ -13,7 +13,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/perfiles")
+@RequestMapping("/api/v1/perfiles")
 public class PerfilController {
 
     @Autowired
@@ -41,10 +41,11 @@ public class PerfilController {
     }
 
     // 3. Actualizar: PUT /api/perfiles/{id}
-    @PutMapping("/{id}")
-    public ResponseEntity<PerfilDTO> actualizar(@PathVariable Long id, @Valid @RequestBody PerfilDTO dto) {
-        log.info("Recibida solicitud para actualizar Perfil ID: {}", id);
-        return ResponseEntity.ok(perfilService.actualizar(id, dto));
+    @PutMapping
+    public ResponseEntity<?> actualizar(@Valid @RequestBody PerfilDTO pDTO) {
+        log.info("Actualizando PERFIL: {}", pDTO.toString());
+        perfilService.actualizar(pDTO);
+        return ResponseEntity.noContent().build();
     }
 
     // 5. ELIMINAR DETALLE

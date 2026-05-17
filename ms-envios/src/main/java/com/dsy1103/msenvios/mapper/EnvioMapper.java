@@ -2,10 +2,8 @@ package com.dsy1103.msenvios.mapper;
 
 import com.dsy1103.msenvios.modelo.EnvioModelo;
 import com.dsy1103.msenvios.dto.EnvioDTO;
-import lombok.Builder;
 import org.springframework.stereotype.Component;
 
-@Builder
 @Component // Spring sabe que es un componente inyectable
 public class EnvioMapper {
 

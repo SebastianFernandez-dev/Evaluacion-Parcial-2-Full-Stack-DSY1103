@@ -57,33 +57,28 @@ public class UsuarioService {
     }
 
     @Transactional
-    public UsuarioDTO actualizar(Long id, UsuarioDTO dto) {
-        try {
-            log.info("Iniciando actualización de usuario con ID: {}", id);
+    // En tu UsuarioService / UsuarioServiceImpl
+    public void actualizar(UsuarioDTO uDTO) {
+        // 🪵 Log de control con el ID
+        log.info("Actualizando USUARIO con ID: {}", uDTO.getId());
 
-            UsuarioModelo usuarioExistente = usuarioRepo.findById(id)
-                    .orElseThrow(() -> new EntityNotFoundException("No se puede actualizar: ID " + id + " no encontrado"));
+        // 🔍 1. Verificamos si el usuario existe en la base de datos
+        UsuarioModelo uExistente = usuarioRepo.findById(uDTO.getId())
+                .orElseThrow(() -> new EntityNotFoundException("Error: USUARIO no encontrado."));
 
-            // Actualizamos los campos manualmente para mantener la misma instancia
-            usuarioExistente.setPrimerNombre(dto.getPrimerNombre());
-            usuarioExistente.setSegundoNombre(dto.getSegundoNombre());
-            usuarioExistente.setPrimerApellido(dto.getPrimerApellido());
-            usuarioExistente.setSegundoApellido(dto.getSegundoApellido());
-            usuarioExistente.setCorreoUsuario(dto.getCorreoUsuario());
-            usuarioExistente.setRut(dto.getRut());
-            usuarioExistente.setDvRut(dto.getDvRut());
-            usuarioExistente.setActivo(dto.getActivo());
-            usuarioExistente.setFechaRegistro(dto.getFechaRegistro());
-
-            UsuarioModelo actualizado = usuarioRepo.save(usuarioExistente);
-            log.info("Usuario con ID: {} actualizado exitosamente", id);
-
-            return usuarioMapper.toDTO(actualizado);
-
-        } catch (Exception e) {
-            log.error("Error al actualizar usuario ID {}: {}", id, e.getMessage());
-            throw e;
-        }
+        // 📝 2. Guardamos reconstruyendo el objeto con el Builder (Estilo de tu equipo)
+        usuarioRepo.save(UsuarioModelo.builder()
+                .id(uDTO.getId()) // ¡Obligatorio para que actualice y no cree uno nuevo!
+                .primerNombre(uDTO.getPrimerNombre())
+                .segundoNombre(uDTO.getSegundoNombre())
+                .primerApellido(uDTO.getPrimerApellido())
+                .segundoApellido(uDTO.getSegundoApellido())
+                .correoUsuario(uDTO.getCorreoUsuario())
+                .rut(uDTO.getRut())
+                .dvRut(uDTO.getDvRut())
+                .activo(uDTO.getActivo())
+                .fechaRegistro(uDTO.getFechaRegistro())
+                .build());
     }
 
     @Transactional
