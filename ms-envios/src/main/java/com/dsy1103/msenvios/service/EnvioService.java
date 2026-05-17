@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 @Slf4j
@@ -108,5 +109,11 @@ public class EnvioService {
         envioRepository.deleteById(id);
         log.info("Envio ID: {} eliminado correctamente", id);
     }
+
+    //metodo para obtener envios no entregados
+    public List<EnvioModelo> obtenerEnviosEnRangoNoEntregados(LocalDateTime inicio, LocalDateTime fin) {
+        return envioRepository.findEnviosEnRangoNoEntregados(inicio, fin);
+    }
+
 
 }

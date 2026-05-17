@@ -1,6 +1,7 @@
 package com.dsy1103.mspedidos.controller;
 
 import com.dsy1103.mspedidos.dto.PedidoDTO;
+import com.dsy1103.mspedidos.modelo.PedidoModelo;
 import com.dsy1103.mspedidos.service.PedidoService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -55,6 +56,13 @@ public class PedidoController {
         log.info("Solicitud para eliminar pedido ID: {}", id);
         pedidoService.eliminar(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/pagados")
+    public ResponseEntity<List<PedidoModelo>> listarPedidosPagados() {
+        List<PedidoModelo> lista = pedidoService.obtenerPedidosPagadosYOrdenados();
+
+        return ResponseEntity.ok(lista);
     }
 
 }

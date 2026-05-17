@@ -1,5 +1,6 @@
 package com.dsy1103.msenvios.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,6 +37,8 @@ public class SeguimientoModelo {
     @Column(name = "visible",nullable = false)
     private Boolean visible;
 
+
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "envio_id", nullable = false) // FK declarado
     private EnvioModelo envio;

@@ -1,10 +1,12 @@
 package com.dsy1103.mspedidos.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
+
 
 @Data
 @NoArgsConstructor
@@ -41,6 +43,8 @@ public class DetallePedidoModelo {
     @Column(name = "estado_detalle", nullable = false)
     private boolean estadoDetalle = true;
 
+
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pedido_id", nullable = false)
     private PedidoModelo pedido;

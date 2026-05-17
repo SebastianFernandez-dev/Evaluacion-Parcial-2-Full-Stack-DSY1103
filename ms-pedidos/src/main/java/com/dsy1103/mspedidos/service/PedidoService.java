@@ -93,4 +93,10 @@ public class PedidoService {
     }
 
 
+    // Medoto para pedidos Pagados y Ordenados
+    @Transactional
+    public List<PedidoModelo> obtenerPedidosPagadosYOrdenados() {
+        return pedidoRepo.findPedidosPagadosOrdenadosPorFecha();
+    }
+
 }
