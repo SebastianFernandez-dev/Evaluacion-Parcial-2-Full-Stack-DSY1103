@@ -45,14 +45,14 @@ public class ContratoController {
     }
 
     @PutMapping
-    public ResponseEntity<ContratoDTO> actualizarContrato(@Valid @RequestBody ContratoDTO cDTO) {
-        log.info("REST: Actualizando nuevo PROVEEDOR: {}", cDTO.toString());
+    public ResponseEntity<?> actualizarContrato(@Valid @RequestBody ContratoDTO cDTO) {
+        log.info("REST: Actualizando CONTRATO: {}", cDTO.toString());
         contratoService.actualizarContrato(cDTO);
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> eliminarContrato(@Valid @PathVariable Long id) {
+    public ResponseEntity<?> eliminarContrato(@PathVariable Long id) {
         log.warn("REST: Eliminando CONTRATO ID: {}", id);
         contratoService.eliminarContrato(id);
         return ResponseEntity.noContent().build();

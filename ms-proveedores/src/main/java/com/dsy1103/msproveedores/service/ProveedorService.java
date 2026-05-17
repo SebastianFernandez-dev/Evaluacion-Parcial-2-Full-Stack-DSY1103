@@ -65,24 +65,23 @@ public class ProveedorService {
         return ProveedorMapper.toDTO(guardado);
     }
 
-    public ProveedorDTO actualizarProveedor(ProveedorDTO pDTO) {
+    public void actualizarProveedor(ProveedorDTO pDTO) {
         log.info("Actualizando PROVEEDOR con ID {}", pDTO.getId());
 
-        ProveedorModel pExistente = proveedorRepository.findById(pDTO.getId())
-                .orElseThrow(() -> new EntityNotFoundException("Error: El PROVEEDOR no encontrado."));
+        proveedorRepository.findById(pDTO.getId())
+                .orElseThrow(() -> new EntityNotFoundException("Error: PROVEEDOR no encontrado."));
 
-        pExistente.setNombre(pDTO.getNombre());
-        pExistente.setRazonSocial(pDTO.getRazonSocial());
-        pExistente.setDocumentoFiscal(pDTO.getDocumentoFiscal());
-        pExistente.setCorreoContacto(pDTO.getCorreoContacto());
-        pExistente.setCiudad(pDTO.getCiudad());
-        pExistente.setCalificacion(pDTO.getCalificacion());
-        pExistente.setActivo(pDTO.getActivo());
-        pExistente.setFechaRegistro(pDTO.getFechaRegistro());
-
-        ProveedorModel actualizado = proveedorRepository.save(pExistente);
-
-        return ProveedorMapper.toDTO(actualizado);
+        proveedorRepository.save(ProveedorModel.builder()
+                .id(pDTO.getId())
+                .nombre(pDTO.getNombre())
+                .razonSocial(pDTO.getRazonSocial())
+                .documentoFiscal(pDTO.getDocumentoFiscal())
+                .correoContacto(pDTO.getCorreoContacto())
+                .ciudad(pDTO.getCiudad())
+                .calificacion(pDTO.getCalificacion())
+                .activo(pDTO.getActivo())
+                .fechaRegistro(pDTO.getFechaRegistro())
+                .build());
     }
 
     public void eliminarProveedor(Long id) {

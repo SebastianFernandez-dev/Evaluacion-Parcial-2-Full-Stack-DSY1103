@@ -51,13 +51,13 @@ public class ContratoService {
                 .collect(Collectors.toList());
     }
 
-    public ContratoDTO guardarContrato(ContratoDTO dto) {
-        log.info("Intentando registrar CONTRATO CÓDIGO: {}", dto.getNumero());
-        ContratoModel contrato = ContratoMapper.toEntity(dto);
+    public ContratoDTO guardarContrato(ContratoDTO cDTO) {
+        log.info("Intentando registrar CONTRATO CÓDIGO: {}", cDTO.getNumero());
+        ContratoModel contrato = ContratoMapper.toEntity(cDTO);
 
-        ProveedorModel proveedor = proveedorRepository.findById(dto.getProveedorId())
-                .orElseThrow(() -> new EntityNotFoundException("Error: El proveedor con id "
-        + dto.getProveedorId() + " no existe. No se puede registrar el CONTRATO."));
+        ProveedorModel proveedor = proveedorRepository.findById(cDTO.getProveedorId())
+                .orElseThrow(() -> new EntityNotFoundException("Error: PROVEEDOR con ID "
+        + cDTO.getProveedorId() + " no existe. No se puede registrar el CONTRATO."));
 
         contrato.setProveedor(proveedor);
         ContratoModel guardado = contratoRepository.save(contrato);
@@ -66,29 +66,29 @@ public class ContratoService {
         return ContratoMapper.toDTO(guardado);
     }
 
-    public ContratoDTO actualizarContrato(ContratoDTO dto) {
-        log.info("Actualizando CONTRATO con ID: {}", dto.getId());
+    public void actualizarContrato(ContratoDTO cDTO) {
+        log.info("Actualizando CONTRATO con ID: {}", cDTO.getId());
 
-        ContratoModel cExistente = contratoRepository.findById(dto.getId())
+        ContratoModel cExistente = contratoRepository.findById(cDTO.getId())
                 .orElseThrow(() -> new EntityNotFoundException("Error: CONTRATO no encontrado."));
 
-        cExistente.setNumero(dto.getNumero());
-        cExistente.setTipo(dto.getTipo());
-        cExistente.setValor(dto.getValor());
-        cExistente.setFechaInicio(dto.getFechaInicio());
-        cExistente.setFechaFin(dto.getFechaFin());
-        cExistente.setVigente(dto.getVigente());
-        cExistente.setObservaciones(dto.getObservaciones());
-
-        if (dto.getProveedorId() != null) {
-            ProveedorModel p = proveedorRepository.findById(dto.getProveedorId())
+        if (cDTO.getProveedorId() != null) {
+            ProveedorModel p = proveedorRepository.findById(cDTO.getProveedorId())
                     .orElseThrow(() -> new EntityNotFoundException("Error: PROVEEDOR no encontrado."));
             cExistente.setProveedor(p);
         }
 
-        ContratoModel actualizado = contratoRepository.save(cExistente);
-
-        return ContratoMapper.toDTO(actualizado);
+        contratoRepository.save(ContratoModel.builder()
+                .id(cDTO.getId())
+                .numero(cDTO.getNumero())
+                .tipo(cDTO.getTipo())
+                .valor(cDTO.getValor())
+                .fechaInicio(cDTO.getFechaInicio())
+                .fechaFin(cDTO.getFechaFin())
+                .vigente(cDTO.getVigente())
+                .observaciones(cDTO.getObservaciones())
+                .proveedor(cExistente.getProveedor())
+                .build());
     }
 
     public void eliminarContrato(Long id) {
