@@ -24,7 +24,6 @@ public class SucursalMapper {
         if (sDTO == null) return null;
 
         return SucursalModel.builder()
-                .id(sDTO.getId())
                 .nombre(sDTO.getNombre())
                 .codigo(sDTO.getCodigo())
                 .direccion(sDTO.getDireccion())

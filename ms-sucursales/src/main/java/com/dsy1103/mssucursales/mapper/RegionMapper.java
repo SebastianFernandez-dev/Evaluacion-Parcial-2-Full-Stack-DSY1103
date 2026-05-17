@@ -22,7 +22,6 @@ public class RegionMapper {
         if (rDTO == null) return null;
 
         return RegionModel.builder()
-                .id(rDTO.getId())
                 .nombre(rDTO.getNombre())
                 .codigo(rDTO.getCodigo())
                 .descripcion(rDTO.getDescripcion())
