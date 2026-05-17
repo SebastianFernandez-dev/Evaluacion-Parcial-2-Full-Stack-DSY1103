@@ -20,7 +20,6 @@ public class EmpleadoDTO {
     @Size(min=2,max=20)
     private String primerNombre;
 
-    @NotBlank(message="El campo SEGUNDO NOMBRE es obligatorio")
     @Size(min=2,max=20)
     private String segundoNombre;
 
