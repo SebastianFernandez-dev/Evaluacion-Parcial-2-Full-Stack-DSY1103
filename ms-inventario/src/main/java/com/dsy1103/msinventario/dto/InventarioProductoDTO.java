@@ -44,6 +44,12 @@ public class InventarioProductoDTO {
     @Positive(message="El campo PRODUCTO ID no puede ser negativo")
     private Long productoId;
 
+    @Positive(message="El campo SUCURSAL ID no puede ser negativo")
+    private Long sucursalId;
+
+    @Positive(message="El campo PROVEEDOR ID no puede ser negativo")
+    private Long proveedorId;
+
     //datos de producto
     @NotBlank(message="El campo NOMBRE PRODUCTO es obligatorio")
     @Size(min=6, max=50)

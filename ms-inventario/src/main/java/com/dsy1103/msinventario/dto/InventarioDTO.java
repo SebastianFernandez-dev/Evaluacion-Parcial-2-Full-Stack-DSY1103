@@ -41,6 +41,12 @@ public class InventarioDTO {
     @PastOrPresent(message="Debe ingresar FECHA actual o pasada")
     private LocalDate fechaRealizacion;
 
+    @Positive(message="El campo SUCURSAL ID no puede ser negativo")
+    private Long sucursalId;
+
+    @Positive(message="El campo PROVEEDOR ID no puede ser negativo")
+    private Long proveedorId;
+
     @Positive(message="El campo PRODUCTO ID no puede ser negativo")
     private Long productoId;
 

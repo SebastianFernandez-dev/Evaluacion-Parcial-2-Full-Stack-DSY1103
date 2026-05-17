@@ -16,6 +16,8 @@ public class InventarioMapper {
                 .stockMinimo(iModel.getStockMinimo())
                 .activo(iModel.getActivo())
                 .fechaRealizacion(iModel.getFechaRealizacion())
+                .sucursalId(iModel.getSucursalId())
+                .proveedorId(iModel.getProveedorId())
                 .productoId(iModel.getProductoId())
                 .build();
     }
@@ -30,6 +32,8 @@ public class InventarioMapper {
                 .stockMinimo(iDTO.getStockMinimo())
                 .activo(iDTO.getActivo())
                 .fechaRealizacion(iDTO.getFechaRealizacion())
+                .sucursalId(iDTO.getSucursalId())
+                .proveedorId(iDTO.getProveedorId())
                 .productoId(iDTO.getProductoId())
                 .build();
     }
