@@ -25,7 +25,6 @@ public class ContratoMapper {
         if (cDTO == null) return null;
 
         return ContratoModel.builder()
-                .id(cDTO.getId())
                 .numero(cDTO.getNumero())
                 .tipo(cDTO.getTipo()).valor(cDTO.getValor())
                 .fechaInicio(cDTO.getFechaInicio())

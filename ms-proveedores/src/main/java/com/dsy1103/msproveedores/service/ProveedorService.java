@@ -47,7 +47,7 @@ public class ProveedorService {
         return pDTO;
     }
 
-    public List<ProveedorDTO> litarProveedoresActivos() {
+    public List<ProveedorDTO> listarProveedoresActivos() {
         log.info("Obteniendo PROVEEDORES ACTIVOS");
         return proveedorRepository.findAllByActivo()
                 .stream()

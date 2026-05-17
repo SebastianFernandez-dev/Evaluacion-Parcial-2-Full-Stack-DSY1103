@@ -1,0 +1,86 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002
+      author: edi-eli
+      changes:
+        - insert:
+            tableName: reporte
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 1
+              - column:
+                  name: descripcion
+                  value: "Reporte Q1 - Consolidado de Ventas de Verano"
+              - column:
+                  name: tipo
+                  value: "Ventas"
+              - column:
+                  name: total_ventas
+                  valueNumeric: 1540500.50
+              - column:
+                  name: cantidad_pedidos
+                  valueNumeric: 45
+              - column:
+                  name: cantidad_pagos
+                  valueNumeric: 42
+              - column:
+                  name: usuario_id
+                  valueNumeric: 10
+              - column:
+                  name: publicado
+                  valueBoolean: true
+        - insert:
+            tableName: reporte
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 2
+              - column:
+                  name: descripcion
+                  value: "Reporte Mensual - Auditoría de Pagos Rechazados"
+              - column:
+                  name: tipo
+                  value: "Pagos"
+              - column:
+                  name: total_ventas
+                  valueNumeric: 0.00
+              - column:
+                  name: cantidad_pedidos
+                  valueNumeric: 0
+              - column:
+                  name: cantidad_pagos
+                  valueNumeric: 12
+              - column:
+                  name: usuario_id
+                  valueNumeric: 10
+              - column:
+                  name: publicado
+                  valueBoolean: false
+        - insert:
+            tableName: reporte
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 3
+              - column:
+                  name: descripcion
+                  value: "Reporte Logístico Semanal - Envíos pendientes Región Metropolitana"
+              - column:
+                  name: tipo
+                  value: "Envíos"
+              - column:
+                  name: total_ventas
+                  valueNumeric: 450300.00
+              - column:
+                  name: cantidad_pedidos
+                  valueNumeric: 15
+              - column:
+                  name: cantidad_pagos
+                  valueNumeric: 15
+              - column:
+                  name: usuario_id
+                  valueNumeric: 14
+              - column:
+                  name: publicado
+                  valueBoolean: true

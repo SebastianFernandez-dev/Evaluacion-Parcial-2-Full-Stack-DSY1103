@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include: 
+      file: db/changelog/changes/001-creacion-reporte.yaml
+  - include:
+      file: db/changelog/changes/002-insertar-reporte.yaml

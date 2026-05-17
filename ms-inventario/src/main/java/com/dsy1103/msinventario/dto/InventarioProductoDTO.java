@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class InventarioDTO {
+public class InventarioProductoDTO {
 
     @Positive(message="El campo ID no puede ser negativo")
     private Long id;
@@ -43,6 +43,34 @@ public class InventarioDTO {
 
     @Positive(message="El campo PRODUCTO ID no puede ser negativo")
     private Long productoId;
+
+    //datos de producto
+    @NotBlank(message="El campo NOMBRE PRODUCTO es obligatorio")
+    @Size(min=6, max=50)
+    private String nombreProducto;
+
+    @NotBlank(message="El campo DESCRIPCION PRODUCTO es obligatorio")
+    @Size(min=5, max=200)
+    private String descripcionProducto;
+
+    @NotBlank(message="El campo SKU PRODUCTO es obligatorio")
+    @Size(min=8, max=12)
+    private String skuProducto;
+
+    @NotNull(message="El campo PRECIO PRODUCTO es obligatorio")
+    @Positive(message="El campo PRECIO PRODUCTO no puede ser negativo")
+    @DecimalMin("0.0")
+    private Double precioProducto;
+
+    @NotNull(message="El campo ACTIVO PRODUCTO es obligatorio")
+    private Boolean activoProducto;
+
+    @NotNull(message="El campo FECHA INGRESO PRODUCTO es obligatorio")
+    @PastOrPresent(message="Debe ingresar FECHA actual o pasada")
+    private LocalDate fechaIngresoProducto;
+
+    @Positive(message="El campo PRODUCTO CATEGORIA ID no puede ser negativo")
+    private Long productoCategoriaId;
 
     //lista de todos los movimientos asociados al inventario
     private List<MovimientoStockDTO> listaMovimientosStock;

@@ -43,7 +43,7 @@ public class ContratoService {
     }
 
     public List<ContratoDTO> listarContratosPorProveedor(Long pId) {
-        log.info("Listando contratos por ID del PROVEEDOR {}", pId);
+        log.info("Listando CONTRATOS por ID del PROVEEDOR {}", pId);
 
         return contratoRepository.findByProveedorId(pId)
                 .stream()
