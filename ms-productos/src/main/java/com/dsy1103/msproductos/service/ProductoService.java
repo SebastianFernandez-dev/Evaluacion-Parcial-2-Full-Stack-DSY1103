@@ -43,6 +43,14 @@ public class ProductoService {
                 "Error: El PRODUCTO con ID "+id+" no pudo ser encontrado"));
     }
 
+    public List<ProductoDTO> buscarPorNombreYPrecio(String nombre, Double precio) {
+        log.info("Buscando PRODUCTOS con nombre '{}' y precio menor a {}", nombre, precio);
+        return productoRepository.findByNombreContengaAndPrecioMenorQue(nombre, precio)
+                .stream()
+                .map(productoMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
     public ProductoDTO guardarProducto(ProductoDTO dto) {
         log.info("Registrando PRODUCTO: {}", dto.getId());
 
