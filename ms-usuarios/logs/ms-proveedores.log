@@ -1,0 +1,39 @@
+2026-05-16T18:55:30.136-04:00  INFO 5636 --- [ms-usuarios] [main] c.d.msusuarios.MsUsuariosApplication     : Starting MsUsuariosApplication using Java 24.0.2 with PID 5636 (C:\Users\zerze\OneDrive\Desktop\ev2\Evaluacion-Parcial-2-Full-Stack-DSY1103\ms-usuarios\target\classes started by zerze in C:\Users\zerze\OneDrive\Desktop\ev2\Evaluacion-Parcial-2-Full-Stack-DSY1103\ms-usuarios)
+2026-05-16T18:55:30.139-04:00  INFO 5636 --- [ms-usuarios] [main] c.d.msusuarios.MsUsuariosApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-05-16T18:55:31.967-04:00  INFO 5636 --- [ms-usuarios] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-16T18:55:32.092-04:00  INFO 5636 --- [ms-usuarios] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 105 ms. Found 2 JPA repository interfaces.
+2026-05-16T18:55:32.531-04:00  INFO 5636 --- [ms-usuarios] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=8093c3a7-6e41-3292-9b60-2abe8a3ea085
+2026-05-16T18:55:33.409-04:00  INFO 5636 --- [ms-usuarios] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8081 (http)
+2026-05-16T18:55:33.437-04:00  INFO 5636 --- [ms-usuarios] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-16T18:55:33.437-04:00  INFO 5636 --- [ms-usuarios] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-16T18:55:33.553-04:00  INFO 5636 --- [ms-usuarios] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 3324 ms
+2026-05-16T18:55:33.896-04:00  INFO 5636 --- [ms-usuarios] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-16T18:55:34.009-04:00  INFO 5636 --- [ms-usuarios] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-16T18:55:34.810-04:00  INFO 5636 --- [ms-usuarios] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-16T18:55:34.858-04:00  INFO 5636 --- [ms-usuarios] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-16T18:55:35.099-04:00  INFO 5636 --- [ms-usuarios] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@cfb94fd
+2026-05-16T18:55:35.101-04:00  INFO 5636 --- [ms-usuarios] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-16T18:55:35.177-04:00  WARN 5636 --- [ms-usuarios] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-16T18:55:35.213-04:00  INFO 5636 --- [ms-usuarios] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/prueba1?useSSL=false&serverTimezone=America/Santiago&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.4.3
+	Default catalog/schema: prueba1/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-16T18:55:36.751-04:00  INFO 5636 --- [ms-usuarios] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-16T18:55:36.842-04:00  INFO 5636 --- [ms-usuarios] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-16T18:55:36.991-04:00  INFO 5636 --- [ms-usuarios] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-16T18:55:37.542-04:00  WARN 5636 --- [ms-usuarios] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-16T18:55:38.389-04:00  INFO 5636 --- [ms-usuarios] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8081 (http) with context path '/'
+2026-05-16T18:55:38.407-04:00  INFO 5636 --- [ms-usuarios] [main] c.d.msusuarios.MsUsuariosApplication     : Started MsUsuariosApplication in 8.966 seconds (process running for 10.16)
+2026-05-16T18:56:34.394-04:00  INFO 5636 --- [ms-usuarios] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-16T18:56:34.398-04:00  INFO 5636 --- [ms-usuarios] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-05-16T18:56:34.401-04:00  INFO 5636 --- [ms-usuarios] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-16T18:56:34.404-04:00  INFO 5636 --- [ms-usuarios] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-16T18:56:34.409-04:00  INFO 5636 --- [ms-usuarios] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

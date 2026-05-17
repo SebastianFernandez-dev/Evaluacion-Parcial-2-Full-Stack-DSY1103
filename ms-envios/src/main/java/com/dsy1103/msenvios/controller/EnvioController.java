@@ -1,0 +1,74 @@
+package com.dsy1103.msenvios.controller;
+
+import com.dsy1103.msenvios.dto.EnvioDTO;
+import com.dsy1103.msenvios.modelo.EnvioModelo;
+import com.dsy1103.msenvios.service.EnvioService;
+import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Slf4j
+@RestController
+@RequestMapping("/api/envios")
+public class EnvioController {
+
+    @Autowired
+    private EnvioService envioService;
+
+    // Listar
+    @GetMapping
+    public ResponseEntity<List<EnvioDTO>> listarTodos() {
+        log.info("Recibida solicitud para listar todos los envíos");
+        return ResponseEntity.ok(envioService.listarTodos());
+    }
+
+    // Buscar por ID
+    @GetMapping("/{id}")
+    public ResponseEntity<EnvioDTO> buscarPorId(@PathVariable Long id) {
+        log.info("Recibida solicitud para crear un envio");
+        return ResponseEntity.ok(envioService.buscarPorId(id));
+    }
+
+    // Crear: POST
+    @PostMapping
+    public ResponseEntity<EnvioDTO> crear(@Valid @RequestBody EnvioDTO dto) {
+        log.info("Recibida solicitud para crear un nuevo Envio");
+        return new ResponseEntity<>(envioService.crear(dto), HttpStatus.CREATED);
+    }
+
+    // Actualizar: PUT
+    @PutMapping
+    public ResponseEntity<?> actualizar(@Valid @RequestBody EnvioDTO eDTO) {
+        log.info("REST: Actualizando ENVIO: {}", eDTO.toString());
+        envioService.actualizar(eDTO);
+        return ResponseEntity.noContent().build();
+    }
+
+    // ELIMINAR: DELETE
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> eliminar(@PathVariable Long id) {
+        log.info("Recibida solicitud para eliminar Envio con ID: {}", id);
+        envioService.eliminar(id);
+        return ResponseEntity.ok("Envío eliminado correctamente con el ID: " + id);
+    }
+
+    @GetMapping("/no-entregados")
+    public ResponseEntity<List<EnvioModelo>> listarNoEntregados(
+            @RequestParam("inicio") String inicioStr,
+            @RequestParam("fin") String finStr) {
+
+        LocalDateTime inicio = LocalDateTime.parse(inicioStr);
+        LocalDateTime fin = LocalDateTime.parse(finStr);
+
+        List<EnvioModelo> lista = envioService.obtenerEnviosEnRangoNoEntregados(inicio, fin);
+
+        return ResponseEntity.ok(lista);
+    }
+
+}

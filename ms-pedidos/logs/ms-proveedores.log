@@ -1,0 +1,161 @@
+2026-05-16T18:23:53.381-04:00  INFO 2720 --- [ms-pedidos] [main] c.d.mspedidos.MsPedidosApplication       : Starting MsPedidosApplication using Java 24.0.2 with PID 2720 (C:\Users\zerze\OneDrive\Desktop\ev2\Evaluacion-Parcial-2-Full-Stack-DSY1103\ms-pedidos\target\classes started by zerze in C:\Users\zerze\OneDrive\Desktop\ev2\Evaluacion-Parcial-2-Full-Stack-DSY1103\ms-pedidos)
+2026-05-16T18:23:53.385-04:00 DEBUG 2720 --- [ms-pedidos] [main] c.d.mspedidos.MsPedidosApplication       : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-16T18:23:53.387-04:00  INFO 2720 --- [ms-pedidos] [main] c.d.mspedidos.MsPedidosApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-05-16T18:23:54.591-04:00  INFO 2720 --- [ms-pedidos] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-16T18:23:54.660-04:00  INFO 2720 --- [ms-pedidos] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 59 ms. Found 2 JPA repository interfaces.
+2026-05-16T18:23:54.846-04:00  INFO 2720 --- [ms-pedidos] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=8af469de-47c5-30f0-a9aa-97a166d4a548
+2026-05-16T18:23:55.451-04:00  INFO 2720 --- [ms-pedidos] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8084 (http)
+2026-05-16T18:23:55.470-04:00  INFO 2720 --- [ms-pedidos] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-16T18:23:55.470-04:00  INFO 2720 --- [ms-pedidos] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-16T18:23:55.560-04:00  INFO 2720 --- [ms-pedidos] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2107 ms
+2026-05-16T18:23:56.212-04:00  INFO 2720 --- [ms-pedidos] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-16T18:23:56.368-04:00  INFO 2720 --- [ms-pedidos] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@75839695
+2026-05-16T18:23:56.370-04:00  INFO 2720 --- [ms-pedidos] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-16T18:23:56.428-04:00  INFO 2720 --- [ms-pedidos] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/prueba1?useSSL=false&serverTimezone=America/Santiago&allowPublicKeyRetrieval=true (MySQL 8.4)
+2026-05-16T18:23:56.448-04:00  WARN 2720 --- [ms-pedidos] [main] o.f.c.internal.database.base.Database    : Using MySQL 8.4 which is newer than the version Flyway has been verified with. The latest verified version of MySQL is 8.1.
+2026-05-16T18:23:56.482-04:00  INFO 2720 --- [ms-pedidos] [main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table `prueba1`.`flyway_schema_history` does not exist yet
+2026-05-16T18:23:56.486-04:00  INFO 2720 --- [ms-pedidos] [main] o.f.core.internal.command.DbValidate     : Successfully validated 0 migrations (execution time 00:00.019s)
+2026-05-16T18:23:56.486-04:00  WARN 2720 --- [ms-pedidos] [main] o.f.core.internal.command.DbValidate     : No migrations found. Are your locations set up correctly?
+2026-05-16T18:23:56.533-04:00  WARN 2720 --- [ms-pedidos] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Found non-empty schema(s) `prueba1` but no schema history table. Use baseline() or set baselineOnMigrate to true to initialize the schema history table.
+2026-05-16T18:23:56.533-04:00  INFO 2720 --- [ms-pedidos] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-16T18:23:56.546-04:00  INFO 2720 --- [ms-pedidos] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-05-16T18:23:56.549-04:00  INFO 2720 --- [ms-pedidos] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-05-16T18:23:56.565-04:00  INFO 2720 --- [ms-pedidos] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-05-16T18:23:56.586-04:00 ERROR 2720 --- [ms-pedidos] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/hibernate/autoconfigure/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Found non-empty schema(s) `prueba1` but no schema history table. Use baseline() or set baselineOnMigrate to true to initialize the schema history table.
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) ~[spring-beans-7.0.7.jar:7.0.7]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201) ~[spring-beans-7.0.7.jar:7.0.7]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:977) ~[spring-context-7.0.7.jar:7.0.7]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621) ~[spring-context-7.0.7.jar:7.0.7]
+	at org.springframework.boot.web.server.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:143) ~[spring-boot-web-server-4.0.6.jar:4.0.6]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756) ~[spring-boot-4.0.6.jar:4.0.6]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445) ~[spring-boot-4.0.6.jar:4.0.6]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321) ~[spring-boot-4.0.6.jar:4.0.6]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1365) ~[spring-boot-4.0.6.jar:4.0.6]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1354) ~[spring-boot-4.0.6.jar:4.0.6]
+	at com.dsy1103.mspedidos.MsPedidosApplication.main(MsPedidosApplication.java:10) ~[classes/:na]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/flyway/autoconfigure/FlywayAutoConfiguration$FlywayConfiguration.class]: Found non-empty schema(s) `prueba1` but no schema history table. Use baseline() or set baselineOnMigrate to true to initialize the schema history table.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1817) ~[spring-beans-7.0.7.jar:7.0.7]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:603) ~[spring-beans-7.0.7.jar:7.0.7]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525) ~[spring-beans-7.0.7.jar:7.0.7]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333) ~[spring-beans-7.0.7.jar:7.0.7]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371) ~[spring-beans-7.0.7.jar:7.0.7]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331) ~[spring-beans-7.0.7.jar:7.0.7]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196) ~[spring-beans-7.0.7.jar:7.0.7]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:309) ~[spring-beans-7.0.7.jar:7.0.7]
+	... 10 common frames omitted
+Caused by: org.flywaydb.core.api.FlywayException: Found non-empty schema(s) `prueba1` but no schema history table. Use baseline() or set baselineOnMigrate to true to initialize the schema history table.
+	at org.flywaydb.core.Flyway.lambda$migrate$3(Flyway.java:235) ~[flyway-core-11.14.1.jar:na]
+	at org.flywaydb.core.FlywayExecutor.execute(FlywayExecutor.java:240) ~[flyway-core-11.14.1.jar:na]
+	at org.flywaydb.core.Flyway.migrate(Flyway.java:186) ~[flyway-core-11.14.1.jar:na]
+	at org.springframework.boot.flyway.autoconfigure.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:67) ~[spring-boot-flyway-4.0.6.jar:4.0.6]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1864) ~[spring-beans-7.0.7.jar:7.0.7]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1813) ~[spring-beans-7.0.7.jar:7.0.7]
+	... 17 common frames omitted
+
+2026-05-16T18:28:23.066-04:00  INFO 23544 --- [ms-pedidos] [main] c.d.mspedidos.MsPedidosApplication       : Starting MsPedidosApplication using Java 24.0.2 with PID 23544 (C:\Users\zerze\OneDrive\Desktop\ev2\Evaluacion-Parcial-2-Full-Stack-DSY1103\ms-pedidos\target\classes started by zerze in C:\Users\zerze\OneDrive\Desktop\ev2\Evaluacion-Parcial-2-Full-Stack-DSY1103\ms-pedidos)
+2026-05-16T18:28:23.069-04:00 DEBUG 23544 --- [ms-pedidos] [main] c.d.mspedidos.MsPedidosApplication       : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-16T18:28:23.070-04:00  INFO 23544 --- [ms-pedidos] [main] c.d.mspedidos.MsPedidosApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-05-16T18:28:24.108-04:00  INFO 23544 --- [ms-pedidos] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-16T18:28:24.186-04:00  INFO 23544 --- [ms-pedidos] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 66 ms. Found 2 JPA repository interfaces.
+2026-05-16T18:28:24.380-04:00  INFO 23544 --- [ms-pedidos] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=8af469de-47c5-30f0-a9aa-97a166d4a548
+2026-05-16T18:28:24.934-04:00  INFO 23544 --- [ms-pedidos] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8084 (http)
+2026-05-16T18:28:24.954-04:00  INFO 23544 --- [ms-pedidos] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-16T18:28:24.955-04:00  INFO 23544 --- [ms-pedidos] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-16T18:28:25.020-04:00  INFO 23544 --- [ms-pedidos] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1895 ms
+2026-05-16T18:28:25.610-04:00  INFO 23544 --- [ms-pedidos] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-16T18:28:25.806-04:00  INFO 23544 --- [ms-pedidos] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1552da16
+2026-05-16T18:28:25.808-04:00  INFO 23544 --- [ms-pedidos] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-16T18:28:25.854-04:00  INFO 23544 --- [ms-pedidos] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/prueba3?useSSL=false&serverTimezone=America/Santiago&allowPublicKeyRetrieval=true (MySQL 8.4)
+2026-05-16T18:28:25.868-04:00  WARN 23544 --- [ms-pedidos] [main] o.f.c.internal.database.base.Database    : Using MySQL 8.4 which is newer than the version Flyway has been verified with. The latest verified version of MySQL is 8.1.
+2026-05-16T18:28:25.914-04:00  INFO 23544 --- [ms-pedidos] [main] o.f.core.internal.command.DbValidate     : Successfully validated 0 migrations (execution time 00:00.032s)
+2026-05-16T18:28:25.914-04:00  WARN 23544 --- [ms-pedidos] [main] o.f.core.internal.command.DbValidate     : No migrations found. Are your locations set up correctly?
+2026-05-16T18:28:25.941-04:00  INFO 23544 --- [ms-pedidos] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `prueba3`: << Empty Schema >>
+2026-05-16T18:28:25.952-04:00  INFO 23544 --- [ms-pedidos] [main] o.f.core.internal.command.DbMigrate      : Schema `prueba3` is up to date. No migration necessary.
+2026-05-16T18:28:26.088-04:00  INFO 23544 --- [ms-pedidos] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-16T18:28:26.167-04:00  INFO 23544 --- [ms-pedidos] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-16T18:28:26.621-04:00  INFO 23544 --- [ms-pedidos] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-16T18:28:26.674-04:00  WARN 23544 --- [ms-pedidos] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-16T18:28:26.685-04:00  INFO 23544 --- [ms-pedidos] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/prueba3?useSSL=false&serverTimezone=America/Santiago&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.4.3
+	Default catalog/schema: prueba3/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-16T18:28:27.518-04:00  INFO 23544 --- [ms-pedidos] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-16T18:28:27.587-04:00  INFO 23544 --- [ms-pedidos] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-16T18:28:27.695-04:00  INFO 23544 --- [ms-pedidos] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-16T18:28:28.029-04:00  WARN 23544 --- [ms-pedidos] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-16T18:28:28.648-04:00  INFO 23544 --- [ms-pedidos] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8084 (http) with context path '/'
+2026-05-16T18:28:28.665-04:00  INFO 23544 --- [ms-pedidos] [main] c.d.mspedidos.MsPedidosApplication       : Started MsPedidosApplication in 6.306 seconds (process running for 7.207)
+2026-05-16T18:29:36.665-04:00  INFO 23544 --- [ms-pedidos] [http-nio-8084-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-16T18:29:36.666-04:00  INFO 23544 --- [ms-pedidos] [http-nio-8084-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-05-16T18:29:36.667-04:00  INFO 23544 --- [ms-pedidos] [http-nio-8084-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-05-16T18:29:36.707-04:00  INFO 23544 --- [ms-pedidos] [http-nio-8084-exec-1] c.d.m.controller.PedidoController        : Solicitando listado global de pedidos
+2026-05-16T18:29:36.719-04:00  INFO 23544 --- [ms-pedidos] [http-nio-8084-exec-1] c.d.mspedidos.service.PedidoService      : Iniciando consulta de todos los usuarios
+2026-05-16T18:32:13.816-04:00  INFO 23544 --- [ms-pedidos] [http-nio-8084-exec-2] c.d.m.controller.PedidoController        : Buscando pedido con ID: 1
+2026-05-16T18:32:13.818-04:00  INFO 23544 --- [ms-pedidos] [http-nio-8084-exec-2] c.d.mspedidos.service.PedidoService      : Buscando usuario con ID: 1
+2026-05-16T18:34:53.941-04:00  INFO 23544 --- [ms-pedidos] [http-nio-8084-exec-6] c.d.m.controller.PedidoController        : Buscando pedido con ID: 999
+2026-05-16T18:34:53.942-04:00  INFO 23544 --- [ms-pedidos] [http-nio-8084-exec-6] c.d.mspedidos.service.PedidoService      : Buscando usuario con ID: 999
+2026-05-16T18:34:53.945-04:00 ERROR 23544 --- [ms-pedidos] [http-nio-8084-exec-6] c.d.mspedidos.service.PedidoService      : Usuario con ID 999 no encontrado
+2026-05-16T18:34:53.956-04:00  WARN 23544 --- [ms-pedidos] [http-nio-8084-exec-6] c.d.m.exception.GlobalExceptionHandler   : Recurso no encontrado en /api/v1/pedidos/999: Usuario no encontrado con ID: 999
+2026-05-16T18:55:44.790-04:00  INFO 23544 --- [ms-pedidos] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-16T18:55:44.799-04:00  INFO 23544 --- [ms-pedidos] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-05-16T18:55:44.803-04:00  INFO 23544 --- [ms-pedidos] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-16T18:55:44.805-04:00  INFO 23544 --- [ms-pedidos] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-16T18:55:44.809-04:00  INFO 23544 --- [ms-pedidos] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-05-16T18:55:48.480-04:00  INFO 23180 --- [ms-pedidos] [main] c.d.mspedidos.MsPedidosApplication       : Starting MsPedidosApplication using Java 24.0.2 with PID 23180 (C:\Users\zerze\OneDrive\Desktop\ev2\Evaluacion-Parcial-2-Full-Stack-DSY1103\ms-pedidos\target\classes started by zerze in C:\Users\zerze\OneDrive\Desktop\ev2\Evaluacion-Parcial-2-Full-Stack-DSY1103\ms-pedidos)
+2026-05-16T18:55:48.485-04:00 DEBUG 23180 --- [ms-pedidos] [main] c.d.mspedidos.MsPedidosApplication       : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-05-16T18:55:48.486-04:00  INFO 23180 --- [ms-pedidos] [main] c.d.mspedidos.MsPedidosApplication       : No active profile set, falling back to 1 default profile: "default"
+2026-05-16T18:55:49.665-04:00  INFO 23180 --- [ms-pedidos] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-16T18:55:49.745-04:00  INFO 23180 --- [ms-pedidos] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 65 ms. Found 2 JPA repository interfaces.
+2026-05-16T18:55:50.017-04:00  INFO 23180 --- [ms-pedidos] [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=8af469de-47c5-30f0-a9aa-97a166d4a548
+2026-05-16T18:55:50.625-04:00  INFO 23180 --- [ms-pedidos] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8084 (http)
+2026-05-16T18:55:50.647-04:00  INFO 23180 --- [ms-pedidos] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-05-16T18:55:50.648-04:00  INFO 23180 --- [ms-pedidos] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-05-16T18:55:50.733-04:00  INFO 23180 --- [ms-pedidos] [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2186 ms
+2026-05-16T18:55:51.291-04:00  INFO 23180 --- [ms-pedidos] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-05-16T18:55:51.457-04:00  INFO 23180 --- [ms-pedidos] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1552da16
+2026-05-16T18:55:51.460-04:00  INFO 23180 --- [ms-pedidos] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-05-16T18:55:51.501-04:00  INFO 23180 --- [ms-pedidos] [main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:mysql://localhost:3306/prueba3?useSSL=false&serverTimezone=America/Santiago&allowPublicKeyRetrieval=true (MySQL 8.4)
+2026-05-16T18:55:51.518-04:00  WARN 23180 --- [ms-pedidos] [main] o.f.c.internal.database.base.Database    : Using MySQL 8.4 which is newer than the version Flyway has been verified with. The latest verified version of MySQL is 8.1.
+2026-05-16T18:55:51.570-04:00  INFO 23180 --- [ms-pedidos] [main] o.f.core.internal.command.DbValidate     : Successfully validated 0 migrations (execution time 00:00.032s)
+2026-05-16T18:55:51.570-04:00  WARN 23180 --- [ms-pedidos] [main] o.f.core.internal.command.DbValidate     : No migrations found. Are your locations set up correctly?
+2026-05-16T18:55:51.597-04:00  INFO 23180 --- [ms-pedidos] [main] o.f.core.internal.command.DbMigrate      : Current version of schema `prueba3`: << Empty Schema >>
+2026-05-16T18:55:51.608-04:00  INFO 23180 --- [ms-pedidos] [main] o.f.core.internal.command.DbMigrate      : Schema `prueba3` is up to date. No migration necessary.
+2026-05-16T18:55:51.760-04:00  INFO 23180 --- [ms-pedidos] [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-05-16T18:55:51.847-04:00  INFO 23180 --- [ms-pedidos] [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-05-16T18:55:52.264-04:00  INFO 23180 --- [ms-pedidos] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-16T18:55:52.327-04:00  WARN 23180 --- [ms-pedidos] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-05-16T18:55:52.339-04:00  INFO 23180 --- [ms-pedidos] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:mysql://localhost:3306/prueba3?useSSL=false&serverTimezone=America/Santiago&allowPublicKeyRetrieval=true]
+	Database driver: MySQL Connector/J
+	Database dialect: MySQLDialect
+	Database version: 8.4.3
+	Default catalog/schema: prueba3/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: REPEATABLE_READ [default REPEATABLE_READ]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-16T18:55:53.100-04:00  INFO 23180 --- [ms-pedidos] [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-16T18:55:53.160-04:00  INFO 23180 --- [ms-pedidos] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-16T18:55:53.253-04:00  INFO 23180 --- [ms-pedidos] [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-05-16T18:55:53.561-04:00  WARN 23180 --- [ms-pedidos] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-16T18:55:54.135-04:00  INFO 23180 --- [ms-pedidos] [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8084 (http) with context path '/'
+2026-05-16T18:55:54.152-04:00  INFO 23180 --- [ms-pedidos] [main] c.d.mspedidos.MsPedidosApplication       : Started MsPedidosApplication in 6.707 seconds (process running for 8.429)
+2026-05-16T18:56:55.563-04:00  INFO 23180 --- [ms-pedidos] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-16T18:56:55.567-04:00  INFO 23180 --- [ms-pedidos] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-05-16T18:56:55.571-04:00  INFO 23180 --- [ms-pedidos] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-16T18:56:55.573-04:00  INFO 23180 --- [ms-pedidos] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-05-16T18:56:55.581-04:00  INFO 23180 --- [ms-pedidos] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

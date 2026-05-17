@@ -2,6 +2,7 @@ package com.dsy1103.msusuarios.modelo;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -36,7 +38,7 @@ public class PerfilModelo {
     private LocalDate fechaCreacionPerfil;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id", nullable = false) // FK declarada explícitamente
+    @JoinColumn(name = "usuario_id", nullable = false) // FK declarado
     private UsuarioModelo usuario;
 
 }

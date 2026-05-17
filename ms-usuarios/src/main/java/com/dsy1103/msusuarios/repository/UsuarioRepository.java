@@ -2,7 +2,6 @@ package com.dsy1103.msusuarios.repository;
 
 import com.dsy1103.msusuarios.modelo.UsuarioModelo;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import java.util.Optional;
 import java.util.List;
