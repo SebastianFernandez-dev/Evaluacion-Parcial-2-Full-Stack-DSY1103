@@ -8,5 +8,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SucursalDTO {
-    private Long id;
+    private Long id; //Obtener los datos que necesito para la sucursal
 }
