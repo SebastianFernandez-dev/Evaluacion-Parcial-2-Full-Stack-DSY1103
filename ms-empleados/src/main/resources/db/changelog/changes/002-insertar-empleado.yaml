@@ -1,0 +1,115 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002
+      author: Sebas-Fernandez
+      changes:
+        - insert:
+            tableName: empleado
+            columns:
+              - column:
+                  name: primer_nombre
+                  value: Juan
+              - column:
+                  name: segundo_nombre
+                  value: Carlos
+              - column:
+                  name: primer_apellido
+                  value: Pérez
+              - column:
+                  name: segundo_apellido
+                  value: Soto
+              - column:
+                  name: cargo
+                  value: Desarrollador Backend
+              - column:
+                  name: rut
+                  valueNumeric: 12345678
+              - column:
+                  name: dv_rut
+                  value: K
+              - column:
+                  name: correo_empleado
+                  value: juan.perez@empresa.cl
+              - column:
+                  name: fecha_ingreso
+                  valueDate: 2025-01-15
+              - column:
+                  name: activo_empleado
+                  valueBoolean: true
+              - column:
+                  name: sucursal_id
+                  valueNumeric: 1
+
+        - insert:
+            tableName: empleado
+            columns:
+              - column:
+                  name: primer_nombre
+                  value: María
+              - column:
+                  name: segundo_nombre
+                  value: José
+              - column:
+                  name: primer_apellido
+                  value: González
+              - column:
+                  name: segundo_apellido
+                  value: Rojas
+              - column:
+                  name: cargo
+                  value: Analista de Datos
+              - column:
+                  name: rut
+                  valueNumeric: 87654321
+              - column:
+                  name: dv_rut
+                  value: 5
+              - column:
+                  name: correo_empleado
+                  value: maria.gonzalez@empresa.cl
+              - column:
+                  name: fecha_ingreso
+                  valueDate: 2024-11-10
+              - column:
+                  name: activo_empleado
+                  valueBoolean: true
+              - column:
+                  name: sucursal_id
+                  valueNumeric: 2
+
+        - insert:
+            tableName: empleado
+            columns:
+              - column:
+                  name: primer_nombre
+                  value: Sebastián
+              - column:
+                  name: segundo_nombre
+                  value: Andrés
+              - column:
+                  name: primer_apellido
+                  value: Fernández
+              - column:
+                  name: segundo_apellido
+                  value: Díaz
+              - column:
+                  name: cargo
+                  value: Administrador de Sistemas
+              - column:
+                  name: rut
+                  valueNumeric: 11222333
+              - column:
+                  name: dv_rut
+                  value: 9
+              - column:
+                  name: correo_empleado
+                  value: sebas.fernandez@empresa.cl
+              - column:
+                  name: fecha_ingreso
+                  valueDate: 2023-08-01
+              - column:
+                  name: activo_empleado
+                  valueBoolean: true
+              - column:
+                  name: sucursal_id
+                  valueNumeric: 1
