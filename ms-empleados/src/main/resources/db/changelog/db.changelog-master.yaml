@@ -1,2 +1,5 @@
-- include:
-    file: db/changelog/changes/001-creacion-empleado.yaml
+databaseChangeLog:
+    - include:
+        file: db/changelog/changes/001-creacion-empleado.yaml
+    - include:
+        file: db/changelog/changes/002-insertar-empleado.yaml

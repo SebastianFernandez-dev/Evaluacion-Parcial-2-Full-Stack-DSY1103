@@ -38,7 +38,6 @@ public class EmpleadoDTO {
     @NotNull(message="El campo RUT es obligatorio")
     @Min(value=1000000)
     @Max(value=99999999)
-    @Size(min=7,max=8)
     private Integer rut;
 
     //Implementar condicion que solo permita "k" en caso de...

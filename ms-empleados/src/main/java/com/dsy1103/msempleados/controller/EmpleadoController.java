@@ -32,6 +32,14 @@ public class EmpleadoController {
         return ResponseEntity.ok(empleadoService.obtenerEmpleadoPorID(id));
     }
 
+    @GetMapping("/buscar")
+    public ResponseEntity<List<EmpleadoDTO>> listarPorSucursalYAnio(
+            @RequestParam Long sucursalId,
+            @RequestParam int anio) {
+        log.info("REST: Listando EMPLEADOS por sucursalId {} y año {}", sucursalId, anio);
+        return ResponseEntity.ok(empleadoService.listarPorSucursalYAnio(sucursalId, anio));
+    }
+
     @PostMapping
     public ResponseEntity<EmpleadoDTO> guardarEmpleado(
             @Valid @RequestBody EmpleadoDTO eDTO) {
@@ -40,7 +48,7 @@ public class EmpleadoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(creado);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     public ResponseEntity<Void> actualizarEmpleado(@Valid @RequestBody EmpleadoDTO eDTO) {
         log.info("REST: Actualizando EMPLEADO: {}", eDTO.getId());
         empleadoService.actualizarEmpleado(eDTO);

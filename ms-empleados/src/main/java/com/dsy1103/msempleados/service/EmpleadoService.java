@@ -43,6 +43,16 @@ public class EmpleadoService {
                         +id+ " no pudo ser encontrado"));
     }
 
+    public List<EmpleadoDTO> listarPorSucursalYAnio(Long sucursalId, int anio) {
+        log.info("Listando EMPLEADOS por sucursalId {} y anio {}", sucursalId, anio);
+
+        sucursalClient.obtenerSucursalPorId(sucursalId);
+        return empleadoRepository.findAllBySucursalAndAnio(sucursalId, anio)
+                .stream()
+                .map(empleadoMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
     public EmpleadoDTO guardarEmpleado(EmpleadoDTO eDTO) {
         log.info("Registrando EMPLEADO con ID {}", eDTO.getId());
 
