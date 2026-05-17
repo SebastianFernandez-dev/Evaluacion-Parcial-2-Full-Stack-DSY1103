@@ -33,8 +33,8 @@ public class MovimientoStockModel {
     @Column(name="saldo_posterior", nullable=false)
     private Integer saldoPosterior;
 
-    @Column(name="fecha_movimiento", nullable=false)
-    private LocalDate fechaMoimiento;
+    @Column(name="fecha", nullable=false)
+    private LocalDate fecha;
 
     @Column(name="aprobado", nullable=false)
     private Boolean aprobado;

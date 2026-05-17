@@ -41,10 +41,10 @@ public class InventarioDTO {
     @PastOrPresent(message="Debe ingresar FECHA actual o pasada")
     private LocalDate fechaRealizacion;
 
-    //datos de producto
     @Positive(message="El campo PRODUCTO ID no puede ser negativo")
     private Long productoId;
 
+    //datos de producto
     @NotBlank(message="El campo NOMBRE PRODUCTO es obligatorio")
     @Size(min=6, max=50)
     private String nombreProducto;
@@ -73,5 +73,5 @@ public class InventarioDTO {
     private Long productoCategoriaId;
 
     //lista de todos los movimientos asociados al inventario
-    private List<MovimientoStockDTO> movimientoStock;
+    private List<MovimientoStockDTO> listaMovimientosStock;
 }

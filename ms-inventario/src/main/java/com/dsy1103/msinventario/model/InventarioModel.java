@@ -23,7 +23,7 @@ public class InventarioModel {
     @Column(name="id")
     private Long id;
 
-    @Column(name="codigo", nullable=false, length=12)
+    @Column(name="codigo", nullable=false, length=12, unique=true)
     private String codigo;
 
     @Column(name="ubicacion", nullable=false, length=100)

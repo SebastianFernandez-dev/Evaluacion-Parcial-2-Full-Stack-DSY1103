@@ -17,9 +17,9 @@ public class MovimientoStockDTO {
     @Positive(message="El campo ID no puede ser negativo")
     private Long id;
 
-    @NotBlank(message="El campo TIPO MOVIMIENTO es obligatorio")
+    @NotBlank(message="El campo TIPO es obligatorio")
     @Size(min=4, max=20)
-    private String tipoMovimiento;
+    private String tipo;
 
     @NotNull(message="El campo CANTIDAD es obligatorio")
     @Positive(message="El campo CANTIDAD no puede ser negativo")
@@ -33,9 +33,9 @@ public class MovimientoStockDTO {
     @Positive(message="El campo SALDO POSTERIOR no puede ser negativo")
     private Integer saldoPosterior;
 
-    @NotNull(message="El campo FECHA MOVIMIENTO es obligatorio")
+    @NotNull(message="El campo FECHA es obligatorio")
     @PastOrPresent(message="Debe ingresar FECHA actual o pasada")
-    private LocalDate fechaMovimmiento;
+    private LocalDate fecha;
 
     @NotNull(message="El campo APROBADO es obligatorio")
     private Boolean aprobado;
