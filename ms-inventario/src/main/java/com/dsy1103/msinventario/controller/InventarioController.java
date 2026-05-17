@@ -1,6 +1,7 @@
 package com.dsy1103.msinventario.controller;
 
 import com.dsy1103.msinventario.dto.InventarioDTO;
+import com.dsy1103.msinventario.dto.InventarioProductoDTO;
 import com.dsy1103.msinventario.service.InventarioService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +27,7 @@ public class InventarioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<InventarioDTO> obtenerInventarioPorId(@PathVariable Long id) {
+    public ResponseEntity<InventarioProductoDTO> obtenerInventarioPorId(@PathVariable Long id) {
         log.info("REST: Buscando INVENTARIO por ID: {}", id);
         return ResponseEntity.ok(inventarioService.obtenerInventarioPorId(id));
     }

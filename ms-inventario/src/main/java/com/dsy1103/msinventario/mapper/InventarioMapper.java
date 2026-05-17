@@ -24,7 +24,6 @@ public class InventarioMapper {
         if (iDTO == null) return null;
 
         return InventarioModel.builder()
-                .id(iDTO.getId())
                 .codigo(iDTO.getCodigo())
                 .ubicacion(iDTO.getUbicacion())
                 .cantidadDisponible(iDTO.getCantidadDisponible())

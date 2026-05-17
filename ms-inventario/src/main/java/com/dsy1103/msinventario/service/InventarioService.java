@@ -3,6 +3,7 @@ package com.dsy1103.msinventario.service;
 
 import com.dsy1103.msinventario.client.ProductoClient;
 import com.dsy1103.msinventario.dto.InventarioDTO;
+import com.dsy1103.msinventario.dto.InventarioProductoDTO;
 import com.dsy1103.msinventario.dto.ProductoDTO;
 import com.dsy1103.msinventario.mapper.InventarioMapper;
 import com.dsy1103.msinventario.mapper.MovimientoStockMapper;
@@ -37,14 +38,14 @@ public class InventarioService {
                 .collect(Collectors.toList());
     }
 
-    public InventarioDTO obtenerInventarioPorId(Long id) {
+    public InventarioProductoDTO obtenerInventarioPorId(Long id) {
         log.info("Obteniendo INVENTARIO por ID {}", id);
         InventarioDTO iDTO = inventarioRepository.findById(id)
                 .map(InventarioMapper::toDTO)
                 .orElseThrow(() -> new EntityNotFoundException("Error: El INVENTARIO con ID "
                         + id + " no existe. No se pudo realizar la busqueda."));
 
-        InventarioDTO iConPDTO = convertirConProducto(iDTO);
+        InventarioProductoDTO iConPDTO = convertirConProducto(iDTO);
 
         iConPDTO.setListaMovimientosStock(movimientoStockRepository.findByInventarioId(id)
                 .stream()
@@ -101,10 +102,10 @@ public class InventarioService {
         log.info("INVENTARIO eliminado exitosamente con ID: {}", id);
     }
 
-    private InventarioDTO convertirConProducto(InventarioDTO iEntrada){
+    private InventarioProductoDTO convertirConProducto(InventarioDTO iEntrada){
         log.info("Intentando convertir con PRODUCTO ID: {}", iEntrada.getProductoId());
 
-        InventarioDTO iSalida = InventarioDTO.builder()
+        InventarioProductoDTO iSalida = InventarioProductoDTO.builder()
                 .id(iEntrada.getId())
                 .codigo(iEntrada.getCodigo())
                 .ubicacion(iEntrada.getUbicacion())
