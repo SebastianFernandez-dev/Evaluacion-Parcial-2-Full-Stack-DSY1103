@@ -34,7 +34,7 @@ public class ProveedorController {
     @GetMapping("/activo")
     public ResponseEntity<List<ProveedorDTO>> listarActivos() {
         log.info("REST: Solicitud para listar PROVEEDORES ACTIVOS");
-        return ResponseEntity.ok(proveedorService.litarProveedoresActivos());
+        return ResponseEntity.ok(proveedorService.listarProveedoresActivos());
     }
 
     @PostMapping
