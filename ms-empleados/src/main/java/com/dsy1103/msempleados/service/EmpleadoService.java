@@ -55,10 +55,10 @@ public class EmpleadoService {
         return empleadoMapper.toDTO(guardado);
     }
 
-    public EmpleadoDTO actualizarEmpleado(Long id, EmpleadoDTO eDTO) {
-        log.info("Actualizando EMPLEADO con ID {}", id);
+    public EmpleadoDTO actualizarEmpleado(EmpleadoDTO eDTO) {
+        log.info("Actualizando EMPLEADO con ID {}", eDTO.getId());
 
-        EmpleadoModel existente = empleadoRepository.findById(id)
+        EmpleadoModel existente = empleadoRepository.findById(eDTO.getId())
                 .orElseThrow(() -> new EntityNotFoundException("Error: EMPLEADO no encontrado"));
 
         sucursalClient.obtenerSucursalPorId(eDTO.getSucursalId());

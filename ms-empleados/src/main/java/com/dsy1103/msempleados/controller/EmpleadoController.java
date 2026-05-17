@@ -6,11 +6,10 @@ import com.dsy1103.msempleados.service.EmpleadoService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -35,20 +34,16 @@ public class EmpleadoController {
 
     @PostMapping
     public ResponseEntity<EmpleadoDTO> guardarEmpleado(
-            @Valid @RequestBody EmpleadoDTO eDTO,
-            UriComponentsBuilder ucb) {
+            @Valid @RequestBody EmpleadoDTO eDTO) {
         log.info("REST: Creando nuevo EMPLEADO: {}", eDTO.toString());
         EmpleadoDTO creado = empleadoService.guardarEmpleado(eDTO);
-        URI locacionDeEmpleado = ucb.path("/api/v1/empleados/{id}").buildAndExpand(creado.getId()).toUri();
-        return ResponseEntity.created(locacionDeEmpleado).body(creado);
+        return ResponseEntity.status(HttpStatus.CREATED).body(creado);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> actualizarEmpleado(
-            @PathVariable Long id,
-            @Valid @RequestBody EmpleadoDTO eDTO) {
-        log.info("REST: Actualizando EMPLEADO: {}", id);
-        empleadoService.actualizarEmpleado(id, eDTO);
+    public ResponseEntity<Void> actualizarEmpleado(@Valid @RequestBody EmpleadoDTO eDTO) {
+        log.info("REST: Actualizando EMPLEADO: {}", eDTO.getId());
+        empleadoService.actualizarEmpleado(eDTO);
         return ResponseEntity.noContent().build();
     }
 
