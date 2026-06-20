@@ -18,7 +18,7 @@ public class ProductoDTO {
 
     @Schema(description="ID único del producto en el catálogo central", example="1025")
     @Positive(message="El campo PRODUCTO ID no puede ser negativo")
-    private Long Id;
+    private Long id;
 
     @Schema(description="Nombre comercial asignado al artículo", minLength=6, maxLength=50, example="Teclado Mecánico RGB")
     @NotBlank(message="El campo NOMBRE PRODUCTO es obligatorio")
