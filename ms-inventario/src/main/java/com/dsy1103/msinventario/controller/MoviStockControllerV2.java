@@ -47,7 +47,7 @@ public class MoviStockControllerV2 {
     public ResponseEntity<EntityModel<MovimientoStockDTO>> createMovimiento(@RequestBody MovimientoStockDTO movimientoStock) {
         MovimientoStockDTO newMovimiento = movimientoStockService.guardarMovimiento(movimientoStock);
         return ResponseEntity
-                .created(linkTo(methodOn(InventarioControllerV2.class).getInventarioById(newMovimiento.getId())).toUri())
+                .created(linkTo(methodOn(MoviStockControllerV2.class).getMovimientoById(newMovimiento.getId())).toUri())
                 .body(moviStockModelAssembler.toModel(newMovimiento));
     }
 
