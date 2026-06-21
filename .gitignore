@@ -1,0 +1,19 @@
+# Logs
+*.log
+logs/
+*.out
+
+# Archivos temporales
+*.tmp
+*.cache
+
+# Configuración de IDEs
+.idea/
+.vscode/
+
+# Java
+target/
+*.class
+
+# Spring Boot logs
+*.log

@@ -1,13 +1,10 @@
 package com.dsy1103.msproductos.dto;
 
-import com.dsy1103.msproductos.model.ProductoModel;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -39,5 +36,5 @@ public class CategoriaDTO {
     @PastOrPresent(message = "Debe ingresar FECHA actual o pasada")
     private LocalDate fechaCreacion;
 
-    private List<ProductoModel> listaProducto;
+    private List<ProductoDTO> listaProducto;
 }
