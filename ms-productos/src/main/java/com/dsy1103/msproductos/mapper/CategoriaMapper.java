@@ -3,9 +3,17 @@ package com.dsy1103.msproductos.mapper;
 import com.dsy1103.msproductos.dto.CategoriaDTO;
 import com.dsy1103.msproductos.model.CategoriaModel;
 import org.springframework.stereotype.Component;
+import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+
+@AllArgsConstructor
+@Data
 @Component
 public class CategoriaMapper {
+
+    private ProductoMapper productoMapper;
 
     public CategoriaDTO toDTO(CategoriaModel model) {
         if(model == null) return null;
@@ -17,7 +25,9 @@ public class CategoriaMapper {
                 .codigoCategoria(model.getCodigoCategoria())
                 .activoCategoria(model.getActivoCategoria())
                 .fechaCreacion(model.getFechaCreacion())
-                .listaProducto(model.getListaProducto())
+                .listaProducto(model.getListaProducto() != null 
+                ? model.getListaProducto().stream().map(productoMapper::toDTO)
+                .collect(Collectors.toList()) : null)
                 .build();
     }
 
@@ -30,8 +40,6 @@ public class CategoriaMapper {
                 .descripcion(dto.getDescripcion())
                 .codigoCategoria(dto.getCodigoCategoria())
                 .activoCategoria(dto.getActivoCategoria())
-                .fechaCreacion(dto.getFechaCreacion())
-                .listaProducto(dto.getListaProducto())
-                .build();
+                .fechaCreacion(dto.getFechaCreacion()).build();
     }
 }
