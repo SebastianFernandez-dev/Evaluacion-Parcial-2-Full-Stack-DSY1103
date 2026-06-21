@@ -42,6 +42,17 @@ public class PedidoService {
         return pedidoMapper.toDTO(usuario);
     }
 
+    @Transactional(readOnly = true)
+    public List<PedidoDTO> buscarPorUsuarioId(Long usuarioId) {
+        log.info("Buscando pedidos para el usuario ID: {}", usuarioId);
+        List<PedidoDTO> pedidos = pedidoRepo.findByUsuarioId(usuarioId).stream()
+                .map(pedidoMapper::toDTO)
+                .collect(Collectors.toList());
+        log.info("Se encontraron {} pedidos para el usuario {}", pedidos.size(), usuarioId);
+        return pedidos;
+    }
+
+
     @Transactional
     public PedidoDTO crear(PedidoDTO dto) {
         try {

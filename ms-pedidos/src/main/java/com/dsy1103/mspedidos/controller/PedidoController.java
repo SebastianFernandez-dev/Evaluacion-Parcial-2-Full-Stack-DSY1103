@@ -35,6 +35,12 @@ public class PedidoController {
         return ResponseEntity.ok(pedidoService.buscarPorId(id));
     }
 
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<List<PedidoDTO>> buscarPorUsuarioId(@PathVariable Long usuarioId) {
+        log.info("Solicitando pedidos del usuario ID: {}", usuarioId);
+        return ResponseEntity.ok(pedidoService.buscarPorUsuarioId(usuarioId));
+    }
+
     // CREAR POST
     @PostMapping
     public ResponseEntity<PedidoDTO> crear(@Valid @RequestBody PedidoDTO dto) {
