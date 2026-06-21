@@ -1,6 +1,6 @@
 spring:
   application:
-    name: MS-USUARIOS
+    name: ms-usuarios-dev
   datasource:
     url: jdbc:mysql://localhost:3306/prueba1?useSSL=false&serverTimezone=America/Santiago&allowPublicKeyRetrieval=true
     username: root
@@ -13,31 +13,14 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
-        generate_statistics: true
     show-sql: true
 
 server:
   port: 8081
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-    register-with-eureka: true
-    fetch-registry: true
 
 logging:
   level:
     root: INFO
     com.dsy1103.msusuarios: DEBUG
   file:
-    name: logs/ms-usuarios.log
-  pattern:
-    console: "%d{yyyy-MM-dd HH-mm-ss} %-5level [%thread] %logger{36} - %msg%n"
-
-springdoc:
-  api-docs:
-    enabled: true
-  swagger-ui:
-    enabled: true
-    path: /doc/swagger-ui.html
+    name: logs/ms-usuarios-dev.log
