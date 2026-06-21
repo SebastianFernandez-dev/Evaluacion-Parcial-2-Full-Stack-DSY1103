@@ -62,11 +62,11 @@ public class UsuarioService {
         // 🪵 Log de control con el ID
         log.info("Actualizando USUARIO con ID: {}", uDTO.getId());
 
-        // 🔍 1. Verificamos si el usuario existe en la base de datos
+        // Verificamos si el usuario existe en la base de datos
         UsuarioModelo uExistente = usuarioRepo.findById(uDTO.getId())
                 .orElseThrow(() -> new EntityNotFoundException("Error: USUARIO no encontrado."));
 
-        // 📝 2. Guardamos reconstruyendo el objeto con el Builder (Estilo de tu equipo)
+        // Guardamos reconstruyendo el objeto con el Builder (Estilo de tu equipo)
         usuarioRepo.save(UsuarioModelo.builder()
                 .id(uDTO.getId()) // ¡Obligatorio para que actualice y no cree uno nuevo!
                 .primerNombre(uDTO.getPrimerNombre())
