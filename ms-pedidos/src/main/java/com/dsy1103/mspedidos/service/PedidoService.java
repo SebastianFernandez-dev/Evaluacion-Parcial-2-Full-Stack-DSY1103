@@ -74,7 +74,7 @@ public class PedidoService {
                 .orElseThrow(() -> new EntityNotFoundException("Error: PEDIDO no encontrado para actualizar."));
 
         pedidoRepo.save(PedidoModelo.builder()
-                .id(pDTO.getId()) // 🌟 Clave para hacer el UPDATE
+                .id(pDTO.getId()) // Clave para hacer el UPDATE
                 .codigoPedido(pedidoExistente.getCodigoPedido())
                 .fechaPedido(pedidoExistente.getFechaPedido())
                 .usuarioId(pedidoExistente.getUsuarioId())

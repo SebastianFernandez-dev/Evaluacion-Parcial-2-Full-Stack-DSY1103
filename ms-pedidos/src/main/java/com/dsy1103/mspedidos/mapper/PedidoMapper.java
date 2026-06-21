@@ -21,11 +21,13 @@ public class PedidoMapper {
         if (modelo == null) return null;
 
         return PedidoDTO.builder()
+                .id(modelo.getId())
                 .codigoPedido(modelo.getCodigoPedido())
                 .fechaPedido(modelo.getFechaPedido())
                 .totalPedido(modelo.getTotalPedido())
                 .direccionEntrega(modelo.getDireccionEntrega())
                 .pagadopedido(modelo.getPagadopedido())
+                .estadopedido(modelo.getEstadoPedido())
                 .usuarioId(modelo.getUsuarioId())
 
                 .detalles(modelo.getDetalles() != null ?

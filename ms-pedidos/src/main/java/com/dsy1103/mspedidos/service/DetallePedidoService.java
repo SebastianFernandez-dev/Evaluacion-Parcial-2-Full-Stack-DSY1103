@@ -84,7 +84,7 @@ public class DetallePedidoService {
         DetallePedidoModelo detalleExistente = detallePedidoRepo.findById(dDTO.getId())
                 .orElseThrow(() -> new EntityNotFoundException("Error: DETALLE PEDIDO no encontrado."));
 
-        // 2. 🛃 ADUANA 1: Llamamos a ms-productos (Puerto 8082 de tu compañero)
+        // 2. ADUANA 1: Llamamos a ms-productos (Puerto 8082 de tu compañero)
         try {
             ProductoDTO prod = productoClient.obtenerProductoPorId(dDTO.getProductoId());
             log.info("Producto validado correctamente en ms-productos: {}", prod.getNombreProducto());
@@ -92,7 +92,7 @@ public class DetallePedidoService {
             throw new EntityNotFoundException("Error: El producto con ID " + dDTO.getProductoId() + " no existe en el catálogo.");
         }
 
-        // 3. 🛃 ADUANA 2: Validamos el stock en ms-inventario (También en el puerto 8082 o el que use inventario)
+        // 3. ADUANA 2: Validamos el stock en ms-inventario (También en el puerto 8082 o el que use inventario)
         try {
             InventarioDTO inventario = inventarioClient.obtenerInventarioPorProductoId(dDTO.getProductoId());
 
