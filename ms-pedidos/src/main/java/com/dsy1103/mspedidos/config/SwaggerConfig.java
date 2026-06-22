@@ -1,5 +1,4 @@
-package com.dsy1103.msusuarios.config;
-
+package com.dsy1103.mspedidos.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -13,7 +12,8 @@ public class SwaggerConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("MS Usuarios API")
+                        .title("MS Pedidos API")
                         .version("1.0")
-                        .description("API para gestionar usuarios en el microservicio de usuarios"));
- }
+                        .description("API para gestionar pedidos en el microservicio de pedidos"));
+    }
+}

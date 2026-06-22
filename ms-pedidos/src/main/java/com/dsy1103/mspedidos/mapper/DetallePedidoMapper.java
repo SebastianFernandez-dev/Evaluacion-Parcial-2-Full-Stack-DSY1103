@@ -14,6 +14,7 @@ public class DetallePedidoMapper {
         if (modelo == null) return null;
 
         return DetallePedidoDTO.builder()
+                .id(modelo.getId())
                 .productoId(modelo.getProductoId())
                 .cantidadPedido(modelo.getCantidadPedido())
                 .precioUnitario(modelo.getPrecioUnitario())
