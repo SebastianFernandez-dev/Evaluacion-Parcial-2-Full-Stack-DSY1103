@@ -16,4 +16,5 @@ public class SwaggerConfig {
                         .title("MS Usuarios API")
                         .version("1.0")
                         .description("API para gestionar usuarios en el microservicio de usuarios"));
- }
+    }
+}

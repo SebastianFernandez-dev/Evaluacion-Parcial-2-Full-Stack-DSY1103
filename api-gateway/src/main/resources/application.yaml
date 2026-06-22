@@ -38,7 +38,7 @@ spring:
                 - StripPrefix=0
 
             - id: servicio5-route
-              uri: lb//PAGO-SERVICE
+              uri: lb://PAGO-SERVICE
               predicates:
                 - Path=/api/v1/pagos/**, /api/v2/pagos/**
               filters:
