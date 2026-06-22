@@ -23,13 +23,13 @@ public class ProveedorModel {
     @Column(name="id")
     private Long id;
 
-    @Column(name="nombre", nullable=false, length=80)
+    @Column(name="nombre", nullable=false, length=80, unique=true)
     private String nombre;
 
     @Column(name="razon_social", nullable=false, length=120)
     private String razonSocial;
 
-    @Column(name="documento_fiscal", nullable=false, length=30)
+    @Column(name="documento_fiscal", nullable=false, length=30, unique=true)
     private String documentoFiscal;
 
     @Column(name="correo_contacto", nullable=false, length=80, unique=true)

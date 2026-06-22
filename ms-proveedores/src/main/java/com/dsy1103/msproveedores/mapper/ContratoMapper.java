@@ -5,7 +5,7 @@ import com.dsy1103.msproveedores.model.ContratoModel;
 
 public class ContratoMapper {
 
-    public ContratoDTO toDTO(ContratoModel cModel) {
+    public static ContratoDTO toDTO(ContratoModel cModel) {
         if (cModel == null) return null;
 
         return ContratoDTO.builder()
@@ -21,11 +21,10 @@ public class ContratoMapper {
                 .build();
     }
 
-    public ContratoModel toEntity(ContratoDTO cDTO) {
+    public static ContratoModel toEntity(ContratoDTO cDTO) {
         if (cDTO == null) return null;
 
         return ContratoModel.builder()
-                .id(cDTO.getId())
                 .numero(cDTO.getNumero())
                 .tipo(cDTO.getTipo()).valor(cDTO.getValor())
                 .fechaInicio(cDTO.getFechaInicio())

@@ -1,0 +1,19 @@
+spring:
+  #Configuracion de persistencia (MySQL test)
+  datasource:
+    url: jdbc:mysql://localhost:3306/prueba2_test
+    username: root
+    password: ""
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  #Configuracion JPA/Hibernate especifica para tests
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+  #Desactivar Flyway en el entorno de pruebas
+  flyway:
+    enabled: false

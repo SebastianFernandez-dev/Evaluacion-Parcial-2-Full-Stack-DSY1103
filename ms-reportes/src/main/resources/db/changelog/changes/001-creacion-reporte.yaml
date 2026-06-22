@@ -1,0 +1,57 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001
+      author: edi-eli
+      changes:
+        - createTable:
+            tableName: reporte
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: descripcion
+                  type: VARCHAR(120)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: tipo
+                  type: VARCHAR(40)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: total_ventas
+                  type: DOUBLE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: cantidad_pedidos
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: cantidad_pagos
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fecha_generacion
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: publicado
+                  type: TINYINT(1)
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false
+              - column:
+                  name: usuario_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false

@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface ProveedorRepository extends JpaRepository<ProveedorModel, Long> {
 
-    @Query(value = "SELECT * FROM proveedor WHERE activo = 1 ORDER BY ASC nombre", nativeQuery=true)
+    @Query(value = "SELECT * FROM proveedor WHERE activo = 1 ORDER BY nombre ASC", nativeQuery=true)
     List<ProveedorModel> findAllByActivo();
 }

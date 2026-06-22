@@ -1,0 +1,16 @@
+spring:
+
+  #Configuracion de persistencia (MySQL dev)
+  datasource:
+    url: jdbc:mysql://localhost:3306/prueba2_dev
+    username: root
+    password: ""
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  #Configuracion JPA/Hibernate especifica para dev
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
