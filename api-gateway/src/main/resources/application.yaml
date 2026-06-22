@@ -16,12 +16,12 @@ spring:
               filters:
                 - StripPrefix=0
 
-            #- id: servicio2-route
-            #  uri: lb://
-            #  predicates:
-            #    - Path=
-            #  filters:
-            #    - StripPrefix=0
+            - id: servicio2-route
+              uri: lb://PRODUCTO-SERVICE
+              predicates:
+                - Path=/api/v1/categorias/**, /api/v2/categorias/**, /api/v1/productos/**, /api/v2/productos/**
+              filters:
+                - StripPrefix=0
 
             - id: servicio3-route
               uri: lb://INVENTARIO-SERVICE
@@ -37,12 +37,12 @@ spring:
               filters:
                 - StripPrefix=0
 
-            #- id: servicio5-route
-            #  uri: lb//
-            #  predicates:
-            #    - Path=
-            #  filters:
-            #    - StripPrefix=0
+            - id: servicio5-route
+              uri: lb//PAGO-SERVICE
+              predicates:
+                - Path=/api/v1/pagos/**, /api/v2/pagos/**
+              filters:
+                - StripPrefix=0
 
 eureka:
   client:
