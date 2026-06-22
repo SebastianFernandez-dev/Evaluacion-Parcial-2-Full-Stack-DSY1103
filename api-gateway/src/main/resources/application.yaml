@@ -1,0 +1,58 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: servicio1-route
+              uri: lb://MS-USUARIOS
+              predicates:
+                - Path=/api/v1/perfiles/**, /api/v2/perfiles/**, /api/v1/usuarios/**, /api/v2/usuarios/**
+              filters:
+                - StripPrefix=0
+
+            - id: servicio2-route
+              uri: lb://PRODUCTO-SERVICE
+              predicates:
+                - Path=/api/v1/categorias/**, /api/v2/categorias/**, /api/v1/productos/**, /api/v2/productos/**
+              filters:
+                - StripPrefix=0
+
+            - id: servicio3-route
+              uri: lb://INVENTARIO-SERVICE
+              predicates:
+                - Path=/api/v1/inventario/**, /api/v2/inventario/**, /api/v1/movimientostock/**, /api/v2/movimientostock/**
+              filters:
+                - StripPrefix=0
+
+            - id: servicio4-route
+              uri: lb://MS-PEDIDOS
+              predicates:
+                - Path=/api/v1/detalles-pedido/**, /api/v2/DetallePedidos/**, /api/v1/pedidos/**, /api/v2/pedidos/**
+              filters:
+                - StripPrefix=0
+
+            - id: servicio5-route
+              uri: lb//PAGO-SERVICE
+              predicates:
+                - Path=/api/v1/pagos/**, /api/v2/pagos/**
+              filters:
+                - StripPrefix=0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
