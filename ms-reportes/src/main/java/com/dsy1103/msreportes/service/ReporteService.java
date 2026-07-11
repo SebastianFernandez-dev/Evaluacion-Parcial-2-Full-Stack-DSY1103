@@ -1,7 +1,8 @@
 package com.dsy1103.msreportes.service;
 
 import com.dsy1103.msreportes.client.UsuarioClient;
-import com.dsy1103.msreportes.dto.ReporteDTO;
+import com.dsy1103.msreportes.dto.ReporteRequestDTO;
+import com.dsy1103.msreportes.dto.ReporteResponseDTO;
 import com.dsy1103.msreportes.dto.ReporteUsuarioDTO;
 import com.dsy1103.msreportes.dto.UsuarioDTO;
 import com.dsy1103.msreportes.mapper.ReporteMapper;
@@ -22,76 +23,72 @@ public class ReporteService {
     @Autowired
     private ReporteRepository reporteRepository;
     @Autowired
+    private ReporteMapper reporteMapper;
+    @Autowired
     private UsuarioClient usuarioClient;
 
-    public List<ReporteDTO> listarReportes() {
+    public List<ReporteResponseDTO> listarReportes() {
         log.info("Listando todos los REPORTES");
-
         return reporteRepository.findAll()
                 .stream()
-                .map(ReporteMapper::toDTO)
+                .map(reporteMapper::toResponseDTO)
                 .collect(Collectors.toList());
     }
 
     public ReporteUsuarioDTO obtenerReportePorId(Long id) {
         log.info("Obteniendo REPORTE por ID {}", id);
-        ReporteDTO rDTO = reporteRepository.findById(id)
-                .map(ReporteMapper::toDTO)
-                .orElseThrow(() -> new EntityNotFoundException("Error: El REPORTE con ID "
-                        + id + " no existe. No se pudo realizar la busqueda."));
+        ReporteResponseDTO rDTO = reporteRepository.findById(id)
+                .map(reporteMapper::toResponseDTO)
+                .orElseThrow(() -> new EntityNotFoundException(
+                        "Error: El REPORTE con ID " + id + " no pudo ser encontrado"));
 
         return convertirConUsuario(rDTO);
     }
 
-    public List<ReporteDTO> listarReportePorUsuario(Long id) {
+    public List<ReporteResponseDTO> listarReportePorUsuario(Long id) {
         log.info("Obteniendo REPORTES por USUARIO ID {}", id);
         return reporteRepository.findByUsuarioId(id)
                 .stream()
-                .map(ReporteMapper::toDTO)
+                .map(reporteMapper::toResponseDTO)
                 .collect(Collectors.toList());
     }
 
-    public ReporteDTO guardarReporte(ReporteDTO rDTO) {
-        log.info("Intentando registrar REPORTE con ID {}", rDTO.getId());
-        ReporteModel rModel = ReporteMapper.toEntity(rDTO);
-
-        ReporteModel guardado = reporteRepository.save(rModel);
+    public ReporteResponseDTO guardarReporte(ReporteRequestDTO dto) {
+        log.info("Registrando REPORTE: {}", dto.getDescripcion());
+        ReporteModel model = reporteMapper.toEntity(dto);
+        ReporteModel guardado = reporteRepository.save(model);
         log.info("REPORTE guardado exitosamente con ID: {}", guardado.getId());
-
-        return ReporteMapper.toDTO(guardado);
+        return reporteMapper.toResponseDTO(guardado);
     }
 
-    public void actualizarReporte(ReporteDTO rDTO) {
-        log.info("Actualizando REPORTE con ID {}", rDTO.getId());
+    public ReporteResponseDTO actualizarReporte(Long id, ReporteRequestDTO dto) {
+        log.info("Actualizando REPORTE con ID {}", id);
 
-        reporteRepository.findById(rDTO.getId())
-                .orElseThrow(() -> new EntityNotFoundException("Error: REPORTE no encontrado."));
+        ReporteModel existente = reporteRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Error: REPORTE no encontrado"));
 
-        reporteRepository.save(ReporteModel.builder()
-                .id(rDTO.getId())
-                .descripcion(rDTO.getDescripcion())
-                .tipo(rDTO.getTipo())
-                .totalVentas(rDTO.getTotalVentas())
-                .cantidadPedidos(rDTO.getCantidadPedidos())
-                .cantidadPagos(rDTO.getCantidadPagos())
-                .fechaGeneracion(rDTO.getFechaGeneracion())
-                .publicado(rDTO.getPublicado())
-                .usuarioId(rDTO.getUsuarioId())
-                .build());
+        existente.setDescripcion(dto.getDescripcion());
+        existente.setTipo(dto.getTipo());
+        existente.setTotalVentas(dto.getTotalVentas());
+        existente.setCantidadPedidos(dto.getCantidadPedidos());
+        existente.setCantidadPagos(dto.getCantidadPagos());
+        existente.setPublicado(dto.getPublicado());
+        existente.setUsuarioId(dto.getUsuarioId());
+
+        ReporteModel actualizado = reporteRepository.save(existente);
+        return reporteMapper.toResponseDTO(actualizado);
     }
 
     public void eliminarReporte(Long id) {
         log.warn("Eliminando REPORTE con ID: {}", id);
-
         if (!reporteRepository.existsById(id)) {
-            throw new EntityNotFoundException("Error: REPORTE no encontrado.");
+            throw new EntityNotFoundException("Error: REPORTE no encontrado");
         }
-
         reporteRepository.deleteById(id);
         log.info("REPORTE eliminado exitosamente con ID: {}", id);
     }
 
-    private ReporteUsuarioDTO convertirConUsuario(ReporteDTO rEntrada){
+    private ReporteUsuarioDTO convertirConUsuario(ReporteResponseDTO rEntrada) {
         log.info("Intentando convertir con USUARIO ID: {}", rEntrada.getUsuarioId());
 
         ReporteUsuarioDTO rSalida = ReporteUsuarioDTO.builder()
@@ -106,10 +103,10 @@ public class ReporteService {
                 .usuarioId(rEntrada.getUsuarioId())
                 .build();
 
-        try{
+        try {
             UsuarioDTO uDTO = usuarioClient.obtenerUsuarioPorId(rEntrada.getUsuarioId());
 
-            if (uDTO != null){
+            if (uDTO != null) {
                 rSalida.setPrimerNombreUsuario(uDTO.getPrimerNombre());
                 rSalida.setSegundoNombreUsuario(uDTO.getSegundoNombre());
                 rSalida.setPrimerApellidoUsuario(uDTO.getPrimerApellido());
@@ -119,9 +116,8 @@ public class ReporteService {
                 rSalida.setDvRutUsuario(uDTO.getDvRut());
                 rSalida.setActivoUsuario(uDTO.getActivo());
                 rSalida.setFechaRegistroUsuario(uDTO.getFechaRegistro());
-
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             rSalida.setPrimerNombreUsuario("Servicio no disponible");
         }
         log.info("Conversion exitosa con ID: {}", rEntrada.getUsuarioId());
