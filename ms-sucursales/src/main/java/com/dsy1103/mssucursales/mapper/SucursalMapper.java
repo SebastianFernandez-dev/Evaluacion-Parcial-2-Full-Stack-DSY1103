@@ -1,36 +1,40 @@
 package com.dsy1103.mssucursales.mapper;
 
-import com.dsy1103.mssucursales.dto.SucursalDTO;
+import com.dsy1103.mssucursales.dto.SucursalRequestDTO;
+import com.dsy1103.mssucursales.dto.SucursalResponseDTO;
+import com.dsy1103.mssucursales.model.RegionModel;
 import com.dsy1103.mssucursales.model.SucursalModel;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SucursalMapper {
-    
-    public static SucursalDTO toDTO(SucursalModel sModel) {
-        if (sModel == null) return null;
-        
-        return SucursalDTO.builder()
-                .id(sModel.getId())
-                .nombre(sModel.getNombre())
-                .codigo(sModel.getCodigo())
-                .direccion(sModel.getDireccion())
-                .capacidadAtencion(sModel.getCapacidadAtencion())
-                .activo(sModel.getActivo())
-                .fechaApertura(sModel.getFechaApertura())
-                .regionId(sModel.getRegion().getId())
+
+    public SucursalResponseDTO toResponseDTO(SucursalModel model) {
+        if (model == null) return null;
+
+        return SucursalResponseDTO.builder()
+                .id(model.getId())
+                .nombre(model.getNombre())
+                .codigo(model.getCodigo())
+                .direccion(model.getDireccion())
+                .capacidadAtencion(model.getCapacidadAtencion())
+                .activo(model.getActivo())
+                .fechaApertura(model.getFechaApertura())
+                .regionId(model.getRegion() != null ? model.getRegion().getId() : null)
                 .build();
     }
 
-    public static SucursalModel toEntity(SucursalDTO sDTO) {
-        if (sDTO == null) return null;
+    public SucursalModel toEntity(SucursalRequestDTO dto, RegionModel region) {
+        if (dto == null) return null;
 
         return SucursalModel.builder()
-                .nombre(sDTO.getNombre())
-                .codigo(sDTO.getCodigo())
-                .direccion(sDTO.getDireccion())
-                .capacidadAtencion(sDTO.getCapacidadAtencion())
-                .activo(sDTO.getActivo())
-                .fechaApertura(sDTO.getFechaApertura())
+                .nombre(dto.getNombre())
+                .codigo(dto.getCodigo())
+                .direccion(dto.getDireccion())
+                .capacidadAtencion(dto.getCapacidadAtencion())
+                .activo(dto.getActivo())
+                .fechaApertura(dto.getFechaApertura())
+                .region(region)
                 .build();
-        //la region se agrega en el service, para consultar a la bdd si existe en realidad
     }
 }

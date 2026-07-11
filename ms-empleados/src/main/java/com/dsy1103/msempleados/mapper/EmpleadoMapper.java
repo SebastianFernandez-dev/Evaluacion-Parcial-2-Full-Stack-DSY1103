@@ -1,16 +1,17 @@
 package com.dsy1103.msempleados.mapper;
 
-import com.dsy1103.msempleados.dto.EmpleadoDTO;
+import com.dsy1103.msempleados.dto.request.EmpleadoRequestDTO;
+import com.dsy1103.msempleados.dto.response.EmpleadoResponseDTO;
 import com.dsy1103.msempleados.model.EmpleadoModel;
 import org.springframework.stereotype.Component;
 
 @Component
 public class EmpleadoMapper {
 
-    public EmpleadoDTO toDTO(EmpleadoModel eModel) {
+    public EmpleadoResponseDTO toResponseDTO(EmpleadoModel eModel) {
         if(eModel == null) return null;
 
-        return EmpleadoDTO.builder()
+        return EmpleadoResponseDTO.builder()
                 .id(eModel.getId())
                 .primerNombre(eModel.getPrimerNombre())
                 .segundoNombre(eModel.getSegundoNombre())
@@ -26,11 +27,10 @@ public class EmpleadoMapper {
                 .build();
     }
 
-    public EmpleadoModel toEntity(EmpleadoDTO eDTO) {
+    public EmpleadoModel toEntity(EmpleadoRequestDTO eDTO) {
         if(eDTO == null) return null;
 
         return EmpleadoModel.builder()
-                .id(eDTO.getId())
                 .primerNombre(eDTO.getPrimerNombre())
                 .segundoNombre(eDTO.getSegundoNombre())
                 .primerApellido(eDTO.getPrimerApellido())
@@ -43,5 +43,21 @@ public class EmpleadoMapper {
                 .activoEmpleado(eDTO.getActivoEmpleado())
                 .sucursalId(eDTO.getSucursalId())
                 .build();
+    }
+
+    public void updateEntity(EmpleadoRequestDTO eDTO, EmpleadoModel eModel) {
+        if(eDTO == null || eModel == null) return;
+
+        eModel.setPrimerNombre(eDTO.getPrimerNombre());
+        eModel.setSegundoNombre(eDTO.getSegundoNombre());
+        eModel.setPrimerApellido(eDTO.getPrimerApellido());
+        eModel.setSegundoApellido(eDTO.getSegundoApellido());
+        eModel.setCargo(eDTO.getCargo());
+        eModel.setRut(eDTO.getRut());
+        eModel.setDvRut(eDTO.getDvRut());
+        eModel.setCorreoEmpleado(eDTO.getCorreoEmpleado());
+        eModel.setFechaIngreso(eDTO.getFechaIngreso());
+        eModel.setActivoEmpleado(eDTO.getActivoEmpleado());
+        eModel.setSucursalId(eDTO.getSucursalId());
     }
 }
