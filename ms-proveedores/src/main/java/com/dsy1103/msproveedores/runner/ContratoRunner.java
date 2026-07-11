@@ -3,6 +3,7 @@ package com.dsy1103.msproveedores.runner;
 import com.dsy1103.msproveedores.model.ContratoModel;
 import com.dsy1103.msproveedores.repository.ContratoRepository;
 import com.dsy1103.msproveedores.repository.ProveedorRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 
 @Component
 @Order(2)
+@Slf4j
 public class ContratoRunner implements CommandLineRunner {
 
     @Autowired
@@ -63,6 +65,6 @@ public class ContratoRunner implements CommandLineRunner {
                     .build());
         }
 
-        System.out.println("DATOS iniciales de CONTRATO cargados CORRECTAMENTE");
+        log.info("DATOS iniciales de CONTRATO cargados CORRECTAMENTE");
     }
 }

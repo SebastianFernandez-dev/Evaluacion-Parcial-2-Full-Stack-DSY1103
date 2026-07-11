@@ -1,6 +1,8 @@
 package com.dsy1103.msproveedores.service;
 
-import com.dsy1103.msproveedores.dto.ProveedorDTO;
+import com.dsy1103.msproveedores.dto.ProveedorRequestDTO;
+import com.dsy1103.msproveedores.dto.ProveedorResponseDTO;
+import com.dsy1103.msproveedores.exception.DocumentoFiscalAlreadyExistsException;
 import com.dsy1103.msproveedores.mapper.ContratoMapper;
 import com.dsy1103.msproveedores.mapper.ProveedorMapper;
 import com.dsy1103.msproveedores.model.ProveedorModel;
@@ -22,66 +24,76 @@ public class ProveedorService {
     private ProveedorRepository proveedorRepository;
     @Autowired
     private ContratoRepository contratoRepository;
+    @Autowired
+    private ProveedorMapper proveedorMapper;
+    @Autowired
+    private ContratoMapper contratoMapper;
 
-    public List<ProveedorDTO> listarProveedores() {
+    public List<ProveedorResponseDTO> listarProveedores() {
         log.info("Listando todos los PROVEEDORES");
 
         return proveedorRepository.findAll()
                 .stream()
-                .map(ProveedorMapper::toDTO)
+                .map(proveedorMapper::toResponseDTO)
                 .collect(Collectors.toList());
     }
 
-    public ProveedorDTO obtenerProveedorPorId(Long id) {
+    public ProveedorResponseDTO obtenerProveedorPorId(Long id) {
         log.info("Obteniendo PROVEEDOR por ID {}", id);
-        ProveedorDTO pDTO = proveedorRepository.findById(id)
-                .map(ProveedorMapper::toDTO)
+        ProveedorResponseDTO pDTO = proveedorRepository.findById(id)
+                .map(proveedorMapper::toResponseDTO)
                 .orElseThrow(() -> new EntityNotFoundException("Error: El PROVEEDOR con ID "
                         + id + " no existe. No se pudo realizar la busqueda."));
 
         pDTO.setListaContrato(contratoRepository.findByProveedorId(id)
                 .stream()
-                .map(ContratoMapper::toDTO)
+                .map(contratoMapper::toResponseDTO)
                 .collect(Collectors.toList()));
 
         return pDTO;
     }
 
-    public List<ProveedorDTO> listarProveedoresActivos() {
+    public List<ProveedorResponseDTO> listarProveedoresActivos() {
         log.info("Obteniendo PROVEEDORES ACTIVOS");
         return proveedorRepository.findAllByActivo()
                 .stream()
-                .map(ProveedorMapper::toDTO)
+                .map(proveedorMapper::toResponseDTO)
                 .collect(Collectors.toList());
     }
 
-    public ProveedorDTO guardarProveedor(ProveedorDTO pDTO) {
-        log.info("Intentando registrar PROVEEDOR con ID {}", pDTO.getId());
-        ProveedorModel pModel = ProveedorMapper.toEntity(pDTO);
+    public ProveedorResponseDTO guardarProveedor(ProveedorRequestDTO dto) {
+        log.info("Intentando registrar PROVEEDOR: {}", dto.getNombre());
 
-        ProveedorModel guardado = proveedorRepository.save(pModel);
+        validarDocumentoFiscalUnico(dto.getDocumentoFiscal(), null);
+
+        ProveedorModel model = proveedorMapper.toEntity(dto);
+        ProveedorModel guardado = proveedorRepository.save(model);
         log.info("PROVEEDOR guardado exitosamente con ID: {}", guardado.getId());
 
-        return ProveedorMapper.toDTO(guardado);
+        return proveedorMapper.toResponseDTO(guardado);
     }
 
-    public void actualizarProveedor(ProveedorDTO pDTO) {
-        log.info("Actualizando PROVEEDOR con ID {}", pDTO.getId());
+    public ProveedorResponseDTO actualizarProveedor(Long id, ProveedorRequestDTO dto) {
+        log.info("Actualizando PROVEEDOR con ID {}", id);
 
-        proveedorRepository.findById(pDTO.getId())
+        ProveedorModel existente = proveedorRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Error: PROVEEDOR no encontrado."));
 
-        proveedorRepository.save(ProveedorModel.builder()
-                .id(pDTO.getId())
-                .nombre(pDTO.getNombre())
-                .razonSocial(pDTO.getRazonSocial())
-                .documentoFiscal(pDTO.getDocumentoFiscal())
-                .correoContacto(pDTO.getCorreoContacto())
-                .ciudad(pDTO.getCiudad())
-                .calificacion(pDTO.getCalificacion())
-                .activo(pDTO.getActivo())
-                .fechaRegistro(pDTO.getFechaRegistro())
-                .build());
+        validarDocumentoFiscalUnico(dto.getDocumentoFiscal(), id);
+
+        existente.setNombre(dto.getNombre());
+        existente.setRazonSocial(dto.getRazonSocial());
+        existente.setDocumentoFiscal(dto.getDocumentoFiscal());
+        existente.setCorreoContacto(dto.getCorreoContacto());
+        existente.setCiudad(dto.getCiudad());
+        existente.setCalificacion(dto.getCalificacion());
+        existente.setActivo(dto.getActivo());
+        existente.setFechaRegistro(dto.getFechaRegistro());
+
+        ProveedorModel actualizado = proveedorRepository.save(existente);
+        log.info("PROVEEDOR actualizado exitosamente con ID: {}", actualizado.getId());
+
+        return proveedorMapper.toResponseDTO(actualizado);
     }
 
     public void eliminarProveedor(Long id) {
@@ -93,5 +105,14 @@ public class ProveedorService {
 
         proveedorRepository.deleteById(id);
         log.info("PROVEEDOR eliminado exitosamente con ID: {}", id);
+    }
+
+    private void validarDocumentoFiscalUnico(String documentoFiscal, Long idExcluir) {
+        proveedorRepository.findByDocumentoFiscal(documentoFiscal).ifPresent(p -> {
+            if (idExcluir == null || !p.getId().equals(idExcluir)) {
+                throw new DocumentoFiscalAlreadyExistsException(
+                        "Error: El DOCUMENTO FISCAL '" + documentoFiscal + "' ya está registrado en otro proveedor");
+            }
+        });
     }
 }

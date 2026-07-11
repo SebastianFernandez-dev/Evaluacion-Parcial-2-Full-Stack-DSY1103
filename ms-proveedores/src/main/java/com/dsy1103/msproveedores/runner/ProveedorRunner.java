@@ -2,6 +2,7 @@ package com.dsy1103.msproveedores.runner;
 
 import com.dsy1103.msproveedores.model.ProveedorModel;
 import com.dsy1103.msproveedores.repository.ProveedorRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 
 @Component
 @Order(1)
+@Slf4j
 public class ProveedorRunner implements CommandLineRunner {
 
     @Autowired
@@ -19,7 +21,6 @@ public class ProveedorRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        // existsById evita duplicar datos en cada reinicio
         if (!proveedorRepository.existsById(1L)) {
             proveedorRepository.save(ProveedorModel.builder()
                             .id(null)
@@ -60,6 +61,6 @@ public class ProveedorRunner implements CommandLineRunner {
                     .build());
         }
 
-        System.out.println("DATOS iniciales de PROVEEDOR cargados CORRECTAMENTE");
+        log.info("DATOS iniciales de PROVEEDOR cargados CORRECTAMENTE");
     }
 }

@@ -1,38 +1,41 @@
 package com.dsy1103.msproveedores.mapper;
 
-import com.dsy1103.msproveedores.dto.ProveedorDTO;
+import com.dsy1103.msproveedores.dto.ProveedorRequestDTO;
+import com.dsy1103.msproveedores.dto.ProveedorResponseDTO;
 import com.dsy1103.msproveedores.model.ProveedorModel;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProveedorMapper {
 
-    public static ProveedorDTO toDTO(ProveedorModel pModel) {
-        if (pModel == null) return null;
+    public ProveedorResponseDTO toResponseDTO(ProveedorModel model) {
+        if (model == null) return null;
 
-        return ProveedorDTO.builder()
-                .id(pModel.getId())
-                .nombre(pModel.getNombre())
-                .razonSocial(pModel.getRazonSocial())
-                .documentoFiscal(pModel.getDocumentoFiscal())
-                .correoContacto(pModel.getCorreoContacto())
-                .ciudad(pModel.getCiudad())
-                .calificacion(pModel.getCalificacion())
-                .activo(pModel.getActivo())
-                .fechaRegistro(pModel.getFechaRegistro())
+        return ProveedorResponseDTO.builder()
+                .id(model.getId())
+                .nombre(model.getNombre())
+                .razonSocial(model.getRazonSocial())
+                .documentoFiscal(model.getDocumentoFiscal())
+                .correoContacto(model.getCorreoContacto())
+                .ciudad(model.getCiudad())
+                .calificacion(model.getCalificacion())
+                .activo(model.getActivo())
+                .fechaRegistro(model.getFechaRegistro())
                 .build();
     }
 
-    public static ProveedorModel toEntity(ProveedorDTO pDTO) {
-        if (pDTO == null) return null;
+    public ProveedorModel toEntity(ProveedorRequestDTO dto) {
+        if (dto == null) return null;
 
         return ProveedorModel.builder()
-                .nombre(pDTO.getNombre())
-                .razonSocial(pDTO.getRazonSocial())
-                .documentoFiscal(pDTO.getDocumentoFiscal())
-                .correoContacto(pDTO.getCorreoContacto())
-                .ciudad(pDTO.getCiudad())
-                .calificacion(pDTO.getCalificacion())
-                .activo(pDTO.getActivo())
-                .fechaRegistro(pDTO.getFechaRegistro())
+                .nombre(dto.getNombre())
+                .razonSocial(dto.getRazonSocial())
+                .documentoFiscal(dto.getDocumentoFiscal())
+                .correoContacto(dto.getCorreoContacto())
+                .ciudad(dto.getCiudad())
+                .calificacion(dto.getCalificacion())
+                .activo(dto.getActivo())
+                .fechaRegistro(dto.getFechaRegistro())
                 .build();
     }
 }
