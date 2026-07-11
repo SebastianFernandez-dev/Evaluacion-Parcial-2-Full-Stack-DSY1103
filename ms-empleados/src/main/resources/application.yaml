@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: ms-empleados
+  datasource:
+    url: jdbc:mysql://localhost:3306/prueba6
+    username: root
+    password: ""
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+        generate_statistics: true
+    show-sql: true
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+server:
+  port: 8089
+
+sucursal:
+  service:
+    url: http://localhost:8088
+
+logging:
+  level:
+    root: INFO
+    com.dsy1103.msempleados: DEBUG
+  file:
+    name: logs/ms-empleados.log
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n"

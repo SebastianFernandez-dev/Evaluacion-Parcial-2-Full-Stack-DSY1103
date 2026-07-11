@@ -1,32 +1,35 @@
 package com.dsy1103.mssucursales.mapper;
 
-import com.dsy1103.mssucursales.dto.RegionDTO;
+import com.dsy1103.mssucursales.dto.RegionRequestDTO;
+import com.dsy1103.mssucursales.dto.RegionResponseDTO;
 import com.dsy1103.mssucursales.model.RegionModel;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RegionMapper {
 
-    public static RegionDTO toDTO(RegionModel rModel) {
-        if (rModel == null) return null;
+    public RegionResponseDTO toResponseDTO(RegionModel model) {
+        if (model == null) return null;
 
-        return RegionDTO.builder()
-                .id(rModel.getId())
-                .nombre(rModel.getNombre())
-                .codigo(rModel.getCodigo())
-                .descripcion(rModel.getDescripcion())
-                .pais(rModel.getPais())
-                .fechaCreacion(rModel.getFechaCreacion())
+        return RegionResponseDTO.builder()
+                .id(model.getId())
+                .nombre(model.getNombre())
+                .codigo(model.getCodigo())
+                .descripcion(model.getDescripcion())
+                .pais(model.getPais())
+                .fechaCreacion(model.getFechaCreacion())
                 .build();
     }
 
-    public static RegionModel toEntity(RegionDTO rDTO) {
-        if (rDTO == null) return null;
+    public RegionModel toEntity(RegionRequestDTO dto) {
+        if (dto == null) return null;
 
         return RegionModel.builder()
-                .nombre(rDTO.getNombre())
-                .codigo(rDTO.getCodigo())
-                .descripcion(rDTO.getDescripcion())
-                .pais(rDTO.getPais())
-                .fechaCreacion(rDTO.getFechaCreacion())
+                .nombre(dto.getNombre())
+                .codigo(dto.getCodigo())
+                .descripcion(dto.getDescripcion())
+                .pais(dto.getPais())
+                .fechaCreacion(dto.getFechaCreacion())
                 .build();
     }
 }

@@ -1,6 +1,7 @@
 package com.dsy1103.mssucursales.service;
 
-import com.dsy1103.mssucursales.dto.RegionDTO;
+import com.dsy1103.mssucursales.dto.RegionRequestDTO;
+import com.dsy1103.mssucursales.dto.RegionResponseDTO;
 import com.dsy1103.mssucursales.mapper.RegionMapper;
 import com.dsy1103.mssucursales.model.RegionModel;
 import com.dsy1103.mssucursales.repository.RegionRepository;
@@ -18,57 +19,54 @@ public class RegionService {
 
     @Autowired
     private RegionRepository regionRepository;
+    @Autowired
+    private RegionMapper regionMapper;
 
-    public List<RegionDTO> listarRegiones() {
+    public List<RegionResponseDTO> listarRegiones() {
         log.info("Listando todas las REGIONES");
-
         return regionRepository.findAll()
                 .stream()
-                .map(RegionMapper::toDTO)
+                .map(regionMapper::toResponseDTO)
                 .collect(Collectors.toList());
     }
 
-    public RegionDTO obtenerRegionPorId(Long id) {
+    public RegionResponseDTO obtenerRegionPorId(Long id) {
         log.info("Obteniendo REGION por ID {}", id);
         return regionRepository.findById(id)
-                .map(RegionMapper::toDTO)
-                .orElseThrow(() -> new EntityNotFoundException("Error: La REGION con ID "
-                        + id + " no existe. No se pudo realizar la busqueda."));
+                .map(regionMapper::toResponseDTO)
+                .orElseThrow(() -> new EntityNotFoundException(
+                        "Error: La REGION con ID " + id + " no pudo ser encontrada"));
     }
 
-    public RegionDTO guardarProveedor(RegionDTO rDTO) {
-        log.info("Intentando registrar REGION con ID {}", rDTO.getId());
-        RegionModel pModel = RegionMapper.toEntity(rDTO);
-
-        RegionModel guardado = regionRepository.save(pModel);
+    public RegionResponseDTO guardarRegion(RegionRequestDTO dto) {
+        log.info("Registrando REGION: {}", dto.getNombre());
+        RegionModel model = regionMapper.toEntity(dto);
+        RegionModel guardado = regionRepository.save(model);
         log.info("REGION guardada exitosamente con ID: {}", guardado.getId());
-
-        return RegionMapper.toDTO(guardado);
+        return regionMapper.toResponseDTO(guardado);
     }
 
-    public void actualizarRegion(RegionDTO rDTO) {
-        log.info("Actualizando REGION con ID {}", rDTO.getId());
+    public RegionResponseDTO actualizarRegion(Long id, RegionRequestDTO dto) {
+        log.info("Actualizando REGION con ID {}", id);
 
-        regionRepository.findById(rDTO.getId())
-                .orElseThrow(() -> new EntityNotFoundException("Error: REGION no encontrada."));
+        RegionModel existente = regionRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Error: REGION no encontrada"));
 
-        regionRepository.save(RegionModel.builder()
-                .id(rDTO.getId())
-                .nombre(rDTO.getNombre())
-                .codigo(rDTO.getCodigo())
-                .descripcion(rDTO.getDescripcion())
-                .pais(rDTO.getPais())
-                .fechaCreacion(rDTO.getFechaCreacion())
-                .build());
+        existente.setNombre(dto.getNombre());
+        existente.setCodigo(dto.getCodigo());
+        existente.setDescripcion(dto.getDescripcion());
+        existente.setPais(dto.getPais());
+        existente.setFechaCreacion(dto.getFechaCreacion());
+
+        RegionModel actualizado = regionRepository.save(existente);
+        return regionMapper.toResponseDTO(actualizado);
     }
 
     public void eliminarRegion(Long id) {
         log.warn("Eliminando REGION con ID {}", id);
-
         if (!regionRepository.existsById(id)) {
-            throw new EntityNotFoundException("Error: REGION no encontrada.");
+            throw new EntityNotFoundException("Error: REGION no encontrada");
         }
-
         regionRepository.deleteById(id);
         log.info("REGION eliminada exitosamente con ID: {}", id);
     }
