@@ -56,7 +56,31 @@ spring:
               predicates:
                 - Path=/api/v1/reporte/**, /api/v2/reportes/**
               filters:
-                - 
+                -
+                - StripPrefix=0
+
+            - id: servicio8-route
+              uri: lb://ms-empleados
+              predicates:
+                - Path=/api/v1/empleados/**, /api/v2/empleados/**
+              filters:
+                -
+                - StripPrefix=0
+
+            - id: servicio9-route
+              uri: lb://SUCURSAL-SERVICE
+              predicates:
+                - Path=/api/v1/region/**, /api/v2/regiones/**, /api/v1/sucursal/**, /api/v2/sucursales/**
+              filters:
+                -
+                - StripPrefix=0
+
+            - id: servicio10-route
+              uri: lb://ENVIO-SERVICE
+              predicates:
+                - Path=/api/v1/envios/**, /api/v2/envios/**, /api/v1/seguimientos/**, /api/v2/seguimientos/**
+              filters:
+                -
                 - StripPrefix=0
 
 eureka:
