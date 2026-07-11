@@ -1,29 +1,28 @@
 package com.dsy1103.msenvios.mapper;
 
-
-import com.dsy1103.msenvios.dto.SeguimientoDTO;
+import com.dsy1103.msenvios.dto.SeguimientoRequestDTO;
+import com.dsy1103.msenvios.dto.SeguimientoResponseDTO;
 import com.dsy1103.msenvios.modelo.SeguimientoModelo;
 import org.springframework.stereotype.Component;
 
 @Component
 public class SeguimientoMapper {
 
-    // 1. Convertir de MODELO a RESPONSE DTO (Salida)
-    public SeguimientoDTO toDTO(SeguimientoModelo modelo) {
+    public SeguimientoResponseDTO toResponseDTO(SeguimientoModelo modelo) {
         if (modelo == null) return null;
 
-        return SeguimientoDTO.builder()
-                .id(modelo.getId()) // Pasamos el ID porque ya existe en la BD
+        return SeguimientoResponseDTO.builder()
+                .id(modelo.getId())
                 .estadoSegui(modelo.getEstadoSegui())
                 .ubiAtual(modelo.getUbiAtual())
                 .observacion(modelo.getObservacion())
                 .fechaSegui(modelo.getFechaSegui())
+                .visible(modelo.getVisible())
                 .envioId(modelo.getEnvio() != null ? modelo.getEnvio().getId() : null)
                 .build();
     }
 
-    // 2. Convertir de REQUEST DTO a MODELO (Para guardar)
-    public SeguimientoModelo toEntity(SeguimientoDTO dto) {
+    public SeguimientoModelo toEntity(SeguimientoRequestDTO dto) {
         if (dto == null) return null;
 
         return SeguimientoModelo.builder()
@@ -34,6 +33,4 @@ public class SeguimientoMapper {
                 .fechaSegui(dto.getFechaSegui())
                 .build();
     }
-
-
 }

@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
         ex.getBindingResult().getFieldErrors().forEach(error ->
                 errors.put(error.getField(), error.getDefaultMessage()));
 
-        log.error("Error de validación: {}", errors);
+        log.error("Error de validacion: {}", errors);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }
 
@@ -41,17 +41,45 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 
+    @ExceptionHandler(CodigoEnvioAlreadyExistsException.class)
+    public ResponseEntity<ErrorResponse> handleCodigoEnvioAlreadyExists(CodigoEnvioAlreadyExistsException ex, HttpServletRequest request) {
+        ErrorResponse error = ErrorResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.CONFLICT.value())
+                .error("Conflicto - Codigo de envio duplicado")
+                .message(ex.getMessage())
+                .path(request.getRequestURI())
+                .build();
+
+        log.warn("Codigo de envio duplicado en {}: {}", request.getRequestURI(), ex.getMessage());
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ErrorResponse> handleBadRequest(IllegalArgumentException ex, HttpServletRequest request) {
+        ErrorResponse error = ErrorResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .error("Solicitud invalida")
+                .message(ex.getMessage())
+                .path(request.getRequestURI())
+                .build();
+
+        log.warn("Solicitud invalida en {}: {}", request.getRequestURI(), ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGlobalException(Exception ex, HttpServletRequest request) {
         ErrorResponse error = ErrorResponse.builder()
                 .timestamp(LocalDateTime.now())
                 .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .error("Error Interno del Servidor")
-                .message("Ocurrió un error inesperado")
+                .message("Ocurrio un error inesperado")
                 .path(request.getRequestURI())
                 .build();
 
-        log.error("ERROR CRÍTICO en {}: ", request.getRequestURI(), ex);
+        log.error("ERROR CRITICO en {}: ", request.getRequestURI(), ex);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }
 }
