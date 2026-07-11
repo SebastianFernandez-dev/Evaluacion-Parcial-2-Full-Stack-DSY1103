@@ -1,9 +1,10 @@
 package com.dsy1103.msenvios.service;
 
+import com.dsy1103.msenvios.dto.SeguimientoRequestDTO;
+import com.dsy1103.msenvios.dto.SeguimientoResponseDTO;
+import com.dsy1103.msenvios.mapper.SeguimientoMapper;
 import com.dsy1103.msenvios.modelo.EnvioModelo;
 import com.dsy1103.msenvios.modelo.SeguimientoModelo;
-import com.dsy1103.msenvios.dto.SeguimientoDTO;
-import com.dsy1103.msenvios.mapper.SeguimientoMapper;
 import com.dsy1103.msenvios.repository.EnvioRepository;
 import com.dsy1103.msenvios.repository.SeguimientoRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 @Slf4j
 @Service
 public class SeguimientoService {
@@ -25,28 +27,25 @@ public class SeguimientoService {
     @Autowired
     private EnvioRepository envioRepository;
 
-
     @Transactional(readOnly = true)
-    public List<SeguimientoDTO> listarTodos() {
+    public List<SeguimientoResponseDTO> listarTodos() {
         log.info("Iniciando consulta de todos los Seguimientos");
         return seguimientoRepo.findAll().stream()
-                .map(seguimiento -> seguimientoMapper.toDTO(seguimiento)) // Uso de la instancia inyectada
+                .map(seguimientoMapper::toResponseDTO)
                 .collect(Collectors.toList());
     }
 
     @Transactional
-    public SeguimientoDTO crear(SeguimientoDTO dto) {
+    public SeguimientoResponseDTO crear(SeguimientoRequestDTO dto) {
         try {
             EnvioModelo envioExistente = envioRepository.findById(dto.getEnvioId())
-                    .orElseThrow(() -> new RuntimeException("El envío con ID " + dto.getEnvioId() + " no existe."));
+                    .orElseThrow(() -> new RuntimeException("El envio con ID " + dto.getEnvioId() + " no existe."));
 
             SeguimientoModelo modelo = seguimientoMapper.toEntity(dto);
-
             modelo.setEnvio(envioExistente);
 
             SeguimientoModelo guardado = seguimientoRepo.save(modelo);
-            return seguimientoMapper.toDTO(guardado);
-
+            return seguimientoMapper.toResponseDTO(guardado);
         } catch (Exception e) {
             log.error("Error al crear Seguimiento: {}", e.getMessage());
             throw e;
@@ -54,35 +53,37 @@ public class SeguimientoService {
     }
 
     @Transactional(readOnly = true)
-    public SeguimientoDTO buscarPorId(Long id) {
+    public SeguimientoResponseDTO buscarPorId(Long id) {
         log.info("Buscando Seguimiento con ID: {}", id);
-        SeguimientoModelo envio = seguimientoRepo.findById(id)
+        SeguimientoModelo seguimiento = seguimientoRepo.findById(id)
                 .orElseThrow(() -> {
                     log.error("Seguimiento con ID {} no encontrado", id);
                     return new EntityNotFoundException("Seguimiento no encontrado con ID: " + id);
                 });
-        return seguimientoMapper.toDTO(envio);
+        return seguimientoMapper.toResponseDTO(seguimiento);
     }
 
     @Transactional
-    public void actualizarSeguimiento(SeguimientoDTO sDTO) {
+    public SeguimientoResponseDTO actualizar(Long id, SeguimientoRequestDTO dto) {
+        log.info("Actualizando SEGUIMIENTO con ID: {}", id);
 
-        log.info("Actualizando SEGUIMIENTO con ID: {}", sDTO.getId());
-        seguimientoRepo.findById(sDTO.getId())
+        SeguimientoModelo existente = seguimientoRepo.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Error: SEGUIMIENTO no encontrado para actualizar."));
 
-        EnvioModelo envio = envioRepository.findById(sDTO.getEnvioId())
-                .orElseThrow(() -> new EntityNotFoundException("Error: ENVIO no encontrado con ID: " + sDTO.getEnvioId()));
+        EnvioModelo envio = envioRepository.findById(dto.getEnvioId())
+                .orElseThrow(() -> new EntityNotFoundException("Error: ENVIO no encontrado con ID: " + dto.getEnvioId()));
 
-        seguimientoRepo.save(SeguimientoModelo.builder()
-                .id(sDTO.getId()) // Esencial para que Hibernate actualice el registro existente
-                .envio(envio)    // Pasamos la entidad completa del envío que encontramos recién
-                .estadoSegui(sDTO.getEstadoSegui())
-                .ubiAtual(sDTO.getUbiAtual())
-                .observacion(sDTO.getObservacion())
-                .fechaSegui(sDTO.getFechaSegui())
-                .visible(sDTO.getVisible())
-                .build());
+        existente.setEnvio(envio);
+        existente.setEstadoSegui(dto.getEstadoSegui());
+        existente.setUbiAtual(dto.getUbiAtual());
+        existente.setObservacion(dto.getObservacion());
+        existente.setFechaSegui(dto.getFechaSegui());
+        existente.setVisible(dto.getVisible());
+
+        SeguimientoModelo actualizado = seguimientoRepo.save(existente);
+        log.info("SEGUIMIENTO actualizado exitosamente con ID: {}", actualizado.getId());
+
+        return seguimientoMapper.toResponseDTO(actualizado);
     }
 
     @Transactional
@@ -95,5 +96,4 @@ public class SeguimientoService {
         seguimientoRepo.deleteById(id);
         log.info("Seguimiento ID: {} eliminado correctamente", id);
     }
-
 }

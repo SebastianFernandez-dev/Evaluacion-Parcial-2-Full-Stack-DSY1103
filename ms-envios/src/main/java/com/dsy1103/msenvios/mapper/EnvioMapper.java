@@ -1,18 +1,18 @@
 package com.dsy1103.msenvios.mapper;
 
+import com.dsy1103.msenvios.dto.EnvioRequestDTO;
+import com.dsy1103.msenvios.dto.EnvioResponseDTO;
 import com.dsy1103.msenvios.modelo.EnvioModelo;
-import com.dsy1103.msenvios.dto.EnvioDTO;
 import org.springframework.stereotype.Component;
 
-@Component // Spring sabe que es un componente inyectable
+@Component
 public class EnvioMapper {
 
-    // 1. Convertir de MODELO a RESPONSE DTO (Salida)
-    public EnvioDTO toDTO(EnvioModelo modelo) {
+    public EnvioResponseDTO toResponseDTO(EnvioModelo modelo) {
         if (modelo == null) return null;
 
-        return EnvioDTO.builder()
-                .id(modelo.getId()) // Pasamos el ID porque ya existe en la BD
+        return EnvioResponseDTO.builder()
+                .id(modelo.getId())
                 .codigoEnvio(modelo.getCodigoEnvio())
                 .pedidoId(modelo.getPedidoId())
                 .usuarioId(modelo.getUsuarioId())
@@ -22,11 +22,10 @@ public class EnvioMapper {
                 .fechaEntregaEstimada(modelo.getFechaEntregaEstimada())
                 .fechaEntregado(modelo.getFechaEntregado())
                 .activo(modelo.getActivo())
-                .build(); // Cierra y construye el objeto de salida
+                .build();
     }
 
-    // 2. Convertir de REQUEST DTO a MODELO (Para guardar)
-    public EnvioModelo toEntity(EnvioDTO dto) {
+    public EnvioModelo toEntity(EnvioRequestDTO dto) {
         if (dto == null) return null;
 
         return EnvioModelo.builder()
@@ -39,7 +38,6 @@ public class EnvioMapper {
                 .fechaEntregaEstimada(dto.getFechaEntregaEstimada())
                 .fechaEntregado(dto.getFechaEntregado())
                 .activo(dto.getActivo())
-                .build(); // Cierra y construye el modelo listo para el repository.save()
+                .build();
     }
 }
-
