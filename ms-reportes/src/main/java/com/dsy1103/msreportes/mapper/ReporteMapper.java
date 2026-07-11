@@ -1,38 +1,40 @@
 package com.dsy1103.msreportes.mapper;
 
-import com.dsy1103.msreportes.dto.ReporteDTO;
+import com.dsy1103.msreportes.dto.ReporteRequestDTO;
+import com.dsy1103.msreportes.dto.ReporteResponseDTO;
 import com.dsy1103.msreportes.model.ReporteModel;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ReporteMapper {
 
-    public static ReporteDTO toDTO(ReporteModel rModel) {
-        if (rModel == null) return null;
+    public ReporteResponseDTO toResponseDTO(ReporteModel model) {
+        if (model == null) return null;
 
-        return ReporteDTO.builder()
-                .id(rModel.getId())
-                .descripcion(rModel.getDescripcion())
-                .tipo(rModel.getTipo())
-                .totalVentas(rModel.getTotalVentas())
-                .cantidadPedidos(rModel.getCantidadPedidos())
-                .cantidadPagos(rModel.getCantidadPagos())
-                .fechaGeneracion(rModel.getFechaGeneracion())
-                .publicado(rModel.getPublicado())
-                .usuarioId(rModel.getUsuarioId())
+        return ReporteResponseDTO.builder()
+                .id(model.getId())
+                .descripcion(model.getDescripcion())
+                .tipo(model.getTipo())
+                .totalVentas(model.getTotalVentas())
+                .cantidadPedidos(model.getCantidadPedidos())
+                .cantidadPagos(model.getCantidadPagos())
+                .fechaGeneracion(model.getFechaGeneracion())
+                .publicado(model.getPublicado())
+                .usuarioId(model.getUsuarioId())
                 .build();
     }
 
-    public static ReporteModel toEntity(ReporteDTO rDTO) {
-        if (rDTO == null) return null;
+    public ReporteModel toEntity(ReporteRequestDTO dto) {
+        if (dto == null) return null;
 
         return ReporteModel.builder()
-                .descripcion(rDTO.getDescripcion())
-                .tipo(rDTO.getTipo())
-                .totalVentas(rDTO.getTotalVentas())
-                .cantidadPedidos(rDTO.getCantidadPedidos())
-                .cantidadPagos(rDTO.getCantidadPagos())
-                .fechaGeneracion(rDTO.getFechaGeneracion())
-                .publicado(rDTO.getPublicado())
-                .usuarioId(rDTO.getUsuarioId())
+                .descripcion(dto.getDescripcion())
+                .tipo(dto.getTipo())
+                .totalVentas(dto.getTotalVentas())
+                .cantidadPedidos(dto.getCantidadPedidos())
+                .cantidadPagos(dto.getCantidadPagos())
+                .publicado(dto.getPublicado())
+                .usuarioId(dto.getUsuarioId())
                 .build();
     }
 }

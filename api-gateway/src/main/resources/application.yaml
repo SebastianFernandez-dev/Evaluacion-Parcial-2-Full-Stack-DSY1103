@@ -44,6 +44,21 @@ spring:
               filters:
                 - StripPrefix=0
 
+            - id: servicio6-route
+              uri: lb://PROVEEDOR-SERVICE
+              predicates:
+                - Path=/api/v1/contratos/**, /api/v2/contratos/**, /api/v1/proveedores/**, /api/v2/proveedores/**
+              filters:
+                - StripPrefix=0
+
+            - id: servicio7-route
+              uri: lb://REPORTE-SERVICE
+              predicates:
+                - Path=/api/v1/reporte/**, /api/v2/reportes/**
+              filters:
+                - 
+                - StripPrefix=0
+
 eureka:
   client:
     service-url:

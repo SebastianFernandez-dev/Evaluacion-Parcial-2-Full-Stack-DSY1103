@@ -1,37 +1,40 @@
 package com.dsy1103.msproveedores.mapper;
 
-import com.dsy1103.msproveedores.dto.ContratoDTO;
+import com.dsy1103.msproveedores.dto.ContratoRequestDTO;
+import com.dsy1103.msproveedores.dto.ContratoResponseDTO;
 import com.dsy1103.msproveedores.model.ContratoModel;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ContratoMapper {
 
-    public static ContratoDTO toDTO(ContratoModel cModel) {
-        if (cModel == null) return null;
+    public ContratoResponseDTO toResponseDTO(ContratoModel model) {
+        if (model == null) return null;
 
-        return ContratoDTO.builder()
-                .id(cModel.getId())
-                .numero(cModel.getNumero())
-                .tipo(cModel.getTipo())
-                .valor(cModel.getValor())
-                .fechaInicio(cModel.getFechaInicio())
-                .fechaFin(cModel.getFechaFin())
-                .vigente(cModel.getVigente())
-                .observaciones(cModel.getObservaciones())
-                .proveedorId(cModel.getProveedor().getId())
+        return ContratoResponseDTO.builder()
+                .id(model.getId())
+                .numero(model.getNumero())
+                .tipo(model.getTipo())
+                .valor(model.getValor())
+                .fechaInicio(model.getFechaInicio())
+                .fechaFin(model.getFechaFin())
+                .vigente(model.getVigente())
+                .observaciones(model.getObservaciones())
+                .proveedorId(model.getProveedor().getId())
                 .build();
     }
 
-    public static ContratoModel toEntity(ContratoDTO cDTO) {
-        if (cDTO == null) return null;
+    public ContratoModel toEntity(ContratoRequestDTO dto) {
+        if (dto == null) return null;
 
         return ContratoModel.builder()
-                .numero(cDTO.getNumero())
-                .tipo(cDTO.getTipo()).valor(cDTO.getValor())
-                .fechaInicio(cDTO.getFechaInicio())
-                .fechaFin(cDTO.getFechaFin())
-                .vigente(cDTO.getVigente())
-                .observaciones(cDTO.getObservaciones())
+                .numero(dto.getNumero())
+                .tipo(dto.getTipo())
+                .valor(dto.getValor())
+                .fechaInicio(dto.getFechaInicio())
+                .fechaFin(dto.getFechaFin())
+                .vigente(dto.getVigente())
+                .observaciones(dto.getObservaciones())
                 .build();
-        //el proveedor se agrega en el service, para consultar a la bdd si existe en realidad
     }
 }
